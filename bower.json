@@ -2,7 +2,7 @@
   "name": "Name_project",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "latest",
+    "jquery": "1.11.3",
     "modernizr": "latest",
     "respond": "latest",
     "REM-unit-polyfill": "latest"

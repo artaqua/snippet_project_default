@@ -2,41 +2,48 @@
 =            VARIABLES            =
 =================================*/
 
-var 	gulp 						   = require('gulp'),
-		del 						   = require('del'),
-		stylus 					   = require('gulp-stylus'),
-		nib 						   = require('nib'),
-		rupture 				      = require('rupture'),
-		autoprefixer 		      = require('gulp-autoprefixer'),
-		minifyCss 			      = require('gulp-minify-css'),
-		uglify 					   = require('gulp-uglify'),
-		imagemin 				   = require('gulp-imagemin'),
-		spritesmith 				= require('gulp.spritesmith'),
-		connect 				      = require('gulp-connect'),
-		wiredep 				      = require('wiredep').stream,
-		useref 					   = require('gulp-useref'),
-		gulpif 					   = require('gulp-if'),
-		plumber 						= require('gulp-plumber');
+var gulp 						    			= require('gulp'),
+		del 						    			= require('del'),
+		stylus 					    			= require('gulp-stylus'),
+		nib 						    			= require('nib'),
+		rupture 				    			= require('rupture'),
+		autoprefixer 		    			= require('gulp-autoprefixer'),
+		minifyCss 			    			= require('gulp-minify-css'),
+		uglify 					    			= require('gulp-uglify'),
+		imagemin 									= require('gulp-imagemin'),
+		spritesmith 							= require('gulp.spritesmith'),
+		connect 				    			= require('gulp-connect'),
+		wiredep 				    			= require('wiredep').stream,
+		useref 					    			= require('gulp-useref'),
+		gulpif 					    			= require('gulp-if'),
+		plumber 									= require('gulp-plumber'),
+		imageResize 							= require('gulp-image-resize'),
+		rename 										= require('gulp-rename'),
+		runSequence 							= require('run-sequence');
 
 /*===============================
 =            SOURCES            =
 ===============================*/
 
-var	htmlSources 				= 'source/*.html',
-		stylusSources 				= 'source/stylus/*.styl',
-		jsSources 					= 'source/js/*.js',
-		imageSources 				= 'source/images/**/*',
-		spriteSources				= 'source/images/sprites/source_sprite/*';
+var	htmlSources 							= 'source/*.html',
+		stylusSources 						= 'source/stylus/*.styl',
+		jsSources 								= 'source/js/*.js',
+		imageSources 							= 'source/images/**/*',
+		spriteSources 						= 'source/images/sprites/';
 
 /*=============================
 =            BUILD            =
 =============================*/
 
-gulp.task('clean:build', function() {
-	del.sync(['build']);
+gulp.task('build', function() {
+	runSequence('clean-sprite', 'imagemin', 'clean-source', 'building');
 });
 
-gulp.task('img', ['clean:build'], function() {
+gulp.task('clean-build', function() {
+	return del(['build/']);
+});
+
+gulp.task('imagemin', function() {
 	return gulp.src(imageSources)
 		.pipe(imagemin({
 			optimizationLevel: 3,
@@ -48,14 +55,14 @@ gulp.task('img', ['clean:build'], function() {
 		.pipe(gulp.dest('build/images/'));
 });
 
-gulp.task('clean:source', ['img'], function() {
-	del(['build/images/sprites/source_sprite']);
+gulp.task('clean-source', function() {
+	return del(['build/images/sprites/source_sprite']);
 });
 
-gulp.task('build', ['clean:source'], function () {
+gulp.task('building', function () {
 	var assets = useref.assets();
 
-	gulp.src(htmlSources)
+	return gulp.src(htmlSources)
 		.pipe(assets)
 		.pipe(gulpif('*.css', minifyCss()))
 		.pipe(gulpif('*.js', uglify()))
@@ -120,17 +127,77 @@ gulp.task('js', function() {
 =            SPRITE            =
 ==============================*/
 
+// for normal images
 gulp.task('sprite', function () {
-	var spriteData = gulp.src(spriteSources)
-			.pipe(spritesmith({
-				imgName: 'sprite.png',
-				imgPath: '../images/sprites/sprite.png',
-				cssName: '_sprite.styl',
-		      cssFormat: 'stylus',
-		      algorithm: 'binary-tree'
-			}));
-  	spriteData.img.pipe(gulp.dest('source/images/sprites/'));
-   spriteData.css.pipe(gulp.dest('source/stylus/packages/'));
+	var spriteData = gulp.src(spriteSources + 'source_sprite/**/*.png')
+
+		.pipe(spritesmith({
+			imgName: 'sprite.png',
+			imgPath: '../images/sprites/sprite.png',
+			cssName: '_sprite.styl',
+	    algorithm: 'binary-tree',
+	    padding: 15
+		}))
+  	spriteData.img.pipe(gulp.dest(spriteSources))
+   	spriteData.css.pipe(gulp.dest('source/stylus/packages/'));
+});
+
+// for 2x images
+gulp.task('sprite-2x', function () {
+  runSequence('clean-sprite', 'sprite-size', 'sprite-style-2x');
+});
+
+gulp.task('clean-sprite', function() {
+	return del([spriteSources + 'source_sprite/2x/']);
+});
+
+gulp.task('sprite-size', function () {
+  return gulp.src(spriteSources + 'source_sprite/*.png')
+    .pipe(imageResize({
+      width : '200%',
+      height : '200%'
+    }))
+    .pipe(rename({ suffix: "_2x" }))
+    .pipe(gulp.dest(spriteSources + 'source_sprite/2x/'));
+});
+
+gulp.task('sprite-style-2x', function () {
+	var spriteData = gulp.src(spriteSources + 'source_sprite/**/*.png')
+
+		.pipe(spritesmith({
+			imgName: 'sprite.png',
+			imgPath: '../images/sprites/sprite.png',
+			retinaSrcFilter: spriteSources + 'source_sprite/**/*_2x.png',
+			retinaImgName: 'sprite_2x.png',
+			retinaImgPath: '../images/sprites/sprite_2x.png',
+			cssName: '_sprite.styl',
+	    algorithm: 'binary-tree',
+	    padding: 15
+		}))
+  	spriteData.img.pipe(gulp.dest(spriteSources))
+   	spriteData.css.pipe(gulp.dest('source/stylus/packages/'));
+});
+
+/*====================================
+=            SIZED IMG 2x            =
+====================================*/
+
+gulp.task('size', function () {
+  runSequence('clean-size', 'size-2x');
+});
+
+gulp.task('clean-size', function() {
+	return del(['source/images/2x/']);
+});
+
+gulp.task('size-2x', function () {
+  gulp.src('source/images/1x/**/*.{jpg,png}')
+    .pipe(imageResize({
+      width : '200%',
+      height : '200%'
+    }))
+    .pipe(rename({ suffix: "_2x" }))
+    .pipe(gulp.dest('source/images/2x/'));
 });
 
 /*==============================
@@ -160,4 +227,4 @@ gulp.task('watch', function() {
 =            DEFAULT            =
 ===============================*/
 
-gulp.task('default', ['html', 'stylus', 'js', 'connect', 'bower', 'sprite', 'watch']);
+gulp.task('default', ['html', 'stylus', 'js', 'connect', 'bower', 'watch']);
