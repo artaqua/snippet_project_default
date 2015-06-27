@@ -13,7 +13,6 @@ var gulp 						    			= require('gulp'),
 		imagemin 									= require('gulp-imagemin'),
 		spritesmith 							= require('gulp.spritesmith'),
 		connect 				    			= require('gulp-connect'),
-		wiredep 				    			= require('wiredep').stream,
 		useref 					    			= require('gulp-useref'),
 		gulpif 					    			= require('gulp-if'),
 		plumber 									= require('gulp-plumber'),
@@ -69,19 +68,6 @@ gulp.task('building', function () {
 		.pipe(assets.restore())
 		.pipe(useref())
 		.pipe(gulp.dest('build/'));
-});
-
-/*=============================
-=            BOWER            =
-=============================*/
-
-gulp.task('bower', function () {
-	gulp.src(htmlSources)
-		.pipe(wiredep({
-			directory: 'source/bower_components/'
-		}))
-		.pipe(gulp.dest('source/'))
-		.pipe(connect.reload());
 });
 
 /*============================
@@ -217,9 +203,8 @@ gulp.task('connect', function() {
 
 gulp.task('watch', function() {
 	gulp.watch(htmlSources, ['html']);
-	gulp.watch(stylusSources, ['stylus']);
+	gulp.watch('source/stylus/**/*', ['stylus']);
 	gulp.watch(jsSources, ['js']);
-	gulp.watch('bower.json', ['bower']);
 	gulp.watch(spriteSources, ['sprite']);
 });
 
@@ -227,4 +212,4 @@ gulp.task('watch', function() {
 =            DEFAULT            =
 ===============================*/
 
-gulp.task('default', ['html', 'stylus', 'js', 'connect', 'bower', 'watch']);
+gulp.task('default', ['html', 'stylus', 'js', 'connect', 'watch']);

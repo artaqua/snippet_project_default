@@ -22,7 +22,6 @@
     "gulp.spritesmith": "^3.6.1",
     "nib": "^1.1.0",
     "run-sequence": "^1.1.0",
-    "rupture": "^0.6.1",
-    "wiredep": "^2.2.2"
+    "rupture": "^0.6.1"
   }
 }
