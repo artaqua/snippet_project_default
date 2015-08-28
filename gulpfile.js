@@ -1,9 +1,20 @@
+/*================================
+=            COMMANDS            =
+================================*/
+
+// gulp                      = запуск галпа
+// gulp sprite               = сборка спрайтов
+// gulp sprite-2x            = сборка спрайтов для ретины
+// gulp size                 = создание картинов для ретины
+// gulp build                = сборка билда
+
 /*=================================
 =            VARIABLES            =
 =================================*/
 
 var gulp 						    			= require('gulp'),
 		del 						    			= require('del'),
+		jade                      = require('gulp-jade'),
 		stylus 					    			= require('gulp-stylus'),
 		nib 						    			= require('nib'),
 		rupture 				    			= require('rupture'),
@@ -25,6 +36,7 @@ var gulp 						    			= require('gulp'),
 ===============================*/
 
 var	htmlSources 							= 'source/*.html',
+		jadeSources               = 'source/jade/*.jade',
 		stylusSources 						= 'source/stylus/*.styl',
 		jsSources 								= 'source/js/*.js',
 		imageSources 							= 'source/images/**/*',
@@ -35,7 +47,7 @@ var	htmlSources 							= 'source/*.html',
 =============================*/
 
 gulp.task('build', function() {
-	runSequence('clean-sprite', 'imagemin', 'clean-source', 'building');
+	runSequence('clean-build', 'imagemin', 'clean-source', 'fonts', 'building');
 });
 
 gulp.task('clean-build', function() {
@@ -58,6 +70,11 @@ gulp.task('clean-source', function() {
 	return del(['build/images/sprites/source_sprite']);
 });
 
+gulp.task('fonts', function () {
+	return gulp.src('source/fonts/**/*')
+		.pipe(gulp.dest('build/fonts/'));
+});
+
 gulp.task('building', function () {
 	var assets = useref.assets();
 
@@ -74,6 +91,14 @@ gulp.task('building', function () {
 =            HTML            =
 ============================*/
 
+gulp.task('jade', function() {
+  gulp.src(jadeSources)
+    .pipe(plumber())
+    .pipe(jade({
+    	pretty: true
+    }))
+    .pipe(gulp.dest('source/'));
+});
 gulp.task('html', function() {
 	gulp.src(htmlSources)
 		.pipe(connect.reload());
@@ -123,9 +148,9 @@ gulp.task('sprite', function () {
 			cssName: '_sprite.styl',
 	    algorithm: 'binary-tree',
 	    padding: 15
-		}))
-  	spriteData.img.pipe(gulp.dest(spriteSources))
-   	spriteData.css.pipe(gulp.dest('source/stylus/packages/'));
+		}));
+  	spriteData.img.pipe(gulp.dest(spriteSources));
+   	spriteData.css.pipe(gulp.dest('source/stylus/modules/'));
 });
 
 // for 2x images
@@ -159,9 +184,9 @@ gulp.task('sprite-style-2x', function () {
 			cssName: '_sprite.styl',
 	    algorithm: 'binary-tree',
 	    padding: 15
-		}))
-  	spriteData.img.pipe(gulp.dest(spriteSources))
-   	spriteData.css.pipe(gulp.dest('source/stylus/packages/'));
+		}));
+  	spriteData.img.pipe(gulp.dest(spriteSources));
+   	spriteData.css.pipe(gulp.dest('source/stylus/modules/'));
 });
 
 /*====================================
@@ -202,6 +227,7 @@ gulp.task('connect', function() {
 =============================*/
 
 gulp.task('watch', function() {
+	gulp.watch('source/jade/**/*', ['jade']);
 	gulp.watch(htmlSources, ['html']);
 	gulp.watch('source/stylus/**/*', ['stylus']);
 	gulp.watch(jsSources, ['js']);
@@ -212,4 +238,4 @@ gulp.task('watch', function() {
 =            DEFAULT            =
 ===============================*/
 
-gulp.task('default', ['html', 'stylus', 'js', 'connect', 'watch']);
+gulp.task('default', ['jade', 'html', 'stylus', 'js', 'connect', 'watch']);

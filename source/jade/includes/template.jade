@@ -1,0 +1,23 @@
+doctype html
+html.no-js
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    block title
+    link(rel='shortcut icon', href='images/favicon.ico')
+    meta(name='description', content='')
+    block css
+  body
+    block content
+      include _old-ie.jade
+
+      block header
+        include _header.jade
+
+      block main
+
+      block footer
+        include _footer.jade
+
+    block js
