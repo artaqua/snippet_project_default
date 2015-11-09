@@ -3,16 +3,13 @@
 =================================*/
 
 $white                   = #fff
-$white-20                = #eee
-$black                   = #000
-$red                     = #f00
-$blue                    = #00f
-$orange                  = #e27d55
-$grey                    = #373535
+$black                   = #333333
+$yellow                  = #ffcb00
+$grey                    = #333
 
 $base-color              = $black
 $body-bg                 = $white
-$a-color                 = $blue
+$a-color                 = $yellow
 $a-color-hover           = lighten($a-color, 15%)
 $h-color                 = $base-color
 $p-color                 = $base-color
@@ -20,21 +17,20 @@ $p-color                 = $base-color
 $border-color            = $grey
 $border-color-hover      = lighten($border-color, 15%)
 
-$font-1                  = 'PT Sans', sans-serif
-$font-2                  = 'Arial', sans-serif
+$font-1                  = 'Roboto', sans-serif
 
-$html-font-size          = 62.5%
+$html-font-size          = 100%
 
-$font-size               = 1.4rem
-$h1-size                 = 3rem
-$h2-size                 = 2.4rem
-$h3-size                 = 2rem
-$h4-size                 = 1.4rem
+$font-size               = 18px
+$h1-size                 = 60px
+$h2-size                 = 30px
+$h3-size                 = 30px
+$h4-size                 = 18px
 
-$h-font                  = $font-2
-$h-font-width            = 500
+$h-font                  = $font-1
+$h-font-width            = 400
 
-$p-line-height           = 1.4
+$p-line-height           = 30px
 $h-line-height           = 1.2
 
 /*============================
@@ -42,7 +38,7 @@ $h-line-height           = 1.2
 ============================*/
 
 // Extra small screen / phone
-$screen-xs ?=                480px
+$screen-xs ?=                0px
 $screen-xs-min ?=            $screen-xs
 $screen-phone ?=             $screen-xs-min
 
@@ -68,22 +64,22 @@ $screen-md-max ?=            ($screen-lg-min - 1)
 
 //** Number of columns in the grid.
 $grid-columns ?=              12
-$grid-gutter-width ?=         30px
+$grid-gutter-width ?=         20px
 $grid-float-breakpoint ?=     $screen-sm-min
 $grid-float-breakpoint-max ?= ($grid-float-breakpoint - 1)
 
 //== Container sizes
 
 // Small screen / tablet
-$container-tablet ?=           (720px + $grid-gutter-width)
+$container-tablet ?=           (690px + $grid-gutter-width)
 $container-sm ?=               $container-tablet
 
 // Medium screen / desktop
-$container-desktop ?=          (940px + $grid-gutter-width)
+$container-desktop ?=          (920px + $grid-gutter-width)
 $container-md ?=               $container-desktop
 
 // Large screen / wide desktop
-$container-large-desktop ?=    (1140px + $grid-gutter-width)
+$container-large-desktop ?=    (920px + $grid-gutter-width)
 $container-lg ?=               $container-large-desktop
 
 

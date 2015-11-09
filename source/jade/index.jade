@@ -1,37 +1,27 @@
-extends includes/template.jade
+extends _includes/template.jade
 
 //- HEAD
 block title
-	title Page 1
+	title Home
 
 block css
 	// build:css css/vendor-main.min.css
-	link(rel="stylesheet", href="bower_components/tooltipster/css/tooltipster.css")
 	// endbuild
 	// build:css css/main.min.css
 	link(rel="stylesheet", href="css/main.css")
 	// endbuild
 
-//- BODY
-block content
-	block header
-		header
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore quam, iste harum aut nostrum provident sed doloremque dolorum animi?
-
-	block main
-		main
-			h3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ipsa nobis ut accusantium, earum magni ex quam recusandae in voluptatum.
-
-	block footer
-		footer: p Lorem ipsum dolor sit amet.
-
+block main
+	main
+		.container
+			.row
+						
 //- SCRIPTS
 block js
 	// build:js js/vendor-main.min.js
 	script(type='text/javascript', src='bower_components/modernizr/modernizr.js')
 	script(type='text/javascript', src='bower_components/jquery/dist/jquery.js')
 	script(type='text/javascript', src='bower_components/respond/dest/respond.src.js')
-	script(type='text/javascript', src='bower_components/REM-unit-polyfill/js/rem.js')
 	// endbuild
 	// build:js js/main.min.js
 	script(type='text/javascript', src='js/main.js')

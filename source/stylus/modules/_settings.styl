@@ -32,10 +32,10 @@ a
 	text-decoration none
 	&:hover
 		color $a-color-hover
-		transition all 0.4s ease
+		transition all 250ms ease
 	&:active
 		color darken($a-color-hover,20%)
-		transition all 0.4s ease
+		transition all 250ms ease
 
 a:focus,
 button:focus,
@@ -45,7 +45,6 @@ option
 	outline none
 	box-shadow none
 	text-shadow none
-	-webkit-appearance none
 
 .img-responsive
   display block
@@ -78,8 +77,15 @@ h4
 	font-size $h4-size
 
 .clearfix
-	clearfix()
+	content ""
+  display table
+  clear both
 
+.resp
+	display block
+	max-width 100%
+	height auto
+	
 .browsehappy
 	color red
 	text-align center

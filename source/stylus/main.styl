@@ -10,21 +10,23 @@
 =            HEADER            =
 ==============================*/
 
-@import 'includes/_header.styl'
+@import '_includes/_header.styl'
 
 /*============================
 =            MAIN            =
 ============================*/
-
 main
   float left
   width 100%
+  
+  .row
+    +at(xs)
+      margin 0 10px
+      
 
 /*==============================
 =            FOOTER            =
 ==============================*/
 
-@import 'includes/_footer.styl'
-
-
+@import '_includes/_footer.styl'
 
