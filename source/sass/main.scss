@@ -1,0 +1,32 @@
+@import '_modules/_normalize';
+@import '_modules/_mixins';
+@import '_modules/_grid';
+@import '_modules/_variables';
+@import '_modules/_settings';
+@import '_modules/_sprite';
+
+/////////////////////////////// HEADER
+
+@import '_includes/_header';
+
+/////////////////////////////// MAIN
+
+main {
+  float: left;
+  width: 100%;
+
+  .row {
+    @include xs {
+      margin: 0 10px;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    @include sprite($logo);
+  }
+}
+
+/////////////////////////////// FOOTER
+
+@import '_includes/_footer';

@@ -1,0 +1,147 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$arrow-search-name: 'arrow-search';
+$arrow-search-x: 251px;
+$arrow-search-y: 34px;
+$arrow-search-offset-x: -251px;
+$arrow-search-offset-y: -34px;
+$arrow-search-width: 15px;
+$arrow-search-height: 13px;
+$arrow-search-total-width: 272px;
+$arrow-search-total-height: 203px;
+$arrow-search-image: '../images/sprites/sprite.png';
+$arrow-search: (251px, 34px, -251px, -34px, 15px, 13px, 272px, 203px, '../images/sprites/sprite.png', 'arrow-search', );
+$arrow-selectbox-hover-name: 'arrow-selectbox-hover';
+$arrow-selectbox-hover-x: 210px;
+$arrow-selectbox-hover-y: 137px;
+$arrow-selectbox-hover-offset-x: -210px;
+$arrow-selectbox-hover-offset-y: -137px;
+$arrow-selectbox-hover-width: 21px;
+$arrow-selectbox-hover-height: 19px;
+$arrow-selectbox-hover-total-width: 272px;
+$arrow-selectbox-hover-total-height: 203px;
+$arrow-selectbox-hover-image: '../images/sprites/sprite.png';
+$arrow-selectbox-hover: (210px, 137px, -210px, -137px, 21px, 19px, 272px, 203px, '../images/sprites/sprite.png', 'arrow-selectbox-hover', );
+$arrow-selectbox-name: 'arrow-selectbox';
+$arrow-selectbox-x: 251px;
+$arrow-selectbox-y: 0px;
+$arrow-selectbox-offset-x: -251px;
+$arrow-selectbox-offset-y: 0px;
+$arrow-selectbox-width: 21px;
+$arrow-selectbox-height: 19px;
+$arrow-selectbox-total-width: 272px;
+$arrow-selectbox-total-height: 203px;
+$arrow-selectbox-image: '../images/sprites/sprite.png';
+$arrow-selectbox: (251px, 0px, -251px, 0px, 21px, 19px, 272px, 203px, '../images/sprites/sprite.png', 'arrow-selectbox', );
+$btn-search-name: 'btn-search';
+$btn-search-x: 0px;
+$btn-search-y: 80px;
+$btn-search-offset-x: 0px;
+$btn-search-offset-y: -80px;
+$btn-search-width: 202px;
+$btn-search-height: 42px;
+$btn-search-total-width: 272px;
+$btn-search-total-height: 203px;
+$btn-search-image: '../images/sprites/sprite.png';
+$btn-search: (0px, 80px, 0px, -80px, 202px, 42px, 272px, 203px, '../images/sprites/sprite.png', 'btn-search', );
+$facebook-link-name: 'facebook-link';
+$facebook-link-x: 0px;
+$facebook-link-y: 137px;
+$facebook-link-offset-x: 0px;
+$facebook-link-offset-y: -137px;
+$facebook-link-width: 195px;
+$facebook-link-height: 33px;
+$facebook-link-total-width: 272px;
+$facebook-link-total-height: 203px;
+$facebook-link-image: '../images/sprites/sprite.png';
+$facebook-link: (0px, 137px, 0px, -137px, 195px, 33px, 272px, 203px, '../images/sprites/sprite.png', 'facebook-link', );
+$icon-twitter-name: 'icon_twitter';
+$icon-twitter-x: 0px;
+$icon-twitter-y: 185px;
+$icon-twitter-offset-x: 0px;
+$icon-twitter-offset-y: -185px;
+$icon-twitter-width: 34px;
+$icon-twitter-height: 18px;
+$icon-twitter-total-width: 272px;
+$icon-twitter-total-height: 203px;
+$icon-twitter-image: '../images/sprites/sprite.png';
+$icon-twitter: (0px, 185px, 0px, -185px, 34px, 18px, 272px, 203px, '../images/sprites/sprite.png', 'icon_twitter', );
+$logo-name: 'logo';
+$logo-x: 0px;
+$logo-y: 0px;
+$logo-offset-x: 0px;
+$logo-offset-y: 0px;
+$logo-width: 236px;
+$logo-height: 65px;
+$logo-total-width: 272px;
+$logo-total-height: 203px;
+$logo-image: '../images/sprites/sprite.png';
+$logo: (0px, 0px, 0px, 0px, 236px, 65px, 272px, 203px, '../images/sprites/sprite.png', 'logo', );
+$spritesheet-width: 272px;
+$spritesheet-height: 203px;
+$spritesheet-image: '../images/sprites/sprite.png';
+$spritesheet-sprites: ($arrow-search, $arrow-selectbox-hover, $arrow-selectbox, $btn-search, $facebook-link, $icon-twitter, $logo, );
+$spritesheet: (272px, 203px, '../images/sprites/sprite.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

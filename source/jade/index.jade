@@ -12,16 +12,26 @@ block css
 	// endbuild
 
 block main
+
 	main
 		.container
 			.row
-						
+				
+				//// Block-main
+				.block-main
+
+
+
+
+
+
 //- SCRIPTS
 block js
 	// build:js js/vendor-main.min.js
 	script(type='text/javascript', src='bower_components/modernizr/modernizr.js')
 	script(type='text/javascript', src='bower_components/jquery/dist/jquery.js')
 	script(type='text/javascript', src='bower_components/respond/dest/respond.src.js')
+	script(type='text/javascript', src='js/svg_local_storage.js')
 	// endbuild
 	// build:js js/main.min.js
 	script(type='text/javascript', src='js/main.js')

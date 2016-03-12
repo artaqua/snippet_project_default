@@ -1,0 +1,41 @@
+/////////////////////////////// VARIABLES
+
+$white:                         #fff;
+$black:                         #333333;
+$yellow:                        #ffcb00;
+$grey:                          #333;
+
+$base-color:                    $black;
+$body-bg:                       $white;
+$a-color:                       $yellow;
+$a-color-hover:                 lighten($a-color, 15%);
+$h-color:                       $base-color;
+$p-color:                       $base-color;
+
+$border-color:                  $grey;
+$border-color-hover:            lighten($border-color, 15%);
+
+$font-1:                        'Open Sans Condensed', sans-serif;
+$font-2:                        'Myriad Pro', sans-serif;
+$font-3:                        'Arial', sans-serif;
+
+$html-font-size:                100%;
+
+$font-size:                     18px;
+$h1-size:                       60px;
+$h2-size:                       30px;
+$h3-size:                       30px;
+$h4-size:                       18px;
+
+$h-font:                        $font-1;
+$h-font-width:                  400;
+
+$p-line-height:                 30px;
+$h-line-height:                 1.2;
+
+
+
+
+
+
+
