@@ -1,0 +1,41 @@
+/////////////////////////////// VARIABLES
+
+$white:                         #fff;
+$black:                         #231f20;
+$grey:                          #767676;
+$red:                           #ee2b55;
+$green:                         #76bb22;
+
+$base-color:                    $black;
+$body-bg:                       $white;
+$a-color:                       $red;
+$a-color-hover:                 $red;
+$h-color:                       $base-color;
+$p-color:                       $base-color;
+
+$border-color:                  $grey;
+$border-color-hover:            lighten($border-color, 15%);
+
+$font-1:                        'PFDinTextCompPro-Thin', sans-serif;
+
+$font-base:                     $font-1;
+$html-font-size:                100%;
+
+$font-size:                     20px;
+$h1-size:                       60px;
+$h2-size:                       40px;
+$h3-size:                       24px;
+$h4-size:                       20px;
+
+$h-font:                        $font-1;
+$h-font-width:                  400;
+
+$p-line-height:                 30px;
+$h-line-height:                 1.2;
+
+$container-fluid-max-width:     1220px;
+
+
+
+
+

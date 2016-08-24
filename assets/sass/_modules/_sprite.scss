@@ -1,0 +1,103 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$checkbox-checked-name: 'checkbox-checked';
+$checkbox-checked-x: 32px;
+$checkbox-checked-y: 0px;
+$checkbox-checked-offset-x: -32px;
+$checkbox-checked-offset-y: 0px;
+$checkbox-checked-width: 36px;
+$checkbox-checked-height: 38px;
+$checkbox-checked-total-width: 119px;
+$checkbox-checked-total-height: 74px;
+$checkbox-checked-image: '../images/sprites/sprite.png';
+$checkbox-checked: (32px, 0px, -32px, 0px, 36px, 38px, 119px, 74px, '../images/sprites/sprite.png', 'checkbox-checked', );
+$checkbox-name: 'checkbox';
+$checkbox-x: 83px;
+$checkbox-y: 0px;
+$checkbox-offset-x: -83px;
+$checkbox-offset-y: 0px;
+$checkbox-width: 36px;
+$checkbox-height: 38px;
+$checkbox-total-width: 119px;
+$checkbox-total-height: 74px;
+$checkbox-image: '../images/sprites/sprite.png';
+$checkbox: (83px, 0px, -83px, 0px, 36px, 38px, 119px, 74px, '../images/sprites/sprite.png', 'checkbox', );
+$creator-name: 'creator';
+$creator-x: 0px;
+$creator-y: 0px;
+$creator-offset-x: 0px;
+$creator-offset-y: 0px;
+$creator-width: 17px;
+$creator-height: 74px;
+$creator-total-width: 119px;
+$creator-total-height: 74px;
+$creator-image: '../images/sprites/sprite.png';
+$creator: (0px, 0px, 0px, 0px, 17px, 74px, 119px, 74px, '../images/sprites/sprite.png', 'creator', );
+$spritesheet-width: 119px;
+$spritesheet-height: 74px;
+$spritesheet-image: '../images/sprites/sprite.png';
+$spritesheet-sprites: ($checkbox-checked, $checkbox, $creator, );
+$spritesheet: (119px, 74px, '../images/sprites/sprite.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

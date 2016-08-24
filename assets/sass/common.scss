@@ -1,0 +1,35 @@
+@import '_modules/_normalize';
+@import '_modules/_mixins';
+@import '_modules/_grid';
+@import '_modules/_variables';
+@import '_modules/_settings';
+@import '_modules/_sprite';
+@import '_modules/_animation';
+
+/* Common */
+
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('../fonts/ProximaNova-Regular.woff2') format('woff2'),
+       url('../fonts/ProximaNova-Regular.woff') format('woff'),
+       url('../fonts/ProximaNova-Regular.ttf')  format('truetype')
+}
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src: url('../fonts/ProximaNova-Bold.woff2') format('woff2'),
+       url('../fonts/ProximaNova-Bold.woff') format('woff'),
+       url('../fonts/ProximaNova-Bold.ttf')  format('truetype')
+}
+
+/* Page loading */
+
+@import '_includes/_page-loading';
+
+/* Header */
+
+@import '_includes/_header';
+
+/* Footer */
+
+@import '_includes/_footer';

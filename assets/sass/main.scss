@@ -1,0 +1,16 @@
+@import '_modules/_variables';
+@import '_modules/_mixins';
+@import '_modules/_sprite';
+
+/* Main */
+
+main {
+  float: left;
+  width: 100%;
+}
+
+/* Menu */
+section.menu {
+  float: left;
+  width: 100%;
+}
