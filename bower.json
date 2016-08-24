@@ -1,0 +1,10 @@
+{
+  "name": "Name_project",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "1.11.3",
+    "modernizr": "#2.8.2",
+    "respond": "~1.4.2",
+    "svg4everybody": "~2.0.3"
+  }
+}
