@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery": "1.11.3",
-    "modernizr": "#2.8.2",
-    "respond": "latest",
-    "svg4everybody": "~2.0.3"
+    "modernizr": "#2.8.2"
   }
 }

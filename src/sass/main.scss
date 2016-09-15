@@ -1,0 +1,31 @@
+@import '_modules/_normalize';
+@import '_modules/_mixins';
+@import '_modules/_grid';
+@import '_modules/_variables';
+@import '_modules/_settings';
+@import '_modules/_animation';
+
+/* Vendor */
+
+@import 'vendor/icons-font';
+@import 'vendor/sprite_png';
+
+/* Page loading */
+
+@import '_includes/_page-loading';
+
+/* Header */
+
+@import '_includes/_header';
+
+
+/* Main */
+
+main {
+  float: left;
+  width: 100%;
+}
+
+/* Footer */
+
+@import '_includes/_footer';

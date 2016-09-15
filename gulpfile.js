@@ -1,210 +1,137 @@
-/////////////////////////////// COMMANDS
-
-// gulp                      = запуск галпа
-// gulp clearCache           = очистка кеша
-// gulp build                = сборка билда
-
 'use strict';
 
 /////////////////////////////// VARIABLES
 
 var gulp                      = require('gulp'),
+    watch                     = require('gulp-watch'),
     del                       = require('del'),
     cache                     = require('gulp-cached'),
     sass                      = require('gulp-sass'),
-    sassInheritance           = require('gulp-sass-inheritance'),
     autoprefixer              = require('gulp-autoprefixer'),
     cleanCSS                  = require('gulp-clean-css'),
     uglify                    = require('gulp-uglify'),
     imagemin                  = require('gulp-imagemin'),
     spritesmith               = require('gulp.spritesmith'),
-    useref                    = require('gulp-useref'),
     gulpif                    = require('gulp-if'),
     plumber                   = require('gulp-plumber'),
+    notify                    = require("gulp-notify"),
+    rigger                    = require("gulp-rigger"),
     rename                    = require('gulp-rename'),
     runSequence               = require('run-sequence'),
     pug                       = require('gulp-pug'),
-    changed                   = require('gulp-changed'),
-    filter                    = require('gulp-filter'),
-    browserSync               = require('browser-sync'),
-    reload                    = browserSync.reload,
+    browserSync               = require('browser-sync').create(),
     iconfont                  = require('gulp-iconfont'),
     iconfontCss               = require('gulp-iconfont-css'),
     svgstore                  = require('gulp-svgstore'),
-    cheerio                   = require('gulp-cheerio'),
-    sourcemaps                = require('gulp-sourcemaps');
+    svgmin                    = require('gulp-svgmin'),
+    inject                    = require('gulp-inject'),
+    sourcemaps                = require('gulp-sourcemaps'),
+    cachedPug                 = true,
+    cachedSass                = true;
     
 /////////////////////////////// PATHS
 
-var paths = {
-  source: 'assets/',
-  pug: 'assets/pug/',
-  sass: 'assets/sass/',
-  css: 'assets/css/',
-  js: 'assets/js/',
-  images: 'assets/images/',
-  sprite: 'assets/images/sprites/',
-  iconsfont: 'assets/images/sprites/source_iconsfont_svg/',
-  fonts: 'assets/fonts',
-  build: 'build/'
+var path = {
+  build: {
+    html: 'build/',
+    js: 'build/js/',
+    css: 'build/css/',
+    img: 'build/images/',
+    sprites: 'build/images/sprites/',
+    fonts: 'build/fonts/'
+  },
+  src: {
+    pug: 'src/*.pug',
+    mainJs: 'src/js/main.js',
+    vendorsJs: 'src/js/vendors.js',
+    style: 'src/sass/main.scss',
+    img: ['src/images/**/**/**/*.*', '!src/images/sprites/**/**/**/*.*'],
+    iconFont: 'src/images/sprites/source_iconsfont/*.svg',
+    pngSprite: 'src/images/sprites/source_sprite_png/**/*.png',
+    svgSprite: 'src/images/sprites/source_sprite_svg/**/*.svg',
+    fonts: 'src/fonts/**/*.*'
+  },
+  watch: {
+    pug: 'src/*.pug',
+    pugInclude: 'src/pug/**/**/**/*.pug',
+    mainJs: 'src/js/**/main.js',
+    vendorsJs: 'src/js/**/vendors.js',
+    style: 'src/sass/*.*',
+    styleInclude: ['src/sass/**/**/**/*.*', '!src/sass/*.*'],
+    img: ['src/images/**/**/**/*.*', '!src/images/sprites/**/**/**/**/*.*'],
+    iconFont: 'src/images/sprites/source_iconsfont/*.svg',
+    pngSprite: 'src/images/sprites/source_sprite_png/**/*.png',
+    svgSprite: 'src/images/sprites/source_sprite_svg/**/*.svg',
+    fonts: 'src/fonts/**/**/**/*.*'
+  },
+  clean: './build'
 };
 
-/////////////////////////////// HTML
+/////////////////////////////// TASKS
 
-gulp.task('pug', function() {
-  return gulp.src(paths.pug + '*.pug')
-    .pipe(cache('pug'))
-    .pipe(plumber())
+gulp.task('clearCache', function () {
+  cache.caches = {};
+});
+
+gulp.task('clean:build', function() {
+  return del.sync(path.build.html);
+});
+
+gulp.task('html:build',  function() {
+  return gulp.src(path.src.pug)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe(gulpif(cachedPug, cache('pug')))
     .pipe(pug({
       pretty: true
     }))
-    .pipe(gulp.dest(paths.source))
-    .pipe(reload({stream: true}));
-});
-gulp.task('pugIncludes', function() {
-  return gulp.src(paths.pug + '*.pug')
-    .pipe(plumber())
-    .pipe(pug({
-      pretty: true
-    }))
-    .pipe(gulp.dest(paths.source))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(path.build.html))
+    .pipe(browserSync.stream());
 });
 
-/////////////////////////////// SASS
-
-gulp.task('sass', function() {
-  return gulp.src(paths.sass + '*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(cache('sass'))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 3 versions', '> 2%', 'ie 8', 'ie 9'],
-      cascade: false
+gulp.task('style:build', function() {
+  return gulp.src(path.src.style)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
     }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(paths.css))
-    .pipe(reload({stream: true}));
-});
-gulp.task('sassIncludes', function() {
-  return gulp.src(paths.sass + '**/*.scss')
-    .pipe(changed(paths.css, {
-      extension: '.css'
+    .pipe(gulpif(cachedSass, cache('sass')))
+    //.pipe(sourcemaps.init())
+    .pipe(sass({
+      errLogToConsole: true
     }))
-    .pipe(gulpif(global.isWatching, cache('sassIncludes')))
-    .pipe(sassInheritance({
-      dir: paths.sass
-    }))
-    .pipe(filter(function (file) {
-      return !/\/_/.test(file.path) || !/^_/.test(file.relative);
-    }))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 3 versions', '> 2%', 'ie 8', 'ie 9'],
-      cascade: false
-    }))
-    .pipe(gulp.dest(paths.css));
-});
-gulp.task('sassIncludesWatch', ['sassIncludes'], reload);
-
-/////////////////////////////// JS
-
-gulp.task('js', function() {
-  gulp.src(paths.js)
-    .pipe(reload({stream: true}));
+    .pipe(autoprefixer())
+    .pipe(cleanCSS())
+    //.pipe(sourcemaps.write())
+    .pipe(gulp.dest(path.build.css))
+    .pipe(browserSync.stream());
 });
 
-/////////////////////////////// WATCH
-
-gulp.task('setWatch', function() {
-  global.isWatching = true;
-});
-gulp.task('watch', ['setWatch', 'sassIncludesWatch'], function() {
-  browserSync({
-    server: paths.source
-  });
-  gulp.watch(paths.pug + '*.pug', ['pug']);
-  gulp.watch(paths.pug + '_includes/*.pug', ['pug', 'pugIncludes',]);
-  gulp.watch(paths.sass + '*.scss', ['sass']);
-  gulp.watch([paths.sass + '_includes/*.scss', paths.sass + '_modules/*.scss'], ['sassIncludesWatch']);
-  gulp.watch(paths.js + '**/*', ['js']);
-  gulp.watch(paths.sprite + 'source_sprite/*.png', ['sprite']);
-  gulp.watch(paths.iconsfont + '**/*', ['iconsFont']);
-  gulp.watch(paths.sprite + 'source_sprite_svg/**/*.svg', ['svgSprite', 'pug']);
-});
-
-/////////////////////////////// ICONSFONT
-
-gulp.task('iconsFont', function() {
-  gulp.src(paths.iconsfont + '*.svg')
-    .pipe(iconfontCss({
-      fontName: 'icons-font',
-      fontPath: '../fonts/',
-      targetPath: '../css/icons-style.css'
+gulp.task('mainJs:build', function() {
+  return gulp.src(path.src.mainJs)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
     }))
-    .pipe(iconfont({
-      formats: ['ttf', 'eot', 'woff', 'woff2'],
-      fontName: 'icons-font',
-      normalize: true
-    }))
-    .pipe(gulp.dest(paths.fonts))
-    .pipe(reload({stream:true}));
+    .pipe(rigger())
+    .pipe(gulp.dest(path.build.js))
+    .pipe(browserSync.stream());
 });
 
-/////////////////////////////// SVG SPRITE
+gulp.task('vendorsJs:build', function() {
+  return gulp.src(path.src.vendorsJs)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe(rigger())
+    .pipe(uglify())
+    .pipe(gulp.dest(path.build.js))
+    .pipe(browserSync.stream());
+});
 
-gulp.task('svgSprite', function () {
-  return gulp.src(paths.sprite + 'source_sprite_svg/**/*.svg')
+gulp.task('image:build', function() {
+  return gulp.src(path.src.img)
+    .pipe(cache('images'))
     .pipe(imagemin({
-      progressive: true,
-      svgoPlugins: [
-        {removeViewBox: false},
-        {cleanupIDs: false}
-      ]
-    }))
-    .pipe(svgstore({ fileName: 'icons.svg', inlineSvg: true}))
-    .pipe(cheerio({
-      run: function ($, file) {
-        $('svg').addClass('hide');
-        $('[fill]').removeAttr('fill');
-      },
-      parserOptions: { xmlMode: true }
-    }))
-    .pipe(rename('sprite_svg.svg'))
-    .pipe(gulp.dest(paths.sprite))
-    .pipe(reload({stream:true}));
-});
-
-/////////////////////////////// SPRITE
-
-gulp.task('sprite', function () {
-  var spriteData = gulp.src(paths.sprite + 'source_sprite/**/*.png')
-    .pipe(spritesmith({
-      imgName: 'sprite.png',
-      imgPath: '../images/sprites/sprite.png',
-      cssName: '_sprite.scss',
-      algorithm: 'binary-tree',
-      padding: 15
-    }));
-    spriteData.img.pipe(gulp.dest(paths.sprite));
-    spriteData.css.pipe(gulp.dest(paths.sass + '_modules/'))
-    .pipe(reload({stream: true}));
-});
-
-/////////////////////////////// BUILD
-
-gulp.task('build', function() {
-  runSequence('cleanBuild', 'imagemin', 'cleanSource', 'fonts', 'json', 'building');
-});
-
-gulp.task('cleanBuild', function() {
-  return del(paths.build);
-});
-
-gulp.task('imagemin', function() {
-  return gulp.src(paths.images + '**/*')
-    .pipe(imagemin({
-      optimizationLevel: 3,
       progressive: true,
       interlaced: true,
       multipass: true,
@@ -213,43 +140,130 @@ gulp.task('imagemin', function() {
         {cleanupIDs: false}
       ]
     }))
-    .pipe(gulp.dest(paths.build + 'images/'));
+    .pipe(gulp.dest(path.build.img))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('cleanSource', function() {
-  del(paths.build + 'images/sprites/source_sprite');
-  del(paths.build + 'images/sprites/source_iconsfont_svg');
-  del(paths.build + 'images/sprites/source_sprite_svg');
+gulp.task('fonts:build', function() {
+  return gulp.src(path.src.fonts)
+    .pipe(gulp.dest(path.build.fonts))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('fonts', function () {
-  return gulp.src(paths.fonts + '**/*')
-    .pipe(gulp.dest(paths.build));
+///////////////////////////////// ICONFONT
+gulp.task('iconFont', function() {
+  return gulp.src(path.src.iconFont)
+    .pipe(iconfontCss({
+      fontName: 'icons-font',
+      fontPath: '../fonts/',
+      targetPath: '../sass/vendor/icons-font.scss'
+    }))
+    .pipe(iconfont({
+      formats: ['ttf', 'eot', 'woff', 'woff2'],
+      fontName: 'icons-font',
+      normalize: true
+    }))
+    .pipe(gulp.dest('src/fonts/'))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('json', function () {
-  return gulp.src(paths.js + '**/*.json')
-    .pipe(gulp.dest(paths.build + 'js/'));
+/////////////////////////////// PNG SPRITE
+gulp.task('pngSprite', function () {
+  var spriteData = gulp.src(path.src.pngSprite)
+    .pipe(spritesmith({
+      imgName: 'sprite.png',
+      imgPath: '../images/sprites/sprite.png',
+      cssName: 'sprite_png.scss',
+      algorithm: 'binary-tree',
+      padding: 15
+    }));
+    spriteData.img.pipe(gulp.dest(path.build.sprites))
+    spriteData.css.pipe(gulp.dest('src/sass/vendor/'))
+    .pipe(browserSync.stream());
 });
 
-gulp.task('building', function () {
-  var assets = useref.assets();
+gulp.task('svgSprite', function() {
+  var svgs = gulp.src(path.src.svgSprite)
+    .pipe(rename({
+      prefix: 'svg-icon-'
+    }))
+    .pipe(svgmin())
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
 
-  return gulp.src(paths.source + '*.html')
-    .pipe(assets)
-    .pipe(gulpif('*.css', cleanCSS()))
-    .pipe(gulpif('*.js', uglify()))
-    .pipe(assets.restore())
-    .pipe(useref())
-    .pipe(gulp.dest(paths.build));
+  function fileContents(filePath, file) {
+    return file.contents.toString();
+  }
+  return gulp.src('src/pug/svg-sprite.pug')
+    .pipe(inject(svgs, {
+      transform: fileContents
+    }))
+    .pipe(gulp.dest('src/pug'));
+
 });
 
-/////////////////////////////// CLEAR CACHE
-
-gulp.task('clearCache', function () {
-  cache.caches ={};
+gulp.task('browser-sync', function() {
+  browserSync.init({
+    server: {
+      baseDir: "./build"
+    }
+  });
 });
 
-/////////////////////////////// DEFAULT
+gulp.task('watch', function() {
+  watch(path.watch.pug, function(event, cb) {
+    cachedPug = true;
+    gulp.start('html:build');
+  });
+  watch(path.watch.pugInclude, function(event, cb) {
+    cachedPug = false;
+    gulp.start('html:build');
+  });
+  watch(path.watch.style, function(event, cb) {
+    cachedSass = true;
+    gulp.start('style:build');
+  });
+  watch(path.watch.styleInclude, function(event, cb) {
+    cachedSass = false;
+    gulp.start('style:build');
+  });
+  watch(path.watch.mainJs, function(event, cb) {
+    gulp.start('mainJs:build');
+  });
+  watch(path.watch.vendorsJs, function(event, cb) {
+    gulp.start('vendorsJs:build');
+  });
+  watch(path.watch.img, function(event, cb) {
+    gulp.start('image:build');
+  });
+  watch(path.watch.fonts, function(event, cb) {
+    gulp.start('fonts:build');
+  });
+  watch(path.watch.iconFont, function(event, cb) {
+    gulp.start('iconFont');
+  });
+  watch(path.watch.pngSprite, function(event, cb) {
+    gulp.start('pngSprite');
+  });
+  watch(path.watch.svgSprite, function(event, cb) {
+    gulp.start('svgSprite');
+  });
+});
 
-gulp.task('default', ['clearCache', 'watch', 'sass', 'sassIncludes', 'pug', 'js', 'sprite', 'iconsFont', 'svgSprite']);
+gulp.task('default', function() {
+  runSequence(
+    'clearCache',
+    'clean:build', 
+    'html:build', 
+    'style:build', 
+    'mainJs:build', 
+    'vendorsJs:build', 
+    'image:build',
+    'iconFont',
+    'pngSprite',
+    'svgSprite',
+    'fonts:build',
+    'browser-sync',
+    'watch');
+});
