@@ -5,6 +5,7 @@ $black:                         #231f20;
 $grey:                          #767676;
 $red:                           #ee2b55;
 $green:                         #76bb22;
+$blue:                          #00bff3;
 
 $base-color:                    $black;
 $body-bg:                       $white;
@@ -12,6 +13,8 @@ $a-color:                       $red;
 $a-color-hover:                 $red;
 $h-color:                       $base-color;
 $p-color:                       $base-color;
+
+$selection-bg:                  $blue;
 
 $border-color:                  $grey;
 $border-color-hover:            lighten($border-color, 15%);

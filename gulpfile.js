@@ -130,6 +130,9 @@ gulp.task('vendorsJs:build', function() {
 
 gulp.task('image:build', function() {
   return gulp.src(path.src.img)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
     .pipe(cache('images'))
     .pipe(imagemin({
       progressive: true,

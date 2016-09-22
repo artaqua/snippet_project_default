@@ -115,6 +115,7 @@ img {
 i {
 	display: inline-block;
 	vertical-align: middle;
+	text-rendering: auto;
 }
 
 svg {
@@ -124,11 +125,11 @@ svg {
 
 ::selection {
   color: $white;
-  background: $red;
+  background: $selection-bg;
 }
 ::-moz-selection {
   color: $white;
-  background: $red;
+  background: $selection-bg;
 }
 
 .clearfix {
