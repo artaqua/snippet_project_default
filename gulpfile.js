@@ -54,7 +54,7 @@ var path = {
   watch: {
     pug: 'src/*.pug',
     pugInclude: 'src/pug/**/**/**/*.pug',
-    mainJs: 'src/js/**/main.js',
+    mainJs: ['src/js/**/main.js', 'src/js/_includes/*'],
     vendorsJs: 'src/js/**/vendors.js',
     style: 'src/sass/*.*',
     styleInclude: ['src/sass/**/**/**/*.*', '!src/sass/*.*'],
@@ -101,7 +101,7 @@ gulp.task('style:build', function() {
       errLogToConsole: true
     }))
     .pipe(autoprefixer())
-    .pipe(cleanCSS())
+    // .pipe(cleanCSS())
     //.pipe(sourcemaps.write())
     .pipe(gulp.dest(path.build.css))
     .pipe(browserSync.stream());
@@ -203,7 +203,11 @@ gulp.task('svgSprite', function() {
       transform: fileContents
     }))
     .pipe(gulp.dest('src/pug'));
+});
 
+gulp.task('video:build', function() {
+  return gulp.src('src/video/**')
+    .pipe(gulp.dest('./build/video/'));
 });
 
 gulp.task('browser-sync', function() {
@@ -267,6 +271,7 @@ gulp.task('default', function() {
     'pngSprite',
     'svgSprite',
     'fonts:build',
+    'video:build',
     'browser-sync',
     'watch');
 });
