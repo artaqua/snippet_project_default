@@ -44,7 +44,7 @@ var path = {
     pug: 'src/*.pug',
     mainJs: 'src/js/main.js',
     vendorsJs: 'src/js/vendors.js',
-    style: 'src/sass/main.scss',
+    style: 'src/sass/*.scss',
     img: ['src/images/**/**/**/*.*', '!src/images/sprites/**/**/**/*.*'],
     iconFont: 'src/images/sprites/source_iconsfont/*.svg',
     pngSprite: 'src/images/sprites/source_sprite_png/**/*.png',
@@ -54,7 +54,7 @@ var path = {
   watch: {
     pug: 'src/*.pug',
     pugInclude: 'src/pug/**/**/**/*.pug',
-    mainJs: ['src/js/**/main.js', 'src/js/_includes/*'],
+    mainJs: 'src/js/**/*',
     vendorsJs: 'src/js/**/vendors.js',
     style: 'src/sass/*.*',
     styleInclude: ['src/sass/**/**/**/*.*', '!src/sass/*.*'],

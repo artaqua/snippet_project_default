@@ -1,42 +1,45 @@
 /////////////////////////////// VARIABLES
 
 $white:                         #fff;
-$black:                         #231f20;
-$grey:                          #767676;
-$red:                           #ee2b55;
-$green:                         #76bb22;
-$blue:                          #00bff3;
+$black:                         #1d1e20;
+$grey:                          #4b4d4f;
+$green:                         #249738;
+$blue:                          #0587ca;
+$red:                           #ff4d74;
 
 $base-color:                    $black;
 $body-bg:                       $white;
-$a-color:                       $red;
-$a-color-hover:                 $red;
+$a-color:                       $green;
+$a-color-hover:                 $blue;
 $h-color:                       $base-color;
 $p-color:                       $base-color;
 
-$selection-bg:                  $blue;
+$selection-bg:                  $green;
 
 $border-color:                  $grey;
 $border-color-hover:            lighten($border-color, 15%);
 
-$font-1:                        'Roboto', sans-serif;
+$font-1:                        'GothamProLight', sans-serif;
+$font-2:                        'GothamProRegular', sans-serif;
 
-$font-base:                     $font-1;
+$font-base:                     $font-2;
 $html-font-size:                100%;
 
-$font-size:                     20px;
-$h1-size:                       60px;
-$h2-size:                       40px;
-$h3-size:                       24px;
-$h4-size:                       20px;
+$font-size:                     14px;
+$h1-size:                       80px;
+$h2-size:                       60px;
+$h3-size:                       20px;
+$h4-size:                       12px;
 
-$h-font:                        $font-1;
+$h-font:                        $font-2;
 $h-font-width:                  400;
 
-$p-line-height:                 30px;
+$p-line-height:                 21px;
 $h-line-height:                 1.2;
 
-$container-fluid-max-width:     960px;
+$container-fluid-max-width:     1280px;
+
+$easing:                        cubic-bezier(0.28, 0.57, 0.22, 0.76);
 
 
 

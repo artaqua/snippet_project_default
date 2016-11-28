@@ -2,35 +2,29 @@ include pug/mixins/svg-icon.pug
 
 doctype html
 html.no-js
-	head
-		include pug/meta.pug
-		title Home
-		include pug/styles.pug
-	body
-		include pug/old-ie.pug
-		include pug/svg-sprite.pug
+  head
+    include pug/meta.pug
+    title Home
+    include pug/styles.pug
+  body
+    include pug/old-ie.pug
+    include pug/svg-sprite.pug
 
-		include pug/_includes/_page-loading.pug
+    include pug/_includes/_page-loading.pug
 
-		include pug/_includes/_header.pug
+    // Header
+    include pug/_includes/_header.pug
+    
+    main
+      // Section Home
+      include pug/_includes/_section-home.pug
 
-		main
-			.container-fluid
-				section.any
-					p Main.
+    // Footer
+    include pug/_includes/_footer.pug
 
-					// SvgSprite
-					+svg('close')
-					+svg('shape')
-					// Iconfont
-					i.icon.icon-test
-					// PngSprite
-					i.icon-arrow
 
-		include pug/_includes/_footer.pug
+    include pug/scripts.pug
+  
 
-		include pug/scripts.pug
-	
-
-			
+      
 

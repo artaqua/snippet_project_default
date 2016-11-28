@@ -48,15 +48,8 @@ a {
 button {
 	border: none;
 	color: $white;
-	background: $red;
 	border-radius: 4px;
 	transition: all 250ms ease;
-	&:hover {
-		background: lighten($red, 15%);
-	}
-	&:active {
-		background: darken($red, 10%);
-	}
 }
 
 a:focus,
