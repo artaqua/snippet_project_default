@@ -1,0 +1,134 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$arrow-select-name: 'arrow-select';
+$arrow-select-x: 469px;
+$arrow-select-y: 189px;
+$arrow-select-offset-x: -469px;
+$arrow-select-offset-y: -189px;
+$arrow-select-width: 17px;
+$arrow-select-height: 10px;
+$arrow-select-total-width: 571px;
+$arrow-select-total-height: 377px;
+$arrow-select-image: '../images/sprites/sprite.png';
+$arrow-select: (469px, 189px, -469px, -189px, 17px, 10px, 571px, 377px, '../images/sprites/sprite.png', 'arrow-select', );
+$logo-1000-name: 'logo-1000';
+$logo-1000-x: 338px;
+$logo-1000-y: 189px;
+$logo-1000-offset-x: -338px;
+$logo-1000-offset-y: -189px;
+$logo-1000-width: 116px;
+$logo-1000-height: 35px;
+$logo-1000-total-width: 571px;
+$logo-1000-total-height: 377px;
+$logo-1000-image: '../images/sprites/sprite.png';
+$logo-1000: (338px, 189px, -338px, -189px, 116px, 35px, 571px, 377px, '../images/sprites/sprite.png', 'logo-1000', );
+$logo-1400-name: 'logo-1400';
+$logo-1400-x: 0px;
+$logo-1400-y: 251px;
+$logo-1400-offset-x: 0px;
+$logo-1400-offset-y: -251px;
+$logo-1400-width: 171px;
+$logo-1400-height: 126px;
+$logo-1400-total-width: 571px;
+$logo-1400-total-height: 377px;
+$logo-1400-image: '../images/sprites/sprite.png';
+$logo-1400: (0px, 251px, 0px, -251px, 171px, 126px, 571px, 377px, '../images/sprites/sprite.png', 'logo-1400', );
+$logo-1800-name: 'logo-1800';
+$logo-1800-x: 338px;
+$logo-1800-y: 0px;
+$logo-1800-offset-x: -338px;
+$logo-1800-offset-y: 0px;
+$logo-1800-width: 233px;
+$logo-1800-height: 174px;
+$logo-1800-total-width: 571px;
+$logo-1800-total-height: 377px;
+$logo-1800-image: '../images/sprites/sprite.png';
+$logo-1800: (338px, 0px, -338px, 0px, 233px, 174px, 571px, 377px, '../images/sprites/sprite.png', 'logo-1800', );
+$logo-name: 'logo';
+$logo-x: 0px;
+$logo-y: 0px;
+$logo-offset-x: 0px;
+$logo-offset-y: 0px;
+$logo-width: 323px;
+$logo-height: 236px;
+$logo-total-width: 571px;
+$logo-total-height: 377px;
+$logo-image: '../images/sprites/sprite.png';
+$logo: (0px, 0px, 0px, 0px, 323px, 236px, 571px, 377px, '../images/sprites/sprite.png', 'logo', );
+$spritesheet-width: 571px;
+$spritesheet-height: 377px;
+$spritesheet-image: '../images/sprites/sprite.png';
+$spritesheet-sprites: ($arrow-select, $logo-1000, $logo-1400, $logo-1800, $logo, );
+$spritesheet: (571px, 377px, '../images/sprites/sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

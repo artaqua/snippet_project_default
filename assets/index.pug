@@ -1,0 +1,78 @@
+include pug/_mixins/svg-icon.pug
+
+doctype html
+html
+	head
+		title Home
+		include pug/meta.pug
+		include pug/styles.pug
+	body.page-home
+		include pug/svg-sprite.pug
+		include pug/_modules/_page-loading.pug
+		
+		// Header
+		include pug/_modules/_header.pug
+
+		// Nav menu
+		include pug/_modules/_nav-menu-mobile.pug
+
+		main
+
+			// Section Home
+			section.section-home
+				.container-page
+					.home-slide(style="background-image: url('images/home/home-slide.jpg');")
+						.slider
+							.slick-slide
+								.item(style="background-image: url('images/home/slider/slide-1.jpg');")
+							.slick-slide
+								.item(style="background-image: url('images/home/slider/slide-2.jpg');")
+							.slick-slide
+								.item(style="background-image: url('images/home/slider/slide-3.jpg');")
+						a.prev(href="#")
+							+svg('arrow-left')
+						a.next(href="#")
+							+svg('arrow-right')
+							
+						svg#svg-home-nav(viewbox="0 0 1920 1061" height="100%" width="100%" preserveAspectRatio="xMidYMid meet")
+							g.group-path-circles
+								image(overflow='visible', width='566', height='566', xlink:href='images/home/nav/circle.png', transform='matrix(1 0 0 1 1174.7148 252.5)')
+							g.arrow
+								image(overflow='visible', width='81', height='58', xlink:href='images/home/nav/arrow.png', transform='matrix(1 0 0 1 1575.0957 460.4756)')
+							a.link.link-1(href="#")
+								circle.link-circle(cx='1280', cy='300', r='82')
+								image(style='overflow:visible;', width='50', height='62', xlink:href='images/home/nav/icons/hand-key.png', transform='matrix(1 0 0 1 1250 245)')
+								text(transform='matrix(1 0 0 1 1252 329)')
+									tspan.text(x='0', y='0') Купить
+									tspan.text(x='-9', y='18') квартиру
+							a.link.link-2(href="#")
+								circle.link-circle(cx='1250', cy='750', r='82')
+								image(style='overflow:visible;', width='52', height='60', xlink:href='images/home/nav/icons/files.png', transform='matrix(1 0 0 1 1225 695)')
+								text(transform='matrix(1 0 0 1 1215 780)')
+									tspan.text(x='0', y='0') Условия
+									tspan.text(x='1', y='18') покупки
+							a.link.link-3(href="#")
+								circle.link-circle(cx='1700', cy='700', r='82')
+								image(style='overflow:visible;', width='49', height='53', xlink:href='images/home/nav/icons/like.png', transform='matrix(1 0 0 1 1675 640)')
+								text.text(transform='matrix(1 0 0 1 1675 720)') 
+									tspan.text(x='0', y='0') Наши
+									tspan.text(x='-36', y='18') преимущества
+
+
+
+		// Footer
+		include pug/_modules/_footer.pug
+				
+		// Popups
+		include pug/_modules/_popups.pug
+
+		
+
+		include pug/scripts.pug
+		
+		
+
+	
+
+			
+

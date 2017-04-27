@@ -1,0 +1,25 @@
+/* Components */
+@import '_components/_normalize';
+@import '_components/_mixins';
+@import '_components/_bootstrap-grid';
+@import '_components/_variables';
+@import '_components/_settings';
+@import '_components/_animation';
+@import '_components/_fonts';
+@import '_components/_png-sprite';
+
+/* Imports from node_modules */ 
+// @import 'slick-carousel/slick/slick.scss';
+// @import 'ion-rangeslider/css/ion.rangeSlider.css';
+// @import 'perfect-scrollbar/dist/css/perfect-scrollbar.css';
+
+/* Modules */
+@import '_modules/_common';
+@import '_modules/_page-loading';
+@import '_modules/_header';
+@import '_modules/_nav-menu-mobile';
+@import '_modules/_footer';
+
+/* Sections */
+@import '_modules/_section-home';
+

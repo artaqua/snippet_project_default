@@ -1,0 +1,641 @@
+body {
+  position: relative;
+  float: left;
+  &.page-home {
+    footer.footer-page {
+      @include below(1050px) {
+        display: block;
+      }
+    }
+  }
+  &.page-apartment {
+    min-width: 800px;
+  }
+}
+main {
+  float: left;
+  width: 100%;
+}
+.animate {
+  transition: opacity 1000ms ease 250ms, transform 1000ms ease 250ms;
+  transform-origin: top center;
+  perspective: 1000px;
+  opacity: 0;
+  transform: translate(0,40px);
+  &.showing {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+}
+.page-bg {
+  float: left;
+  width: 100%;
+  background-image: url(../images/page/bg-page.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.container-page {
+  float: left;
+  width: 100%;
+  padding: 70px 0;
+  @include below(510px) {
+    padding: 40px 0;
+  }
+}
+.container-fluid {
+  padding: 0 40px;
+  @include below(550px) {
+    padding: 0 20px;
+  }
+}
+.title-page {
+  float: left;
+  font-size: 27px;
+  font-weight: 700;
+  color: #3E4C52;
+  text-transform: uppercase;
+  margin-top: 150px;
+  margin-bottom: 25px;
+  @include below-h(800px) {
+    margin-top: 50px;
+  }
+  @include below(1800px) {
+    margin-top: 100px;
+  }
+  @include below-h-w(800px,1800px) {
+    margin-top: 50px;
+  }
+  @include below(1400px) {
+    margin-top: 60px;
+  }
+  @include below(1050px) {
+    margin-top: 40px;
+  }
+  @include below(800px) {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  @include below(650px) {
+    margin-bottom: 15px;
+  }
+  @include below(510px) {
+    margin-top: 25px;
+  }
+}
+.header-content {
+  float: left;
+  width: 100%;
+  .list-nav {
+    float: right;
+    margin-top: 150px;
+    margin-right: 30px;
+    @include below-h(800px) {
+      margin-top: 50px;
+    }
+    @include below(1800px) {
+      margin-top: 100px;
+    }
+    @include below-h-w(800px,1800px) {
+      margin-top: 50px;
+    }
+    @include below(1400px) {
+      margin-top: 60px;
+    }
+    @include below(1050px) {
+      margin-right: 0;
+      margin-top: 40px;
+    }
+    @include below(800px) {
+      margin-top: 32px;
+    }
+    @include below(650px) {
+      float: left;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+    li {
+      float: left;
+      background-color: transparent;
+      padding: 5px 10px;
+      margin: 0 2px;
+      &.active {
+        background-color: $orange;
+        a {
+          color: $white;
+          &:after {
+            display: none;
+          }
+        }
+      }
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        color: #3e4c52;
+        @include below(650px) {
+          font-size: 14px;
+        }
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+  }
+}
+.main-content {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  padding-right: 40px;
+  margin-top: 10px;
+  @include below-h(800px) {
+    margin-top: 10px;
+  }
+  @include below(1050px) {
+    height: auto !important;
+    right: 0;
+    padding-right: 0;
+  }
+  .ps-scrollbar-x-rail {
+    display: none !important;
+  }
+  .ps-scrollbar-y-rail {
+    right: 0px !important;
+    width: 10px !important;
+    background: $white !important;
+    opacity: 1 !important;
+    @include below(1000px) {
+      display: none !important;
+    }
+    &:hover {
+      background: $white !important;
+      .ps-scrollbar-y {
+        width: 10px !important;
+        background: $orange !important;
+      }
+    }
+  }
+  .ps-scrollbar-y {
+    right: 0 !important;
+    width: 10px !important;
+    border-radius: 0 !important;
+    background: $orange !important;
+    &:hover {
+      width: 10px !important;
+      background: $white !important;
+    }
+    &:active {
+      width: 10px !important;
+      background: $orange !important;
+    }
+  }
+}
+.btn {
+  z-index: 1;
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  padding: 0;
+  background-color: transparent;
+  color: $black;
+  cursor: pointer;
+  transition: all 300ms ease;
+  &:hover {
+    &:before {
+      animation: anim-moema 1200ms ease infinite forwards;
+    }
+    .wrapper-btn {
+      background-color: $orange;
+    }
+  }
+  &:before {
+    z-index: -1;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    bottom: -15px;
+    right: -15px;
+    content: '';
+    display: block;
+    background-color: $orange;
+    opacity: .5;
+    transform: scale3d(.75,.3,1);
+  }
+  .wrapper-btn {
+    position: relative;
+    float: left;
+    display: block;
+    height: 36px;
+    line-height: 37px;
+    padding: 0 30px;
+    background-color: $orange;
+    color: $white;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 350ms ease 150ms;
+    @include below(400px) {
+      padding: 0 15px;
+    }
+  }
+}
+.close {
+  float: left;
+  display: block;
+  &:hover {
+    svg {
+      fill: $orange;
+    }
+    span {
+      color: rgba(255,255,255,1);
+    }
+  }
+  svg {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    fill: rgba(255,255,255,0.5);
+    transition: all 300ms ease;
+  }
+  span {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 20px;
+    transition: all 300ms ease;
+  }
+}
+
+// Popups
+.popup {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(147, 149, 152, 0.77);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 500ms ease;
+  @include below(600px) {
+    max-width: 100%;
+    left: 0;
+    margin-left: 0;
+    padding: 20px;
+  }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    .wrapper-popup {
+      transform: translate(0,0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  .wrapper-popup {
+    position: absolute;
+    top: 50%;
+    margin-top: -210px;
+    left: 50%;
+    margin-left: -275px;
+    width: 100%;
+    max-width: 550px;
+    background: $white;
+    padding: 60px 110px;
+    transition: all 250ms ease 250ms;
+    transform: translate(0,20px);
+    opacity: 0;
+    visibility: hidden;
+    @include below(600px) {
+      position: static;
+      float: left;
+      max-width: 100%;
+      top: 0;
+      margin-top: 0;
+      left: 0;
+      margin-left: 0;
+      padding: 40px;
+    }
+    @include below(400px) {
+      position: static;
+      max-width: 100%;
+      top: 0;
+      margin-top: 0;
+      left: 0;
+      margin-left: 0;
+      padding: 40px 20px;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      @include below(600px) {
+        top: 15px;
+        right: 15px;
+      }
+      &:hover {
+        svg {
+          fill: $orange;
+        }
+      }
+      svg {
+        display: block;
+        width: 26px;
+        height: 26px;
+        fill: #c5c5c5;
+        transition: all 300ms ease;
+        @include below(600px) {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    h3 {
+      margin: 0;
+      float: left;
+      width: 100%;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 32px;
+      color: $black;
+      text-align: center;
+      margin: 0;
+      @include below(600px) {
+        font-size: 22px;
+        line-height: 24px;
+      }
+      @include below(400px) {
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: 10px;
+      }
+    }
+    form {
+      float: left;
+      width: 100%;
+      margin-top: 30px;
+      @include below(600px) {
+        margin-top: 20px;
+      }
+      input {
+        float: left;
+        width: 100%;
+        height: 42px;
+        background: none;
+        border: 1px solid #c8c8c8;
+        padding: 0 15px;
+        cursor: pointer;
+        font-size: 16px;
+        color: $black;
+        transition: all 350ms ease;
+        margin-top: 8px;
+        @include below(400px) {
+          font-size: 14px;
+        }
+        &:focus {
+          border-color: $orange;
+        }
+        &.error {
+          border-color: $red;
+          transform-origin: center center;
+          animation: error-form 500ms ease;
+        }
+        &.valid {
+          border-color: $green;
+          animation: valid-form 500ms ease;
+        }
+      }
+      textarea {
+        float: left;
+        width: 100%;
+        height: 130px;
+        background: none;
+        border: 1px solid #c8c8c8;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        color: $black;
+        transition: all 350ms ease;
+        margin-top: 8px;
+        @include below(400px) {
+          font-size: 14px;
+        }
+        &:focus {
+          border-color: $orange;
+        }
+        &.error {
+          border-color: $red;
+          transform-origin: center center;
+          animation: error-form 500ms ease;
+        }
+        &.valid {
+          border-color: $green;
+          animation: valid-form 500ms ease;
+        }
+      }
+      .btn-submit {
+        float: left;
+        width: 100%;
+        height: 42px;
+        border-radius: 0;
+        background-color: $orange;
+        font-size: 16px;
+        color: $white;
+        text-transform: uppercase;
+        padding: 0;
+        margin-top: 38px;
+        @include below(600px) {
+          font-size: 14px;
+          margin-top: 30px;
+        }
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.docs-popup {
+  .wrapper-popup {
+    padding: 60px 30px;
+    @include below(600px) {
+      padding: 40px 20px;
+    }
+  }
+  .wrapper-scroll {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+    margin-top: 30px;
+    padding-right: 20px;
+    @include below(600px) {
+      height: 360px;
+      padding: 0;
+      padding-right: 20px;
+      margin-top: 25px;
+    }
+    .ps-scrollbar-x-rail {
+      display: none;
+    }
+    .ps-scrollbar-y-rail {
+      right: 0 !important;
+      width: 6px;
+      background: rgba(146, 152, 161, 0.4) !important;
+      opacity: 1;
+      @include below(600px) {
+        right: 0 !important;
+      }
+      &:hover {
+        background: rgba(146, 152, 161, 0.4) !important;
+        .ps-scrollbar-y {
+          width: 6px;
+          background: $orange !important;
+        }
+      }
+    }
+    .ps-scrollbar-y {
+      right: 0;
+      width: 6px;
+      border-radius: 0;
+      background: $orange !important;
+      &:hover {
+        width: 6px !important;
+        background: $orange !important;
+      }
+      &:active {
+        width: 6px !important;
+        background: $orange !important;
+      }
+    }
+  }
+  .list-docs {
+    position: relative;
+    float: left;
+    width: 100%;
+    li {
+      float: left;
+      display: block;
+      width: 100%;
+    }
+    a {
+      float: left;
+      width: 100%;
+      display: block;
+      transition: all 300ms ease-in-out;
+      padding: 5px 0;
+      @include below(600px) {
+        font-size: 14px;
+      }
+      &:hover {
+        transform: translate(10px,0);
+        svg {
+          fill: $orange;
+        }
+        span {
+          color: $orange;
+        }
+      }
+      svg {
+        float: left;
+        width: 18px;
+        height: 18px;
+        fill: #b2b2b2;
+        margin-right: 15px;
+        transition: all 300ms ease-in-out;
+        @include below(600px) {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      span {
+        display: block;
+        font-size: 14px;
+        color: $black;
+        padding-left: 33px;
+        transition: all 300ms ease-in-out;
+        @include below(600px) {
+          font-size: 14px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}
+
+
+// Scroll
+::-webkit-scrollbar {
+  width: 6px;  /* for vertical scrollbars */
+  height: 6px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background-color: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $orange;
+  border-radius: 12px;
+  &:hover {
+    background-color: $orange;
+  }
+}
+
+/* Swipebox */
+#swipebox-overlay {
+  background: rgba(142, 144, 146, 0.9);
+}
+#swipebox-bottom-bar, #swipebox-top-bar {
+  background: $grey;
+  text-shadow: none;
+}
+#swipebox-prev,
+#swipebox-next,
+#swipebox-close {
+  background-image: url(../images/swipebox/icons.png);
+}
+#swipebox-slider .slide-loading {
+  background: url('../images/loading.svg') no-repeat center center !important;
+}
+#swipebox-slider .swipebox-video-container {
+  background: url('../images/loading.svg') no-repeat center center !important;
+}
+#swipebox-top-bar {
+  z-index: 1000;
+  background: none;
+  top: auto;
+  bottom: 100px;
+  font-family: $font-1;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+#swipebox-title {
+  position: absolute;
+  top: 74px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  @include below(500px) {
+    width: 300px;
+  }
+  @include below(400px) {
+    width: 200px;
+  }
+}
+
+  

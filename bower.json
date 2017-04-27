@@ -1,9 +1,0 @@
-{
-  "name": "Name_project",
-  "version": "0.0.1",
-  "dependencies": {
-    "jquery": "2.*.*",
-    "modernizr": "#2.8.2",
-    "tap": "~1.0.8"
-  }
-}

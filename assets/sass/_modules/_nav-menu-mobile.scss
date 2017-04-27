@@ -1,0 +1,215 @@
+.nav-menu-mobile {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 50px 70px;
+  background-color: rgba(255,255,255,1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 600ms ease;
+  @include below(500px) {
+    padding: 30px;
+  }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .animate {
+    transition: opacity 800ms ease, transform 800ms ease;
+    transform-origin: top center;
+    perspective: 1000px;
+    opacity: 0;
+    transform: translate(0,50px);
+    &.showing {
+      opacity: 1;
+      transform: translate(0,0);
+    }
+  }
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    float: left;
+    @include below(500px) {
+      top: 10px;
+      right: 14px;
+    }
+    &:hover {
+      svg {
+        fill: $orange;
+      }
+    }
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+      fill: $black;
+      transition: all 300ms ease;
+    }
+  }
+  .list-nav {
+    float: left;
+    width: 100%;
+    > li {
+      z-index: 5;
+      position: relative;
+      clear: both;
+      float: left;
+      display: block;
+      line-height: 34px;
+      &:hover {
+        z-index: 6;
+        .list-sub-menu {
+          transform: translate(0,0) rotateY(0deg);
+          opacity: 1;
+          visibility: visible;
+          border-color: $orange;
+        }
+      }
+      > a,
+      > span {
+        display: block;
+        font-size: 14px;
+        color: $black;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 300ms ease;
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+  }
+  .list-sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 240px;
+    background: #f9f9f9;
+    border-top: 3px solid $white;
+    padding: 20px 30px;
+    perspective: 1000px;
+    transform: translate(0,30px) rotateY(90deg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 400ms ease, transform 400ms ease, border-top 400ms ease 200ms;
+    li {
+      float: left;
+      width: 100%;
+    }
+    a {
+      float: left;
+      line-height: normal;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $black;
+      padding: 8px 0;
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+  .line {
+    border: 1px solid #dedede;
+    border-bottom: none;
+    margin: 25px -70px;
+    @include below(500px) {
+      margin: 25px -30px;
+    }
+  }
+  .phone {
+    clear: both;
+    float: left;
+    font-size: 28px;
+    font-weight: 700;
+    color: $black;
+    @include below(450px) {
+      width: 100%;
+      text-align: center;
+    }
+    &:hover {
+      color: $orange;
+    }
+  }
+  .btn-order-call {
+    clear: both;
+    float: left;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    @include below(450px) {
+      width: 100%;
+    }
+    .wrapper-btn {
+      font-size: 14px;
+      @include below(450px) {
+        font-size: 12px;
+        width: 100%;
+      }
+    }
+  }
+  .bg-btns {
+    margin: 0 -70px;
+    margin-top: 20px;
+    padding: 30px 70px;
+    background: $grey;
+    @include below(500px) {
+      margin: 0 -30px;
+      margin-top: 20px;
+      padding: 30px;
+    }
+  }
+  .btn-feedback {
+    clear: both;
+    float: left;
+    height: 36px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: $white;
+    padding: 0 30px;
+    background-color: transparent;
+    border-radius: 0;
+    border: 1px solid $white;
+    transition: all 300ms ease;
+    @include below(450px) {
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
+    &:hover {
+      color: $grey;
+      background-color: $white;
+    }
+  }
+  .btn-docs {
+    clear: both;
+    float: left;
+    height: 36px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: $white;
+    padding: 0 30px;
+    background-color: transparent;
+    border-radius: 0;
+    border: 1px solid $white;
+    transition: all 300ms ease;
+    margin-top: 10px;
+    @include below(450px) {
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
+    &:hover {
+      color: $grey;
+      background-color: $white;
+    }
+  }
+}
