@@ -11,11 +11,6 @@ require('tapjs');
 // APP
 // Event DOM Ready
 $(function(){
-
-  setTimeout(function () {
-    loadPage();
-  },4000);
-
   // Menu
   $('body').on('tap', 'header .gumburger', function(event) {
     event.preventDefault();
@@ -276,11 +271,13 @@ $(function(){
 
 });
 
+// if not full load
+setTimeout(function () {
+  loadPage();
+},5000);
 // Event load
 $(window).on('load', function() {
-
   loadPage();
-
 });
 
 var loadPage = (function () {
@@ -424,9 +421,5 @@ var squeezeInWindow = (function(widthImg,heightImg,squeezeElement){
 
   });
 });
-
-
-
-
 
 

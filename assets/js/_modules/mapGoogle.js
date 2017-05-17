@@ -1,7 +1,8 @@
 var $ = require('jquery');
+window.jQuery = window.jquery = $;
 
 // Map
-function initMap() {
+module.exports.init = function () {
   function initialize() {
 
     // Map props
@@ -141,15 +142,12 @@ function initMap() {
 
     $('.overlay-map').on('click', function() {
       $(this).remove();
-    });
-    
+    });    
+
   }
 
   // Init map
   if ( typeof google != 'undefined' ) {
     google.maps.event.addDomListener(window, 'load', initialize);
   }
-  
-}
-
-initMap();
+};
