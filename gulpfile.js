@@ -45,7 +45,6 @@ var path = {
     vendorsJs: 'assets/js/vendors.js',
     style: 'assets/sass/*.scss',
     img: ['assets/images/**/**/**/*.*', '!assets/images/sprites/**/**/**/*.*'],
-    iconFont: 'assets/images/sprites/source_iconsfont/*.svg',
     pngSprite: 'assets/images/sprites/source_sprite_png/**/*.png',
     sassComponents: 'assets/sass/_components/',
     sourceSvgSprite: 'assets/images/sprites/source_sprite_svg/**/*.svg',
@@ -61,7 +60,6 @@ var path = {
     style: 'assets/sass/*.*',
     styleInclude: ['assets/sass/**/**/**/*.*', '!assets/sass/*.*'],
     img: ['assets/images/**/**/**/*.*', '!assets/images/sprites/**/**/**/**/*.*'],
-    iconFont: 'assets/images/sprites/source_iconsfont/*.svg',
     pngSprite: 'assets/images/sprites/source_sprite_png/**/*.png',
     svgSprite: 'assets/images/sprites/source_sprite_svg/**/*.svg',
     fonts: 'assets/fonts/**/**/**/*.*',
@@ -156,7 +154,7 @@ gulp.task('pngSprite', function () {
     .pipe(spritesmith({
       imgName: 'sprite.png',
       imgPath: '../images/sprites/sprite.png',
-      cssName: '_png-sprite.scss',
+      cssName: 'png-sprite.scss',
       algorithm: 'binary-tree',
       padding: 15
     }));
