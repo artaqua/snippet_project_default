@@ -309,7 +309,8 @@ var loadPage = (function () {
   // Container-page
   viewportHeight('.container-page');
   viewportHeight('section.section-home .slider .item');
-
+  viewportHeight('section.section-slider .slider .item');
+  
   contentHeighScroll();
 
   squeezeInWindow(1920,1080,'section.section-apartment .wrapper-apatment');
