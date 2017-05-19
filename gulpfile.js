@@ -83,7 +83,6 @@ gulp.task('html:build',  function() {
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
-    .pipe(cache('pug'))
     .pipe(pug({
       pretty: true
     }))
