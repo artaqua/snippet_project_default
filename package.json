@@ -1,10 +1,7 @@
 {
   "name": "Name_project",
   "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": ".git"
-  },
+  "repository": ".git",
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.1",
@@ -19,7 +16,7 @@
     "gulp-cached": "latest",
     "gulp-clean-css": "latest",
     "gulp-if": "latest",
-    "gulp-imagemin": "latest",
+    "gulp-imagemin": "^3.2.0",
     "gulp-inject": "latest",
     "gulp-notify": "latest",
     "gulp-plumber": "latest",
@@ -40,7 +37,11 @@
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
+    "ion-rangeslider": "^2.1.7",
     "jquery": "^3.2.1",
+    "jquery-validation": "^1.16.0",
+    "perfect-scrollbar": "^0.7.0",
+    "slick-carousel": "^1.6.0",
     "tapjs": "^1.0.9"
   }
 }

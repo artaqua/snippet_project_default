@@ -7,17 +7,18 @@
       input(type="text" name="clientName" placeholder="Имя")
       input(type="text" name="clientPhone" placeholder="Телефон")
       input(type="text" name="clientEmail" placeholder="E-mail")
+      .clearfix
       button.btn.btn-submit(type="submit") Оставить заявку
 
 .feedback-popup.popup
   .wrapper-popup
     a.close(href="#")
       +svg('cross')
-    h3 Обратная связь
+    h3 Подписаться
     form#form-feedback(action="#")
       input(type="text" name="feedbackEmail" placeholder="E-mail")
-      textarea(name="feedbackMessage" placeholder="Сообщение" cols="30" rows="10")
-      button.btn.btn-submit(type="submit") Оставить заявку
+      .clearfix
+      button.btn.btn-submit(type="submit") отправить
 
 
 .order-service-popup.popup
@@ -31,6 +32,7 @@
       input(type="text" name="clientName" placeholder="Имя")
       input(type="text" name="clientPhone" placeholder="Телефон")
       input(type="text" name="clientEmail" placeholder="E-mail")
+      .clearfix
       button.btn.btn-submit(type="submit") Оставить заявку
 
 .docs-popup.popup

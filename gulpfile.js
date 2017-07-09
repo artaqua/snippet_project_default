@@ -83,6 +83,7 @@ gulp.task('html:build',  function() {
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
+    .pipe(gulpif(cachedPug, cache('pug')))
     .pipe(pug({
       pretty: true
     }))
@@ -194,9 +195,11 @@ gulp.task('browser-sync', function() {
 /////////////////////////////// WATCH
 gulp.task('watch', function() {
   watch(path.watch.pug, function(event, cb) {
+    cachedPug = true;
     gulp.start('html:build');
   });
   watch(path.watch.pugInclude, function(event, cb) {
+    cachedPug = false;
     gulp.start('html:build');
   });
   watch(path.watch.style, function(event, cb) {

@@ -1,26 +1,26 @@
 /////////////////////////////// VARIABLES
 
 $white:                         #fff;
-$black:                         #262626;
+$black:                         #13113a;
 $grey:                          #939598;
+$light:                         #fcecd5;
+$blue:                          #35355e;
 $red:                           #e64c83;
-$green:                         #2e9130;
-$orange:                        #f7941d;
-$yellow:                        #fff200;
+$green:                         #53a955;
 
 $base-color:                    $black;
 $body-bg:                       $white;
-$a-color:                       $orange;
+$a-color:                       $blue;
 $a-color-hover:                 $black;
 $h-color:                       $base-color;
 $p-color:                       $base-color;
 
-$selection-bg:                  $orange;
+$selection-bg:                  $blue;
 
 $border-color:                  $grey;
 $border-color-hover:            lighten($border-color, 15%);
 
-$font-1:                        'GothamPro', sans-serif;
+$font-1:                        'Verdana', sans-serif;  
 
 $font-base:                     $font-1;
 $html-font-size:                100%;
@@ -28,11 +28,11 @@ $html-font-size:                100%;
 $font-size:                     16px;
 $h1-size:                       80px;
 $h2-size:                       60px;
-$h3-size:                       30px;
-$h4-size:                       22px;
+$h3-size:                       40px;
+$h4-size:                       28px;
 
 $h-font:                        $font-1;
-$h-font-width:                  400;
+$h-font-width:                  500;
 
 $p-line-height:                 auto;
 $h-line-height:                 auto;

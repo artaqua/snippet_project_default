@@ -1,6 +1,8 @@
 /////////////////////////////// SETINGS DEFAULT STYLES
 
 html {
+	width: 100%;
+	height: 100%;
 	font-family: $font-base;
 	font-size: $html-font-size;
 	color: $base-color;
@@ -16,6 +18,8 @@ html {
 body {
 	font-size: $font-size;
 	background: $body-bg;
+	display: table;
+	table-layout: fixed; // this fix for slick slider
 	width: 100%;
 	height: 100%;
 	margin: 0;

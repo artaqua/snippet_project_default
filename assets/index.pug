@@ -6,36 +6,30 @@ html
 		title Home
 		include pug/meta.pug
 		include pug/styles.pug
-	body.page-home
+	body
 		include pug/svg-sprite.pug
 		include pug/_modules/page-loading.pug
-		
+
 		// Header
 		include pug/_modules/header.pug
-
+		
 		// Nav menu
-		include pug/_modules/nav-menu-mobile.pug
+		include pug/_modules/sidebar-menu.pug
 
 		main
-
 			// Section Home
 			section.section-home
-				.container-page
-					.container
-						h1 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi enim dignissimos consectetur iusto nisi nulla corrupti facere quasi ad, molestias incidunt temporibus quis consequatur, laboriosam. Autem laborum quos in dolorum?
-						+svg('arrow-down')
-
-
+				.container
+					h1 SECTION HOME
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, nemo, quas! Libero voluptates quis neque quam ratione ipsa labore earum qui provident amet, non harum illo asperiores architecto. Illo reprehenderit quis vero nam dicta enim, quasi tempora rem laudantium tenetur sit nulla voluptatibus molestiae architecto dolor! Et aspernatur tenetur illum, quia excepturi voluptatum dolorum in vero impedit, saepe vel qui labore ea debitis, odit quibusdam omnis dignissimos iste. Saepe unde et eligendi harum delectus iusto minima excepturi sit ipsam sint aliquam ab cum vitae, at, ipsa sapiente facilis reprehenderit. Adipisci temporibus harum, consectetur accusantium voluptatum aliquid, dignissimos molestiae. Assumenda, qui!
 
 		// Footer
 		include pug/_modules/footer.pug
-				
+
 		// Popups
 		include pug/_modules/popups.pug
 
-		
-
+		// Scripts
 		include pug/scripts.pug
 		
 		
