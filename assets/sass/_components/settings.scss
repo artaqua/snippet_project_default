@@ -7,6 +7,9 @@ html {
 	font-size: $html-font-size;
 	color: $base-color;
 	box-sizing: border-box;
+	// Fix 'jumping scrollbar'
+  width:100vw;
+  overflow-x:hidden;
 }
 
 *,
