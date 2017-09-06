@@ -1,19 +1,20 @@
 .page-loading {
-  display: table;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fcecd5;
-  transition: all 700ms cubic-bezier(0.46, 0.09, 0.28, 0.58);
+  display: table;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  background: $purple;
+  transition: all 1s cubic-bezier(1,-0.44, 0.82, 0.82);
   &.load {
     visibility: hidden;
     opacity: 0;
   }
   &.anim-stop {
-    svg.svg-loading {
+    .logo {
       animation-play-state: paused;
     }
   }
@@ -21,24 +22,24 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-    transition: all 700ms cubic-bezier(0.46, 0.09, 0.28, 0.58);
   }
-  svg.svg-loading {
+  .logo {
     display: inline-block;
-    width: 80px;
-    height: 80px;
-    animation: anm 1300ms cubic-bezier(0.46, 0.09, 0.28, 0.58) infinite alternate;
-    transform-style: preserve-3d;
-    transform-origin: bottom center;
+    animation: loading 1.6s ease-in-out infinite alternate;
+    svg {
+      fill: $white;
+      width: 60px;
+      height: 60px;
+    }
   }
-  @keyframes anm {
+  @keyframes loading {
     0% {
-      transform: rotateY(0deg) scale(1);
-      opacity: 1;
+      transform: translate(0,-12px);
+      opacity: 0;
     }
     100% {
-      transform: rotateY(90deg) scale(0.8);
-      opacity: 0;
+      transform: translate(0,0);
+      opacity: 1;
     }
   }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1840 1080" style="enable-background:new 0 0 1840 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{font-family:'GothamPro-Bold';}
+	.st2{font-size:11px;}
+	.st3{font-size:24px;}
+	.st4{opacity:0.27;}
+	.st5{opacity:0.42;}
+	.st6{opacity:0.46;}
+</style>
+<g id="Слой_1">
+	<image style="overflow:visible;" width="1840" height="1080" xlink:href="plan-home.jpg" >
+	</image>
+</g>
+<g id="num-corps">
+	<g id="corps-9_1_">
+		<path class="st0" d="M969,467h-48c-1.1,0-2,0.9-2,2v41.9c0,0.9,0.5,1.6,1.4,1.9l48.6,16.7l48.6-16.7c0.8-0.3,1.4-1,1.4-1.9V469
+			c0-1.1-0.9-2-2-2H969z"/>
+		<text transform="matrix(1 0 0 1 940 486.9999)" class="st1 st2">ОЧЕРЕДЬ</text>
+		<text transform="matrix(1 0 0 1 962 514.4999)" class="st1 st3">3</text>
+	</g>
+</g>
+<g id="home-1" class="st4">
+	<polygon points="816.5,522.8 815,526.8 843.4,539.4 843.4,594.4 916.5,531.5 917,501.3 898.3,491.8 897.8,487.8 895.1,486.5 
+		895,481.5 883.5,475.8 877.3,475.8 876.9,479.5 874.4,481.3 868.8,478.4 862,484.8 858.9,482.8 845.4,494.3 835,491.8 825,500.2 
+		824.5,509.8 816.8,517.4 	"/>
+</g>
+<g id="home-2_1_" class="st4">
+	<polygon points="756.3,577 761.8,571.8 761.8,565 767.3,561.5 767.3,558 769.3,556 769.3,549.8 778.8,540 788.8,544.3 803.3,531.5 
+		807.8,533.5 815,526.8 843.4,539.4 843.4,597.4 790.4,645.3 788.8,592.7 	"/>
+</g>
+<g id="home-3" class="st4">
+	<polygon points="674.9,672.5 674,690 669.9,694.8 673,704.5 677,710 705.3,724 717.8,724 725.8,718.5 725.3,706.3 790.4,644.3 
+		788.8,592.7 786.3,590.5 756.3,577 754.3,580.3 753.9,584 751.4,585.8 745.8,582.9 739,589.3 735.9,587.3 726.5,594.4 720.3,591.8 
+		709,602.5 709,608.9 707.3,610.8 707.3,614.8 700.8,619.5 701.5,624.8 696,628.8 697.8,652.8 	"/>
+</g>
+<g id="home-4" class="st5">
+	<polygon points="991.7,524.1 1007.3,524.1 1015.7,526.8 1020,531.5 1023.3,535.1 1023.3,540 1039.7,549 1039.7,580.7 970.3,650 
+		970.7,590 938.3,578 944.3,572 944,566.7 956,549.3 972.7,534.1 	"/>
+</g>
+<g id="home-5" class="st6">
+	<polygon points="918.8,586 901,601.8 901,605.7 897.3,608.8 897.3,610.8 891.3,616 891.3,617.8 880.1,628.3 916,644.3 916.2,704.6 
+		970.3,650 970.7,590 938.3,578 933.7,578 927.7,582.5 	"/>
+</g>
+<g id="home-6" class="st4">
+	<polygon points="916.2,704.6 916,644.3 880.1,628.3 875.7,632.7 871,636.3 866,641 861.7,640.7 853.7,647.7 843.4,658 826.7,683.3 
+		826.3,697.7 813.7,714 813.4,721.1 802.7,731 803.8,756 801.8,757.2 802.3,766.3 806.9,771.3 835.1,783.3 846.6,782.3 846.7,774.7 
+			"/>
+</g>
+<g id="icons">
+	
+		<image style="overflow:visible;" width="40" height="40" xlink:href="icons/icon-football.png"  transform="matrix(1 0 0 1 1501.6666 410.3333)">
+	</image>
+	
+		<image style="overflow:visible;" width="40" height="40" xlink:href="icons/icon-parking.png"  transform="matrix(1 0 0 1 946.3333 172.6667)">
+	</image>
+	
+		<image style="overflow:visible;" width="40" height="40" xlink:href="icons/icon-school.png"  transform="matrix(1 0 0 1 573.6667 277.3333)">
+	</image>
+	
+		<image style="overflow:visible;" width="40" height="40" xlink:href="icons/icon-school.png"  transform="matrix(1 0 0 1 1070.7007 594.2764)">
+	</image>
+	
+		<image style="overflow:visible;" width="40" height="40" xlink:href="icons/icon-school.png"  transform="matrix(1 0 0 1 1382.7007 497.9999)">
+	</image>
+</g>
+</svg>

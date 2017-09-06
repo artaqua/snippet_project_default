@@ -1,77 +1,11 @@
 footer.footer-page {
   z-index: 10;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   float: left;
   width: 100%;
-  transition: all 600ms linear 300ms;
-  padding-left: 500px;
-  padding-right: 80px;
-  padding-bottom: 12px;
-  padding-top: 30px;
-  background: #122;
-  @include below(1500px) {
-    padding-top: 18px;
-    padding-left: 370px;
-    padding-right: 50px;
-  }
-  @include below-h(800px) {
-    padding-top: 18px;
-    padding-left: 370px;
-    padding-right: 50px;
-  }
-  @include below(1200px) {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    padding-bottom: 13px;
-    background: $light;
-  }
-  @include below(850px) {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .oferta {
-    float: left;
-    font-weight: 600;
-    color: $blue;
-    text-transform: uppercase;
-    margin: 0;
-    transition: all 600ms linear 300ms;
-    @include below(1500px) {
-      font-size: 14px;
-    }
-    @include below(850px) {
-      width: 100%;
-      text-align: center;
-    }
-    .descr {
-      @include below(850px) {
-        display: none;
-      }
-    }
-    .buy {
-      margin-left: 40px;
-      @include below(850px) {
-        margin-left: 0;
-      }
-    }
-  }
-  .copyright {
-    float: right;
-    font-weight: 600;
-    color: $blue;
-    text-transform: uppercase;
-    margin: 0;
-    transition: all 600ms linear 300ms;
-    @include below(1500px) {
-      font-size: 14px;
-    }
-    @include below(850px) {
-      width: 100%;
-      text-align: center;
-      margin-top: 2px;
-    }
-  }
+  width: 100vw;
+  text-align: center;
+  background: #323232;
 }

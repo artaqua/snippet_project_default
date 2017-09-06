@@ -2,39 +2,45 @@ include pug/_mixins/svg-icon.pug
 
 doctype html
 html
-	head
-		title Home
-		include pug/meta.pug
-		include pug/styles.pug
-	body
-		include pug/svg-sprite.pug
-		include pug/_modules/page-loading.pug
+  head
+    title Home
+    include pug/meta.pug
+    include pug/styles.pug
+  body
+    include pug/svg-sprite.pug
 
-		// Header
-		include pug/_modules/header.pug
-		
-		// Nav menu
-		include pug/_modules/sidebar-menu.pug
+    // Page Loader
+    include pug/_modules/page-loading.pug
 
-		main
-			// Section Home
-			section.section-home
-				.container
-					h1 SECTION HOME
-					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, nemo, quas! Libero voluptates quis neque quam ratione ipsa labore earum qui provident amet, non harum illo asperiores architecto. Illo reprehenderit quis vero nam dicta enim, quasi tempora rem laudantium tenetur sit nulla voluptatibus molestiae architecto dolor! Et aspernatur tenetur illum, quia excepturi voluptatum dolorum in vero impedit, saepe vel qui labore ea debitis, odit quibusdam omnis dignissimos iste. Saepe unde et eligendi harum delectus iusto minima excepturi sit ipsam sint aliquam ab cum vitae, at, ipsa sapiente facilis reprehenderit. Adipisci temporibus harum, consectetur accusantium voluptatum aliquid, dignissimos molestiae. Assumenda, qui!
+    // Header
+    include pug/_modules/header.pug
+    
+    main
+      // Section home
+      section.section-home
+        .container-fluid
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum hic, cumque aliquam doloremque, dolorum consectetur dignissimos? Neque reiciendis ipsam expedita, quis magni blanditiis ea, quibusdam aliquid corrupti laudantium id deleniti.
+          img(src="https://cs6.pikabu.ru/post_img/2017/09/06/1/1504650488134379962.jpg", alt="")
+              
 
-		// Footer
-		include pug/_modules/footer.pug
 
-		// Popups
-		include pug/_modules/popups.pug
 
-		// Scripts
-		include pug/scripts.pug
-		
-		
+            
 
-	
+    // Footer
+    include pug/_modules/footer.pug
 
-			
+    // Popups
+    include pug/_modules/popups.pug
+    
+
+
+    // Scripts
+    include pug/scripts.pug
+    
+    
+
+  
+
+      
 

@@ -34,8 +34,8 @@ var path = {
     html: 'build/',
     js: 'build/js/',
     css: 'build/css/',
-    img: 'build/images/',
-    sprites: 'build/images/sprites/',
+    img: 'build/img/',
+    sprites: 'build/img/sprites/',
     fonts: 'build/fonts/',
     video: 'build/video/'
   },
@@ -44,10 +44,10 @@ var path = {
     mainJs: 'assets/js/main.js',
     vendorsJs: 'assets/js/vendors.js',
     style: 'assets/sass/*.scss',
-    img: ['assets/images/**/**/**/*.*', '!assets/images/sprites/**/**/**/*.*'],
-    pngSprite: 'assets/images/sprites/source_sprite_png/**/*.png',
+    img: ['assets/img/**/**/**/*.*', '!assets/img/sprites/**/**/**/*.*'],
+    pngSprite: 'assets/img/sprites/source_sprite_png/**/*.png',
     sassComponents: 'assets/sass/_components/',
-    sourceSvgSprite: 'assets/images/sprites/source_sprite_svg/**/*.svg',
+    sourceSvgSprite: 'assets/img/sprites/source_sprite_svg/**/*.svg',
     svgSprite: 'assets/pug/svg-sprite.pug',
     svgPugDest: 'assets/pug',
     fonts: 'assets/fonts/**/*.*',
@@ -59,9 +59,9 @@ var path = {
     js: 'assets/js/**/*',
     style: 'assets/sass/*.*',
     styleInclude: ['assets/sass/**/**/**/*.*', '!assets/sass/*.*'],
-    img: ['assets/images/**/**/**/*.*', '!assets/images/sprites/**/**/**/**/*.*'],
-    pngSprite: 'assets/images/sprites/source_sprite_png/**/*.png',
-    svgSprite: 'assets/images/sprites/source_sprite_svg/**/*.svg',
+    img: ['assets/img/**/**/**/*.*', '!assets/img/sprites/**/**/**/**/*.*'],
+    pngSprite: 'assets/img/sprites/source_sprite_png/**/*.png',
+    svgSprite: 'assets/img/sprites/source_sprite_svg/**/*.svg',
     fonts: 'assets/fonts/**/**/**/*.*',
     video: 'assets/video/**/**/**/*.*'
   },
@@ -102,7 +102,7 @@ gulp.task('style:build', function() {
       importer: moduleImporter()
     }))
     .pipe(autoprefixer())
-    // .pipe(cleanCSS())
+    .pipe(cleanCSS())
     .pipe(rename({
       basename: 'bundle'
     }))
@@ -153,7 +153,7 @@ gulp.task('pngSprite', function () {
   var spriteData = gulp.src(path.src.pngSprite)
     .pipe(spritesmith({
       imgName: 'sprite.png',
-      imgPath: '../images/sprites/sprite.png',
+      imgPath: '../img/sprites/sprite.png',
       cssName: 'png-sprite.scss',
       algorithm: 'binary-tree',
       padding: 15

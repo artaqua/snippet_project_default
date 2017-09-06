@@ -13,14 +13,19 @@
 @import 'slick-carousel/slick/slick.css';
 @import '_plagins/jquery.fancybox.scss';
 @import 'ion-rangeslider/css/ion.rangeSlider.css';
+@import 'select2/dist/css/select2.css';
 
 /* Modules */
 @import '_modules/common';
 @import '_modules/page-loading';
 @import '_modules/header';
-@import '_modules/sidebar-menu';
 @import '_modules/footer';
+@import '_modules/popups';
 
 /* Sections */
 @import '_modules/section-home';
+
+
+
+
 

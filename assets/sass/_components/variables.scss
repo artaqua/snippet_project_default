@@ -1,12 +1,14 @@
 /////////////////////////////// VARIABLES
 
 $white:                         #fff;
-$black:                         #13113a;
+$black:                         #232528;
 $grey:                          #939598;
 $light:                         #fcecd5;
-$blue:                          #35355e;
-$red:                           #e64c83;
+$blue:                          #61c0c8;
+$red:                           #eb5c5d;
 $green:                         #53a955;
+$pink:                          #9f5d78;
+$purple:                        #4e2b54;
 
 $base-color:                    $black;
 $body-bg:                       $white;
@@ -20,7 +22,7 @@ $selection-bg:                  $blue;
 $border-color:                  $grey;
 $border-color-hover:            lighten($border-color, 15%);
 
-$font-1:                        'Verdana', sans-serif;  
+$font-1:                        'GothamPro', sans-serif;  
 
 $font-base:                     $font-1;
 $html-font-size:                100%;
@@ -32,12 +34,12 @@ $h3-size:                       40px;
 $h4-size:                       28px;
 
 $h-font:                        $font-1;
-$h-font-width:                  500;
+$h-font-width:                  700;
 
-$p-line-height:                 auto;
-$h-line-height:                 auto;
+$p-line-height:                 1.6;
+$h-line-height:                 1.2;
 
-$container-fluid-max-width:     1280px;
+$container-fluid-max-width:     1160px;
 
 $easing:                        cubic-bezier(0.28, 0.57, 0.22, 0.76);
 

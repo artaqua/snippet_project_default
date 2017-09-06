@@ -1,18 +1,17 @@
-body {
-  position: relative;
-  overflow: hidden;
-  float: left;
-  background: $light;
-  transition: all 400ms ease;
-  @include below(1200px) {
-    overflow: auto;
+html {
+  &.hide-scroll {
+    overflow: hidden !important;
   }
 }
-.page-bg {
-  background-image: url('../images/slider-home/slide-night.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
+body {
+  position: relative;
+  float: left;
+  width: 100%;
+  &.page-home {
+    header.header-page .chains {
+      display: none;
+    }
+  }
 }
 main {
   position: relative;
@@ -20,167 +19,60 @@ main {
   float: left;
   width: 100%;
 }
-.container-section {
-  float: left;
-  width: 100%;
-  padding-left: 420px;
-  @include below(1500px) {
-    padding-left: 320px;
-  }
-  @include below-h(800px) {
-    padding-left: 320px;
-  }
-  @include below(1200px) {
-    padding-left: 0;
-  }
-  .wrapper-content {
-    float: left;
-    width: 100%;
-    background: rgba(252, 236, 213, 0.93);
-    padding: 130px 80px 40px 80px;
-    @include below(1500px) {
-      padding: 90px 50px 40px 50px;
-    }
-    @include below-h(800px) {
-      padding: 90px 50px 40px 50px;
-    }
-    @include below(1200px) {
-      padding: 90px 50px 40px 50px;
-      background: rgba(252, 236, 213, 1);
-    }
-    @include below(600px) {
-      padding: 100px 30px 40px 30px;
-    }
-    @include below(450px) {
-      padding: 90px 20px 40px 20px;
-    }
-    @include below(380px) {
-      padding: 70px 20px 40px 20px;
-    }
-  }
-}
 .container-fluid {
   padding: 0 40px;
   @include below(550px) {
     padding: 0 20px;
   }
 }
-.main-content {
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  padding-right: 40px;
-  margin-top: 30px;
-  @include below(1200px) {
-    height: auto !important;
-    padding-right: 0;
-  }
-  .ps__scrollbar-x-rail {
-    display: none !important;
-  }
-  .ps__scrollbar-y-rail {
-    right: 0px !important;
-    width: 6px !important;
-    background: rgba(53, 53, 94,0.25) !important;
-    opacity: 1 !important;
-    @include below(1000px) {
-      display: none !important;
-    }
-    &:hover {
-      background: rgba(53, 53, 94,0.25) !important;
-      .ps__scrollbar-y {
-        width: 6px !important;
-        background: $blue !important;
-      }
-    }
-  }
-  .ps__scrollbar-y {
-    right: 0 !important;
-    width: 6px !important;
-    border-radius: 0 !important;
-    background: $blue !important;
-    &:hover {
-      width: 6px !important;
-      background: rgba(53, 53, 94,0.25) !important;
-    }
-    &:active {
-      width: 6px !important;
-      background: $blue !important;
-    }
-  }
-}
-.animate {
-  transition: opacity 800ms cubic-bezier(0.6, 0.51, 0.31, 0.72) 500ms, transform 800ms cubic-bezier(0.6, 0.51, 0.31, 0.72) 500ms;
-  transform-origin: top center;
-  opacity: 0;
-  transform: translate(0,40px) rotateX(45deg);
-  &.showing {
-    opacity: 1;
-    transform: translate(0,0) rotateX(0deg);
-  }
-}
 .btn {
-  z-index: 0;
+  z-index: 1;
+  overflow: hidden;
   position: relative;
   height: 36px;
-  line-height: 37px;
-  padding: 0 13px;
-  font-family: $font-1;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  line-height: 36px;
+  padding: 0 20px;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 11px;
+  font-weight: 700;
   color: $white;
   text-transform: uppercase;
   text-align: center;
   background: $blue;
-  border-radius: 5px;
+  border-radius: 20px;
+  transition: all 400ms cubic-bezier(.02,.01,.47,1);
   &:hover {
-    color: $blue;
+    background: darken($blue,10%);
+    color: $white;
+    box-shadow: 0 5px 20px rgba(35, 37, 40, 0.1);
     &:before {
       opacity: 1;
       transform: skewX(0) scaleX(1);
     }
   }
-  &:before {
-    z-index: -1;
+  .ripple {
+    z-index: 2;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: $white;
-    content: ' ';
-    border-radius: 4px;
-    transition: transform 400ms cubic-bezier(.02,.01,.47,1), opacity 400ms cubic-bezier(.02,.01,.47,1);
-    opacity: 0;
-    transform: skewX(-25deg) scaleX(0);
+    opacity: 1;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    user-select: none;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    cursor: pointer;
   }
-}
-.btn-filter {
-  float: left;
-  line-height: 36px;
-  padding: 0 20px;
-  margin-top: 4px;
-  margin-left: 80px;
-  &:hover {
-    svg {
-      fill: $blue;
-    }
-  }
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-    width: 14px;
-    height: 14px;
-    fill: $white;
-    transition: all 300ms ease-out;
+  .rippleEffect {
+    animation: rippleDrop .6s linear;
   }
   span {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 15px;
+    z-index: 3;
+    position: relative;
+    color: $white;
+    display: inline;
   }
 }
 .title-page {
@@ -200,353 +92,195 @@ main {
 }
 .close {
   float: left;
-  display: block;
+  width: 50px;
+  height: 50px;
+  background: #a7a8a9;
+  border-radius: 50%;
+  text-align: center;
+  transition: all 300ms ease-in-out;
+  @include below(800px) {
+    width: 40px;
+    height: 40px;
+  }
+  @include below(600px) {
+    background: none;
+  }
   &:hover {
-    svg {
-      fill: $blue;
+    background: $blue;
+    @include below(600px) {
+      background: none;
     }
-    span {
-      color: rgba(255,255,255,1);
+    svg {
+      transform: rotate(90deg);
+      @include below(600px) {
+        fill: $blue;
+      }
     }
   }
   svg {
     display: inline-block;
-    width: 14px;
-    height: 14px;
-    fill: rgba(255,255,255,0.5);
-    transition: all 300ms ease;
-  }
-  span {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-left: 20px;
-    transition: all 300ms ease;
-  }
-}
-
-// Popups
-.popup {
-  display: none;
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(13, 21, 49, 0.95);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 400ms ease;
-  @include below(600px) {
-    max-width: 100%;
-    left: 0;
-    margin-left: 0;
-    padding: 20px;
-  }
-  &.load {
-    display: block;
-  }
-  &.active {
-    opacity: 1;
-    visibility: visible;
-    .wrapper-popup {
-      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-      opacity: 1;
-      visibility: visible;
+    width: 16px;
+    height: 16px;
+    fill: $white;
+    margin-top: 17px;
+    transition: all 300ms ease-in-out;
+    @include below(800px) {
+      margin-top: 12px;
     }
-  }
-  .wrapper-popup {
-    position: absolute;
-    top: 50%;
-    margin-top: -225px;
-    left: 50%;
-    margin-left: -225px;
-    width: 100%;
-    max-width: 450px;
-    background: $light;
-    border-radius: 6px;
-    padding: 45px 70px 35px 70px;
-    transition: all 800ms cubic-bezier(0.22, 0.6, 0.36, 1);
-    transform: perspective(800px) rotateX(45deg) rotateY(90deg);
-    transform-origin: bottom center;
-    opacity: 0;
-    visibility: hidden;
-    @include below(500px) {
-      position: static;
-      float: left;
-      max-width: 100%;
-      top: 0;
-      margin-top: 0;
-      left: 0;
-      margin-left: 0;
-      padding: 40px 60px;
-    }
-    @include below(450px) {
-      padding: 40px 40px;
-    }
-    @include below(400px) {
-      padding: 40px 20px;
-    }
-    .close {
-      position: absolute;
-      top: 0px;
-      right: -40px;
-      @include below(650px) {
-        top: 15px;
-        right: 15px;
-      }
-      &:hover {
-        svg {
-          fill: $white;
-          @include below(650px) {
-            fill: $blue;
-            opacity: 0.6;
-          }
-        }
-      }
-      svg {
-        display: block;
-        width: 25px;
-        height: 25px;
-        fill: $light;
-        transition: all 300ms ease;
-        @include below(650px) {
-          width: 20px;
-          height: 20px;
-          fill: $blue;
-        }
-      }
-    }
-    h3 {
-      margin: 0;
-      float: left;
-      width: 100%;
-      font-size: 24px;
-      text-transform: uppercase;
-      line-height: 32px;
-      color: $black;
-      text-align: center;
-      margin: 0;
-      @include below(500px) {
-        font-size: 22px;
-        line-height: 24px;
-      }
-    }
-    form {
-      float: left;
-      width: 100%;
-      margin-top: 30px;
-      @include below(500px) {
-        margin-top: 20px;
-      }
-      input {
-        float: left;
-        width: 100%;
-        height: 42px;
-        background: #d9c9b2;
-        border: none;
-        border-left: 2px solid transparent;
-        padding: 0 15px;
-        cursor: pointer;
-        font-family: $font-1;
-        font-size: 18px;
-        text-align: center;
-        color: $black;
-        transition: all 350ms ease;
-        margin-top: 5px;
-        &:focus {
-          background: $white;
-        }
-        &.error {
-          border-color: $red;
-          transform-origin: center center;
-          animation: error-form 250ms ease;
-        }
-        &.valid {
-          border-color: $green;
-          animation: valid-form 500ms ease;
-        }
-      }
-      textarea {
-        float: left;
-        width: 100%;
-        height: 130px;
-        background: #d9c9b2;
-        border: none;
-        border-left: 2px solid transparent;
-        padding: 10px 15px;
-        cursor: pointer;
-        font-family: $font-1;
-        font-size: 18px;
-        text-align: center;
-        color: $black;
-        transition: all 350ms ease;
-        margin-top: 5px;
-        &:focus {
-          background: $white;
-        }
-        &.error {
-          border-color: $red;
-          transform-origin: center center;
-          animation: error-form 500ms ease;
-        }
-        &.valid {
-          border-color: $green;
-          animation: valid-form 500ms ease;
-        }
-      }
-      .btn-submit {
-        display: block;
-        margin: 0 auto;
-        background-color: $black;
-        color: $light;
-        margin-top: 35px;
-        @include below(500px) {
-          margin-top: 30px;
-        }
-        &:hover {
-          color: $black;
-        }
-      }
-    }
-  }
-}
-.docs-popup {
-  .wrapper-popup {
-    padding: 60px 30px;
     @include below(600px) {
-      padding: 45px 20px;
-    }
-  }
-  .wrapper-scroll {
-    position: relative;
-    float: left;
-    width: 100%;
-    height: 250px;
-    overflow: auto;
-    margin-top: 30px;
-    padding-right: 20px;
-    @include below(600px) {
-      margin-top: 25px;
-    }
-    .ps__scrollbar-x-rail {
-      display: none !important;
-    }
-    .ps__scrollbar-y-rail {
-      right: 0px !important;
-      width: 3px !important;
-      background: rgba(53, 53, 94,0.25) !important;
-      opacity: 1 !important;
-      &:hover {
-        background: rgba(53, 53, 94,0.25) !important;
-        .ps__scrollbar-y {
-          width: 3px !important;
-          background: $blue !important;
-        }
-      }
-    }
-    .ps__scrollbar-y {
-      right: 0 !important;
-      width: 3px !important;
-      border-radius: 0 !important;
-      background: $blue !important;
-      &:hover {
-        width: 3px !important;
-        background: rgba(53, 53, 94,0.25) !important;
-      }
-      &:active {
-        width: 3px !important;
-        background: $blue !important;
-      }
-    }
-  }
-  .list-docs {
-    position: relative;
-    float: left;
-    width: 100%;
-    li {
-      float: left;
-      display: block;
-      width: 100%;
-    }
-    a {
-      float: left;
-      width: 100%;
-      display: block;
-      transition: all 300ms ease-in-out;
-      padding: 5px 0;
-      &:hover {
-        transform: translate(10px,0);
-        svg {
-          fill: $blue;
-        }
-        span {
-          color: $blue;
-        }
-      }
-      svg {
-        float: left;
-        width: 18px;
-        height: 18px;
-        fill: #b2b2b2;
-        margin-right: 15px;
-        transition: all 300ms ease-in-out;
-        @include below(600px) {
-          width: 16px;
-          height: 16px;
-        }
-      }
-      span {
-        display: block;
-        font-size: 16px;
-        color: $black;
-        padding-left: 33px;
-        transition: all 300ms ease-in-out;
-      }
+      fill: $black;
     }
   }
 }
 
-
-// Scroll
+/* Scroll */
 ::-webkit-scrollbar {
   width: 6px;  /* for vertical scrollbars */
   height: 6px; /* for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: $light;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $blue;
+  background-color: rgba(35, 37, 40,0.4);
+  border-radius: 4px;
   &:hover {
     background-color: $blue;
   }
 }
 
+/* Scroll box */
+.container-scroll {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  padding-right: 14px;
+  .ps__scrollbar-x-rail {
+    display: none !important;
+  }
+  .ps__scrollbar-y-rail {
+    right: 0px !important;
+    width: 6px !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    &:hover {
+      background: transparent !important;
+      .ps__scrollbar-y {
+        width: 6px !important;
+        background: $blue !important;
+      }
+    }
+  }
+  .ps__scrollbar-y {
+    right: 0 !important;
+    width: 6px !important;
+    border-radius: 4 !important;
+    background: rgba(35, 37, 40,0.4) !important;
+    &:hover {
+      width: 6px !important;
+      background: rgba(35, 37, 40,0.4) !important;
+    }
+    &:active {
+      width: 6px !important;
+      background: rgba(35, 37, 40,0.4) !important;
+    }
+  }
+}
+.content-scroll {
+  float: left;
+  width: 100%;
+  padding: 100px 0 70px 0;
+  @include below(1600px) {
+    padding: 80px 0 45px 0;
+  }
+  @include below(1100px) {
+    padding: 60px 0 140px 0;
+  }
+  .container-scroll {
+    padding: 0;
+    @include below(1100px) {
+      padding-right: 0;
+      height: auto !important;
+    }
+  }
+}
+
+/* Select2 */
+.select2 {
+  float: left;
+  width: 100%;
+}
+.select2-selection.select2-selection--single {
+  outline: none;
+}
+.select2-container .select2-selection--single {
+  height: 50px;
+  background: #F0F0F0;
+  border: none;
+  color: $black;
+  font-size: 14px;
+  @include below(500px) {
+    height: 40px;
+  }
+}
+.select2-container--open .select2-selection--single {
+  background: $white;
+  box-shadow: 0 5px 20px rgba(35, 37, 40, 0.1);
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+  line-height: 50px;
+  padding-left: 15px;
+  @include below(500px) {
+    line-height: 40px;
+  }
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 50px;
+  width: 30px;
+  top: -1px;
+  @include below(500px) {
+    height: 40px;
+  }
+}
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 260px !important;
+}
+.select2-dropdown {
+  background-color: $white;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(35, 37, 40, 0.1);
+}
+.select2-results__option {
+  padding: 12px 15px;
+}
+.select2-container--default .select2-results__option[aria-selected="true"] {
+  background-color: #dedede;
+  color: $black;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: $blue;
+}
+
 /* Fancybox */
 .fancybox-bg {
-  background: rgba(13, 21, 49, 0.95);
+  background: rgba(35,37,40,.95);
 }
 .fancybox-caption {
   border: none;
 }
 .fancybox-button {
-  background: $blue;
+  background: $black;
 }
 .fancybox-button:hover {
   background: $black;
 }
 .fancybox-infobar__body {
-  background: rgba(53, 53, 94,0.7);
+  background: $black;
 }
 .fancybox-caption-wrap {
   background: linear-gradient(to bottom, transparent 0%, rgba(19, 17, 58,0.1) 20%, rgba(19, 17, 58,0.2) 40%, rgba(19, 17, 58,0.6) 80%, rgba(19, 17, 58,0.8) 100%)

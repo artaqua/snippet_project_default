@@ -37,10 +37,12 @@
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
+    "fitvids": "^2.0.0",
     "ion-rangeslider": "^2.1.7",
     "jquery": "^3.2.1",
     "jquery-validation": "^1.16.0",
     "perfect-scrollbar": "^0.7.0",
+    "select2": "^4.0.3",
     "slick-carousel": "^1.6.0",
     "tapjs": "^1.0.9"
   }
