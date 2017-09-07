@@ -1,11 +1,14 @@
 var webpack = require("webpack");
 var path = require("path");
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './assets/js/main.js',
+  entry: {
+    'bundle': './src/js/main.js',
+  },
   output: {
-    path: path.resolve(__dirname, 'build/js/'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'build/assets/js/'),
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -15,5 +18,9 @@ module.exports = {
         // loader: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    // Убрать если не нужна минификация js
+    new UglifyJSPlugin()
+  ]
 }

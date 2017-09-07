@@ -335,8 +335,9 @@ $(window).on('load', function() {
 
 var loadPage = (function () {
   // Display loading...
-  $(".page-loading").addClass('load').delay(1000).queue(function() { 
+  $(".page-loading").addClass('load').delay(800).queue(function() { 
     $(this).addClass('anim-stop');
+    $('html').addClass('show-scroll');
   });
 
   // Height

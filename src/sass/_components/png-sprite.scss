@@ -9,44 +9,22 @@
 //
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
-$imq-logo-black-name: 'imq-logo-black';
-$imq-logo-black-x: 135px;
-$imq-logo-black-y: 0px;
-$imq-logo-black-offset-x: -135px;
-$imq-logo-black-offset-y: 0px;
-$imq-logo-black-width: 84px;
-$imq-logo-black-height: 16px;
-$imq-logo-black-total-width: 219px;
-$imq-logo-black-total-height: 100px;
-$imq-logo-black-image: '../img/sprites/sprite.png';
-$imq-logo-black: (135px, 0px, -135px, 0px, 84px, 16px, 219px, 100px, '../img/sprites/sprite.png', 'imq-logo-black', );
-$imq-logo-white-name: 'imq-logo-white';
-$imq-logo-white-x: 135px;
-$imq-logo-white-y: 31px;
-$imq-logo-white-offset-x: -135px;
-$imq-logo-white-offset-y: -31px;
-$imq-logo-white-width: 84px;
-$imq-logo-white-height: 16px;
-$imq-logo-white-total-width: 219px;
-$imq-logo-white-total-height: 100px;
-$imq-logo-white-image: '../img/sprites/sprite.png';
-$imq-logo-white: (135px, 31px, -135px, -31px, 84px, 16px, 219px, 100px, '../img/sprites/sprite.png', 'imq-logo-white', );
-$logo-blagorod-name: 'logo-blagorod';
-$logo-blagorod-x: 0px;
-$logo-blagorod-y: 0px;
-$logo-blagorod-offset-x: 0px;
-$logo-blagorod-offset-y: 0px;
-$logo-blagorod-width: 120px;
-$logo-blagorod-height: 100px;
-$logo-blagorod-total-width: 219px;
-$logo-blagorod-total-height: 100px;
-$logo-blagorod-image: '../img/sprites/sprite.png';
-$logo-blagorod: (0px, 0px, 0px, 0px, 120px, 100px, 219px, 100px, '../img/sprites/sprite.png', 'logo-blagorod', );
-$spritesheet-width: 219px;
-$spritesheet-height: 100px;
+$bars-name: 'bars';
+$bars-x: 0px;
+$bars-y: 0px;
+$bars-offset-x: 0px;
+$bars-offset-y: 0px;
+$bars-width: 64px;
+$bars-height: 64px;
+$bars-total-width: 64px;
+$bars-total-height: 64px;
+$bars-image: '../img/sprites/sprite.png';
+$bars: (0px, 0px, 0px, 0px, 64px, 64px, 64px, 64px, '../img/sprites/sprite.png', 'bars', );
+$spritesheet-width: 64px;
+$spritesheet-height: 64px;
 $spritesheet-image: '../img/sprites/sprite.png';
-$spritesheet-sprites: ($imq-logo-black, $imq-logo-white, $logo-blagorod, );
-$spritesheet: (219px, 100px, '../img/sprites/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($bars, );
+$spritesheet: (64px, 64px, '../img/sprites/sprite.png', $spritesheet-sprites, );
 
 // The provided mixins are intended to be used with the array-like variables
 //

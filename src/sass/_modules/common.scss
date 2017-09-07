@@ -1,6 +1,7 @@
 html {
-  &.hide-scroll {
-    overflow: hidden !important;
+  overflow-y: hidden;
+  &.show-scroll {
+    overflow-y: auto !important;
   }
 }
 body {

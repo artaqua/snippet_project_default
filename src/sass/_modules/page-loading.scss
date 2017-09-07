@@ -1,0 +1,67 @@
+.page-loading {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: table;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  background: $white;
+  transition: all 0.7s cubic-bezier(0.91,-0.18, 0.24, 0.68);
+  &.load {
+    visibility: hidden;
+    opacity: 0;
+  }
+  &.anim-stop {
+    .spinner,
+    .dot1,
+    .dot2 {
+      animation: none;
+    }
+  }
+  .center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .spinner {
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    text-align: center;
+    animation: sk-rotate 2.0s infinite linear;
+  }
+  .dot1, 
+  .dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: $blue;
+    border-radius: 100%;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+  }
+  .dot2 {
+    top: auto;
+    bottom: 0;
+    animation-delay: -1.0s;
+    background-color: $red;
+  }
+  @keyframes sk-rotate { 
+    100% { 
+      transform: rotate(360deg); 
+    }
+  }
+  @keyframes sk-bounce {
+    0%, 
+    100% { 
+      transform: scale(0.0);
+    } 
+    50% { 
+      transform: scale(1.0);
+    }
+  }
+}
