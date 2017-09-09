@@ -11,10 +11,41 @@ require('../_plagins/jquery.fancybox.js');
 require('ion-rangeslider');
 require('select2');
 var fitvids = require('fitvids');
+var anime = require('animejs');
 
 // APP
 // Event DOM Ready
 $(document).ready(function() {
+
+  // Animations
+  (function() {
+    anime({
+      targets: '.svg-animate path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutSine',
+      duration: 4000,
+      delay: function(el, i) { 
+        return i * 2000 
+      },
+      direction: 'alternate',
+      loop: true
+    });
+
+    anime({
+      targets: '.animate-elem',
+      translateX: [
+        { value: '50%', duration: 2000 },
+        { value: 0, duration: 1000 }
+      ],
+      translateY: [
+        { value: '-50%', duration: 1000, delay: 3000 },
+      ],
+      rotate: '1turn',
+      duration: 5000,
+      loop: true,
+      direction: 'alternate'
+    });
+  })();
 
   // Menu
   (function() {

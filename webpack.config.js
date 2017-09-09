@@ -21,6 +21,6 @@ module.exports = {
   },
   plugins: [
     // Убрать если не нужна минификация js
-    new UglifyJSPlugin()
+    // new UglifyJSPlugin()
   ]
 }

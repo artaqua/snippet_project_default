@@ -5,4 +5,23 @@ section.section-home {
   .sprite {
     @include sprite($bars);
   }
+  .svg-animate {
+    float: left;
+    width: 400px;
+    height: 400px;
+    path {
+      stroke: $red;
+      stroke-width: 3px;
+      fill: none;
+    }
+  }
+  .animate-elem {
+    clear: both;
+    float: left;
+    padding: 20px;
+    background: $red;
+    span {
+      color: $white;
+    }
+  }
 }
