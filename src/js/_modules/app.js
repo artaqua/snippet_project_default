@@ -12,6 +12,7 @@ require('ion-rangeslider');
 require('select2');
 var fitvids = require('fitvids');
 var anime = require('animejs');
+var imagesLoaded = require('imagesloaded');
 
 // APP
 // Event DOM Ready
@@ -359,8 +360,8 @@ $(document).ready(function() {
 
 });
 
-// Event load
-$(window).on('load', function() {
+// Event load all img on page
+$('body').imagesLoaded( function() {
   loadPage();
 });
 
