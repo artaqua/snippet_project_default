@@ -188,7 +188,8 @@ gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
       baseDir: path.LiveReloadPath
-    }
+    },
+    notify: false
   });
 });
 

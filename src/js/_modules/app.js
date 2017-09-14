@@ -3,6 +3,7 @@
 // Require
 var $ = require('jquery');
 window.jQuery = window.jquery = $;
+var imagesLoaded = require('imagesloaded');
 require('tapjs');
 require('jquery-validation');
 require('perfect-scrollbar/dist/js/perfect-scrollbar.jquery.js');
@@ -12,7 +13,6 @@ require('ion-rangeslider');
 require('select2');
 var fitvids = require('fitvids');
 var anime = require('animejs');
-var imagesLoaded = require('imagesloaded');
 
 // APP
 // Event DOM Ready
@@ -240,6 +240,56 @@ $(document).ready(function() {
     });
   })();
 
+  // Reveal box
+  (function() {
+    var revealAnimation = anime.timeline();
+    revealAnimation
+      .add({
+        targets: '.reveal-box .bg',
+        transformOrigin: '50% 50% 0px',
+        translateX: '-105%', 
+        duration: 100,
+        delay: 0,
+        easing: 'easeInOutCirc',
+      })
+      .add({
+        targets: '.reveal-box .bg',
+        transformOrigin: '50% 50% 0px',
+        translateX: '0', 
+        duration: 700,
+        delay: 900,
+        easing: 'easeInOutCirc',
+        complete: function(anim) {
+          anime({
+            targets: '.reveal-box .content',
+            opacity: 1,
+            duration: 100,
+          });
+          animateComplite();
+        }
+      })
+      .add({
+        targets: '.reveal-box .bg',
+        transformOrigin: '50% 50% 0px',
+        translateX: '105%', 
+        duration: 700,
+        delay: 150,
+        easing: 'easeInOutCirc',
+      });
+
+    function animateComplite() {
+      anime({
+        targets: '.reveal-box .content .wrapper-p',
+        opacity: 0,
+        translateX: -40,
+        direction: 'reverse',
+        duration: 1000,
+        delay: 2050,
+        easing: 'easeInOutCirc',
+      });
+    }
+  })();
+
   // Tab on apartment
   (function () {
     // on init
@@ -367,7 +417,7 @@ $('body').imagesLoaded( function() {
 
 var loadPage = (function () {
   // Display loading...
-  $(".page-loading").addClass('load').delay(800).queue(function() { 
+  $(".page-loading").addClass('load').delay(700).queue(function() { 
     $(this).addClass('anim-stop');
     $('html').addClass('show-scroll');
   });
@@ -382,6 +432,7 @@ var loadPage = (function () {
   squeezeInWindow(1840,1080,'section.section-plan-turn .wrapper-plan');
 
   scrollHorizontalOnLoad('.wrapper-frame');
+
 });
 
 // Functions
