@@ -47,6 +47,8 @@
     "perfect-scrollbar": "^0.7.0",
     "select2": "^4.0.3",
     "slick-carousel": "^1.6.0",
-    "tapjs": "^1.0.9"
+    "snazzy-info-window": "^1.1.0",
+    "tapjs": "^1.0.9",
+    "waypoints": "^4.0.1"
   }
 }

@@ -13,40 +13,13 @@ require('ion-rangeslider');
 require('select2');
 var fitvids = require('fitvids');
 var anime = require('animejs');
+var waypoint = require("waypoints/lib/jquery.waypoints.js");
+var SnazzyInfoWindow = require('snazzy-info-window');
+
 
 // APP
 // Event DOM Ready
 $(document).ready(function() {
-
-  // Animations
-  (function() {
-    anime({
-      targets: '.svg-animate path',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'easeInOutSine',
-      duration: 4000,
-      delay: function(el, i) { 
-        return i * 2000 
-      },
-      direction: 'alternate',
-      loop: true
-    });
-
-    anime({
-      targets: '.animate-elem',
-      translateX: [
-        { value: '50%', duration: 2000 },
-        { value: 0, duration: 1000 }
-      ],
-      translateY: [
-        { value: '-50%', duration: 1000, delay: 3000 },
-      ],
-      rotate: '1turn',
-      duration: 5000,
-      loop: true,
-      direction: 'alternate'
-    });
-  })();
 
   // Menu
   (function() {
@@ -111,7 +84,7 @@ $(document).ready(function() {
       if( $(event.target).hasClass('popup') ) {
         $('.popup').removeClass('active');
         showScroll();
-      }        
+      }
     })
     // keydown ESC
     $(document).on('keydown', function(event) {
@@ -240,54 +213,146 @@ $(document).ready(function() {
     });
   })();
 
+  // Gallery
+  $('.fancybox').fancybox({
+    animationEffect: false,
+    speed: 600,
+    fullScreen: false,
+    thumbs: false,
+    slideShow: false,
+  });
+
+  // FitVids
+  fitvids('.container-player');
+
+  // Select2
+  $('select').select2({
+    width: '100%',
+    minimumResultsForSearch: -1
+  });
+
   // Reveal box
   (function() {
-    var revealAnimation = anime.timeline();
-    revealAnimation
-      .add({
-        targets: '.reveal-box .bg',
-        transformOrigin: '50% 50% 0px',
-        translateX: '-105%', 
-        duration: 100,
-        delay: 0,
-        easing: 'easeInOutCirc',
-      })
-      .add({
-        targets: '.reveal-box .bg',
-        transformOrigin: '50% 50% 0px',
-        translateX: '0', 
-        duration: 700,
-        delay: 900,
-        easing: 'easeInOutCirc',
-        complete: function(anim) {
-          anime({
-            targets: '.reveal-box .content',
-            opacity: 1,
-            duration: 100,
+    $('.reveal-box').each( function(i) {
+      var $el = $(this);
+      var elems = document.querySelectorAll('.reveal-box');
+      var elem = elems[i];
+      var revealBg = elem.querySelector('.bg');
+      var revealContent = elem.querySelector('.content');
+      var revealContentP = revealContent.querySelector('.wrapper-p');
+      var revealAnimation = anime.timeline();
+
+      function animate() {
+        revealAnimation
+          .add({
+            targets: revealBg,
+            translateX: [
+              { value: '-101%' },
+            ],
+            duration: 10,
+            easing: 'easeInOutCirc',
+            complete: function() {
+              revealBg.style.opacity = 1;
+            }
+          })
+          .add({
+            targets: revealBg,
+            translateX: [
+              { value: 0 },
+            ],
+            duration: 800,
+            easing: 'easeInOutCirc',
+            complete: function() {
+              revealContent.style.opacity = 1;
+              anime({
+                targets: '.reveal-box .content .wrapper-p',
+                opacity: 0,
+                translateX: -40,
+                direction: 'reverse',
+                duration: 1000,
+                easing: 'easeInOutCirc',
+              });
+            }
+          })
+          .add({
+            targets: revealBg,
+            translateX: [
+              { value: '101%' },
+            ],
+            duration: 800,
+            easing: 'easeInOutCirc',
           });
-          animateComplite();
-        }
-      })
-      .add({
-        targets: '.reveal-box .bg',
-        transformOrigin: '50% 50% 0px',
-        translateX: '105%', 
-        duration: 700,
-        delay: 150,
-        easing: 'easeInOutCirc',
+      }
+
+      $('body').imagesLoaded(function(){
+        // Animation on scroll
+        $el.waypoint( function( direction ) {
+          if( direction === 'down' ) {
+            animate();
+            // Animate once
+            this.destroy();
+          }
+        }, { 
+          offset: '100%'
+        });
       });
 
-    function animateComplite() {
-      anime({
-        targets: '.reveal-box .content .wrapper-p',
-        opacity: 0,
-        translateX: -40,
-        direction: 'reverse',
-        duration: 1000,
-        delay: 2050,
-        easing: 'easeInOutCirc',
-      });
-    }
+    });
+  })();
+
+  // Snazzy info window
+  (function(){
+    // Create the map
+    var map = new google.maps.Map($('.map-canvas')[0], {
+      zoom: 14,
+      center: new google.maps.LatLng(40.72, -74)
+    });
+
+    // Add a marker
+    var marker = new google.maps.Marker({
+      map: map,
+      position: new google.maps.LatLng(40.72, -74)
+    });
+
+    // Add a Snazzy Info Window to the marker
+    var info = new SnazzyInfoWindow({
+      marker: marker,
+      content: '<h3>Styling with SCSS</h3>' +
+              '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id urna eu sem fringilla ultrices.</p>' +
+              '<hr>' +
+              '<em>Snazzy Info Window</em>',
+    });
+    info.open();
+  })();
+
+  // Animations
+  (function() {
+    anime({
+      targets: '.svg-animate path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutSine',
+      duration: 4000,
+      delay: function(el, i) {
+        return i * 2000
+      },
+      direction: 'alternate',
+      loop: true
+    });
+
+    anime({
+      targets: '.animate-elem',
+      translateX: [
+        { value: '50%', duration: 2000 },
+        { value: 0, duration: 1000 }
+      ],
+      translateY: [
+        { value: '-50%', duration: 1000, delay: 3000 },
+      ],
+      rotate: '1turn',
+      duration: 5000,
+      loop: true,
+      direction: 'alternate'
+    });
   })();
 
   // Tab on apartment
@@ -317,7 +382,7 @@ $(document).ready(function() {
     $('section.apartments .tab select.btn-opts').on('change', function(e) {
       e.preventDefault();
       var filterTab = $(this).find("option:selected").attr('data-tab');
-      
+
       $('section.apartments .tab .tab-item').hide();
       $(filterTab).show();
       $('.container-scroll').perfectScrollbar('update');
@@ -329,23 +394,7 @@ $(document).ready(function() {
   tooltipOnHover('section.section-apartment-pick-floor .wrapper-section');
   tooltipOnHover('section.section-apartment-floor');
 
-  // Gallery
-  $('.fancybox').fancybox({
-    animationEffect: false,
-    speed: 600,
-    fullScreen: false,
-    thumbs: false,
-    slideShow: false,
-  });
-
-  // FitVids
-  fitvids('.container-player');
-
-  // Select2
-  $('select').select2({
-    width: '100%',
-    minimumResultsForSearch: -1
-  });
+  
 
   // Btn ripple
   $(".btn").click(function (e) {
@@ -357,21 +406,21 @@ $(document).ready(function() {
         posY = $(this).offset().top,
         buttonWidth = $(this).width(),
         buttonHeight =  $(this).height();
-    
+
     // Add the element
     $(this).prepend("<span class='ripple'></span>");
-    
+
    // Make it round!
     if(buttonWidth >= buttonHeight) {
       buttonHeight = buttonWidth;
     } else {
-      buttonWidth = buttonHeight; 
+      buttonWidth = buttonHeight;
     }
-    
+
     // Get the center of the element
     var x = e.pageX - posX - buttonWidth / 2;
     var y = e.pageY - posY - buttonHeight / 2;
-   
+
     // Add the ripples CSS and start the animation
     $(".ripple").css({
       width: buttonWidth,
@@ -382,16 +431,15 @@ $(document).ready(function() {
   });
 
   // Event scroll
-  // $('.container-scroll').scroll(function(event) {
-  //   // Аnimation on scroll
-  //   var wScroll = $(this).scrollTop();
+  // $el.waypoint( function( direction ) {
+  //   if( direction === 'down' ) {
+  //     // do anything
 
-  //   $('.section-about-descr .anim').each(function() {
-  //     var once = true;
-  //     if ( wScroll > $(this).offset().top - ( $(window).height() - 200) ) {
-  //       //
-  //     }
-  //   });
+  //     // Animate once
+  //     this.destroy();
+  //   }
+  // }, { 
+  //   offset: '100%'
   // });
 
   // Event resize
@@ -417,7 +465,7 @@ $('body').imagesLoaded( function() {
 
 var loadPage = (function () {
   // Display loading...
-  $(".page-loading").addClass('load').delay(700).queue(function() { 
+  $(".page-loading").addClass('load').delay(700).queue(function() {
     $(this).addClass('anim-stop');
     $('html').addClass('show-scroll');
   });
@@ -473,7 +521,7 @@ var viewportHeight = (function(elem) {
 var contentScrollHeight = (function() {
   // Init scroll
   $('.container-scroll').perfectScrollbar();
-  
+
   if ( $('.content-scroll .container-scroll').length ) {
     if (window.matchMedia("(max-width: 1100px)").matches) {
       $('.content-scroll .container-scroll').perfectScrollbar('destroy');
@@ -506,7 +554,7 @@ var squeezeInWindow = (function(widthImg,heightImg,squeezeElement){
 
       mainBox.css({
         "height": (heightImg*mainBoxWidth)/widthImg,
-        "width": mainBoxWidth 
+        "width": mainBoxWidth
       });
 
       if(mainBoxHeight<windowHeight){
@@ -558,5 +606,3 @@ var scrollHorizontalOnLoad = (function(elem) {
 
   $elem.scrollLeft( (scrollBlock / 2) - (blockWidth / 2) );
 });
-
-

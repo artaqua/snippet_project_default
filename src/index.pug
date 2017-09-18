@@ -19,18 +19,19 @@ html
       // Section home
       section.section-home
         .container-fluid
+          
           // Reveal
           .reveal-box
             .content
-              img(src="/assets/img/home/reveal.jpg", alt="")
+              img(src="https://cdn.dribbble.com/users/951279/screenshots/3811125/2.png", alt="")
               .wrapper-p
                 p Owl magic
             .bg
 
-          .reveal-box
-            .content
-              p FACKIN AMAZIN
-            .bg
+          .clearfix
+
+          // Snazzy info window
+          .map-canvas
           
           .clearfix
           svg.svg-animate(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 212 212', style='enable-background:new 0 0 212 212;', xml:space='preserve')
@@ -48,11 +49,21 @@ html
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quidem eveniet perferendis aperiam dicta veniam minima libero consequuntur officia, debitis, ab eligendi, nihil sapiente similique ullam perspiciatis doloribus id eaque.
           .sprite
           +svg('pdf')
+
+          p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi architecto fugiat perferendis dolorem, culpa nesciunt error esse mollitia expedita aperiam necessitatibus tenetur ad excepturi? Possimus, magni quos! Quod adipisci, hic sint iusto numquam nam! Accusamus facere commodi, maiores eligendi rerum sint laboriosam aspernatur harum iste omnis fuga! Fugiat ut cum porro veniam minus? Unde adipisci, doloremque debitis repudiandae dolorem perferendis eos praesentium laboriosam veritatis hic quasi consequuntur eveniet, facere sapiente at, fugiat nostrum. A totam neque illum ducimus soluta, nihil corporis fugiat magnam dolor maiores tempora consequatur ipsum, vero est unde commodi reiciendis ipsa pariatur perspiciatis qui assumenda veniam. Necessitatibus illum officiis dolorem id beatae voluptate aperiam quas, ducimus dignissimos alias molestias dolor aliquam perferendis consequuntur sed quae minus! Alias tempora velit nam incidunt, iste sapiente, exercitationem labore numquam nesciunt nulla sequi, veritatis sed animi dignissimos quod ipsa fuga amet! Laudantium sapiente architecto reiciendis ipsum commodi nobis facere, soluta aperiam quasi debitis corporis recusandae nulla quisquam ad nostrum! Dicta sequi autem itaque eum inventore eveniet architecto eligendi! Sint voluptatem mollitia quae corrupti ea quibusdam voluptatum repudiandae suscipit impedit nemo error, corporis magni aliquam doloremque tempore perspiciatis, officia necessitatibus nihil cumque culpa! Quaerat sint nobis assumenda perferendis esse quibusdam rerum similique saepe ab in dolores a, itaque ad temporibus cumque corporis hic voluptate officiis reprehenderit totam! Voluptas officiis adipisci accusamus dignissimos laboriosam eius, repudiandae voluptatum consequuntur velit veniam! Consequatur fugiat iste eveniet nesciunt tenetur mollitia explicabo consequuntur! Necessitatibus maiores quaerat laudantium aut iusto! Iste repellendus sint vero ad, modi nisi aperiam aliquid, atque, rem officiis corporis! Reiciendis sint quos accusantium architecto. Itaque eius nesciunt ab provident recusandae, deleniti deserunt voluptatibus natus quis assumenda praesentium nemo excepturi at. Laboriosam sit eos, nisi expedita distinctio similique veritatis odit accusamus delectus numquam itaque dolores eligendi sapiente, dolorum esse non? Doloremque iure esse sit iste, nulla officia provident quia nihil voluptatibus soluta officiis cupiditate suscipit deleniti error alias pariatur aut voluptate voluptatem, corrupti laborum minima est tempora distinctio non? Consectetur eligendi similique quam vero, pariatur soluta, voluptatem laborum saepe aperiam ipsam rem placeat perspiciatis a ullam quibusdam delectus praesentium officiis? Magnam, error eius esse, rerum ullam libero asperiores harum nemo nostrum sunt fugiat culpa reiciendis, dignissimos modi facere similique explicabo placeat saepe quidem velit recusandae veniam id? Fuga earum omnis mollitia porro adipisci similique distinctio molestiae repellendus quaerat dolor, rerum architecto aperiam et veritatis temporibus. Fuga corporis quasi, nostrum tempora optio adipisci suscipit dolor consequuntur?
+
+          .reveal-box
+            .content
+              img(src="https://cdn.dribbble.com/users/46302/screenshots/3811931/nice.png", alt="")
+              .wrapper-p
+                p FACKIN AMAZIN
+            .bg
+
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, obcaecati. Odio numquam earum eligendi, veniam ullam a natus autem? Ut in dolore praesentium perspiciatis eum rerum, pariatur, nam quasi reiciendis corrupti temporibus assumenda illo vitae nihil accusamus nobis non ducimus eos molestiae, iure repudiandae! Itaque inventore consectetur, ipsa nesciunt amet aut aspernatur facilis possimus! Temporibus inventore eligendi delectus tempora voluptate magni provident saepe, ullam nesciunt consectetur sit sapiente recusandae quae, culpa quas. Fugiat laborum incidunt doloribus cum recusandae exercitationem. Quidem aliquam doloremque delectus qui optio ipsum quibusdam fugit? Aspernatur voluptatum eveniet qui labore eligendi, odit nostrum facilis ipsam, exercitationem amet fuga ducimus sapiente vitae similique doloremque rerum nihil rem? Nulla fuga fugiat consequuntur pariatur quisquam quas tempora, nesciunt accusamus exercitationem voluptas earum maiores deleniti soluta reiciendis voluptatibus fugit necessitatibus, maxime eos cupiditate saepe excepturi repellendus qui molestias. Sit atque doloremque suscipit recusandae laudantium a asperiores accusantium aliquam, nesciunt, illo neque quo corrupti ducimus, laborum ab itaque eveniet quod animi quis? Recusandae, ratione distinctio doloribus, ipsam molestiae modi rem suscipit nostrum tenetur quibusdam, praesentium aliquid harum? Impedit porro, sapiente ex odit adipisci iusto nemo necessitatibus nobis quisquam quaerat eum dignissimos totam voluptatibus, aspernatur quibusdam aliquid tempora explicabo vitae minus expedita? Architecto?
               
 
 
-
-            
+          
 
     // Footer
     include pug/_modules/footer.pug
@@ -63,6 +74,7 @@ html
 
 
     // Scripts
+    script(src="https://maps.googleapis.com/maps/api/js")
     include pug/scripts.pug
     
     
@@ -70,4 +82,3 @@ html
   
 
       
-
