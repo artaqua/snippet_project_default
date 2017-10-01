@@ -14,12 +14,11 @@ require('select2');
 var fitvids = require('fitvids');
 var anime = require('animejs');
 var waypoint = require("waypoints/lib/jquery.waypoints.js");
-var SnazzyInfoWindow = require('snazzy-info-window');
 
 
 // APP
 // Event DOM Ready
-$(document).ready(function() {
+$(function() {
 
   // Menu
   (function() {
@@ -250,6 +249,7 @@ $(document).ready(function() {
               { value: '-101%' },
             ],
             duration: 10,
+            delay: 300,
             easing: 'easeInOutCirc',
             complete: function() {
               revealBg.style.opacity = 1;
@@ -298,31 +298,6 @@ $(document).ready(function() {
       });
 
     });
-  })();
-
-  // Snazzy info window
-  (function(){
-    // Create the map
-    var map = new google.maps.Map($('.map-canvas')[0], {
-      zoom: 14,
-      center: new google.maps.LatLng(40.72, -74)
-    });
-
-    // Add a marker
-    var marker = new google.maps.Marker({
-      map: map,
-      position: new google.maps.LatLng(40.72, -74)
-    });
-
-    // Add a Snazzy Info Window to the marker
-    var info = new SnazzyInfoWindow({
-      marker: marker,
-      content: '<h3>Styling with SCSS</h3>' +
-              '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id urna eu sem fringilla ultrices.</p>' +
-              '<hr>' +
-              '<em>Snazzy Info Window</em>',
-    });
-    info.open();
   })();
 
   // Animations

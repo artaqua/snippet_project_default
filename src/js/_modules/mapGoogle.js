@@ -1,10 +1,11 @@
 var $ = require('jquery');
 window.jQuery = window.jquery = $;
+var SnazzyInfoWindow = require('snazzy-info-window');
 
 // Map
 module.exports.init = function () {
 
-  function initialize() {
+  function initializeMap() {
 
     // Map props
     var mapProp = {
@@ -44,47 +45,57 @@ module.exports.init = function () {
         };
         var map = new google.maps.Map(document.getElementById('map-contacts'), mapProp);
 
-        (function setMarkers(argument) {
+        (function() {
           var dataMarkers = [
-            [50.4025,30.4137],
-            [50.3703,30.3895]
+            {
+              content: 'Test 1',
+              lat: 50.4025,
+              lng: 30.4137
+            },
+            {
+              content: 'Test 2',
+              lat: 50.3703,
+              lng: 30.3895
+            }
           ];
           var imageLocataion = {
-            url: 'img/markers/mark-location.png'
+            url: 'assets/img/markers/mark-location.png'
           };
           var imageLocataionActive = {
-            url: 'img/markers/mark-location-active.png',
+            url: 'assets/img/markers/mark-location-active.png',
             size: new google.maps.Size(60, 85),
             anchor: new google.maps.Point(30, 58)
           };
-
           var marker;
           var markers = [];
+          var snazzyInfo;
 
-          for (var i = 0; i < dataMarkers.length; i++) {  
+          $.each(dataMarkers, function(i, elem) {
             marker = new google.maps.Marker({
-              position: new google.maps.LatLng(dataMarkers[i][0], dataMarkers[i][1]),
+              position: new google.maps.LatLng(elem.lat, elem.lng),
               map: map,
-              icon: {
-                url: 'img/markers/mark-location.png'
-              }
+              icon: imageLocataion
             });
-
+            snazzyInfo = new SnazzyInfoWindow($.extend({}, {
+              marker: marker,
+              content: elem.content
+            }));
             markers.push(marker);
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                markersSetIconDefault();
+            // On click
+            (function(marker, i) {
+              google.maps.event.addListener(marker, 'click', function() {
+                markersSetDefault();
                 marker.setIcon(imageLocataionActive);
-              }
-            })(marker, i));
+              });
+            })(marker, i);
 
-            function markersSetIconDefault() {
-              for (var j = 0; j < markers.length; j++) {
-                markers[j].setIcon(imageLocataion);
-              }
+            function markersSetDefault() {
+              $.each(markers, function(i, elem) {
+                elem.setIcon(imageLocataion);
+              });
             }
-          } // end for
+          });
 
         })();
       } // end if
@@ -99,25 +110,79 @@ module.exports.init = function () {
         };
         var map2 = new google.maps.Map(document.getElementById('map-road'), mapProp);
 
-        // Mark logo
-        var markLogo = new google.maps.Marker({
-          position: {
-            lat: 50.3743,
-            lng: 30.3924
-          },
-          map: map2,
-          icon: {
-            url: 'img/markers/mark-logo.png'
-          }
-        });
+        (function() {
+          // Mark logo
+          var markLogo = new google.maps.Marker({
+            position: {
+              lat: 50.3743,
+              lng: 30.3924
+            },
+            map: map2,
+            icon: {
+              url: 'assets/img/markers/mark-logo.png'
+            }
+          });
 
-        $('a[data-nav-page]').on('tap', function(event) {
-          event.preventDefault();
-          setTimeout(function() {
-            google.maps.event.trigger(map2, 'resize');
-            map2.setCenter(mapProp.center);
-          },100);
-        });
+          // Road travel
+          var markers = [];
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+
+          directionsDisplay.setOptions({
+            map: map2,
+            suppressMarkers: true,
+            polylineOptions: {
+              strokeColor: "#eb5c5d",
+              strokeWeight: 4,
+              strokeOpacity: 1
+            }
+          });
+
+          google.maps.event.addListener(map2, 'click', function(e) {
+            // Create marker
+            var markerRoute = new google.maps.Marker({
+              position: e.latLng, 
+              map: map2,
+              icon: 'assets/img/markers/mark-location.png'
+            });
+
+            markers.push(markerRoute);
+            // Clear all markers
+            markersClear(e.latLng);
+
+            // Route drive
+            calcRoute(e.latLng);
+            
+          });
+
+          function markersClear(positionLastMarker) {
+            $.each(markers, function(i, elem) {
+              if (elem.position != positionLastMarker) {
+                elem.setMap(null);
+              }
+            });
+          }
+
+          function calcRoute(endRoute) {
+            var position = {
+              start: {
+                lat: 50.3743,
+                lng: 30.3924
+              },
+              end: endRoute
+            };
+            var args = {
+              origin: position.start,
+              destination: position.end,
+              travelMode: google.maps.TravelMode.DRIVING
+            }
+            directionsService.route(args, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+              }
+            });
+          }
+        })();
 
       } // end if
 
@@ -131,45 +196,44 @@ module.exports.init = function () {
         };
         var map3 = new google.maps.Map(document.getElementById('map-infrastructure'), mapProp);
 
-        (function addMarkerInfrastructure() {
-
+        (function() {
           var dataMarkers = [
-            [
-              '<div class="infobox-wrapper"><p class="title">Ресторан</p></div>',
-              'img/markers/mark-food.png',
-              50.3743,
-              30.4024
-            ],
-            [
-              '<div class="infobox-wrapper"><p class="title">Футбольное поле</p></div>',
-              'img/markers/mark-footbol.png',
-              50.3723,
-              30.4000
-            ],
-            [
-              '<div class="infobox-wrapper"><p class="title">Больница</p></div>',
-              'img/markers/mark-med.png',
-              50.3680,
-              30.3924
-            ],
-            [
-              '<div class="infobox-wrapper"><p class="title">Кинотеатр</p></div>',
-              'img/markers/mark-movie.png',
-              50.3800,
-              30.3904
-            ],
-            [
-              '<div class="infobox-wrapper"><p class="title">Школа</p></div>',
-              'img/markers/mark-school.png',
-              50.3755,
-              30.3804
-            ],
-            [
-              '<div class="infobox-wrapper"><p class="title">Торговый центр</p></div>',
-              'img/markers/mark-shop.png',
-              50.3710,
-              30.3820
-            ]
+            {
+              content: '<p class="title">Ресторан</p>',
+              icon: 'assets/img/markers/mark-food.png',
+              lat: 50.3743,
+              lng: 30.4024
+            },
+            {
+              content: '<p class="title">Футбольное поле</p>',
+              icon: 'assets/img/markers/mark-footbol.png',
+              lat: 50.3723,
+              lng: 30.4000
+            },
+            {
+              content: '<p class="title">Больница</p>',
+              icon: 'assets/img/markers/mark-med.png',
+              lat: 50.3680,
+              lng: 30.3924
+            },
+            {
+              content: '<p class="title">Кинотеатр</p>',
+              icon: 'assets/img/markers/mark-movie.png',
+              lat: 50.3800,
+              lng: 30.3904
+            },
+            {
+              content: '<p class="title">Школа</p>',
+              icon: 'assets/img/markers/mark-school.png',
+              lat: 50.3755,
+              lng: 30.3804
+            },
+            {
+              content: '<p class="title">Торговый центр</p>',
+              icon: 'assets/img/markers/mark-shop.png',
+              lat: 50.3710,
+              lng: 30.3820
+            }
           ];
 
           // Mark logo
@@ -180,66 +244,51 @@ module.exports.init = function () {
             },
             map: map3,
             icon: {
-              url: 'img/markers/mark-logo.png'
+              url: 'assets/img/markers/mark-logo.png'
             }
           });
 
-          // Marks infrastructure
-          var infoBox = new InfoBox({
-            alignBottom: true,
-            pixelOffset: new google.maps.Size(0, -5),
-            pane: "mapPane"
-          });
-          var marker;
-
-          for (var i = 0; i < dataMarkers.length; i++) {  
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(dataMarkers[i][2], dataMarkers[i][3]),
+          // Markers
+          $.each(dataMarkers, function(i, elem) {
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(elem.lat, elem.lng),
               map: map3,
-              icon: dataMarkers[i][1]
+              icon: elem.icon
             });
+            var snazzyInfo = new SnazzyInfoWindow($.extend({}, {
+              marker: marker,
+              content: elem.content,
+              showCloseButton: false
+            }));
 
-            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-              return function() {
-                infoBox.setContent(dataMarkers[i][0]);
-                infoBox.open(map3, marker);
-              }
-            })(marker, i));
+            // On mouse
+            (function(marker, i) {
+              google.maps.event.addListener(marker, 'mouseover', function() {
+                snazzyInfo.setContent(elem.content);
+                snazzyInfo.open();
+              });
+            })(marker, i);
 
-            google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-              return function() {
-                infoBox.setContent(dataMarkers[i][0]);
-                infoBox.close(map3, marker);
-              }
-            })(marker, i));
-            
-          } // end for
-
-          $('a[data-nav-page]').on('tap', function(event) {
-            event.preventDefault();
-            setTimeout(function() {
-              google.maps.event.trigger(map3, 'resize');
-              map3.setCenter(mapProp.center);
-            },100);
+            // Out mouse
+            (function(marker, i) {
+              google.maps.event.addListener(marker, 'mouseout', function() {
+                snazzyInfo.setContent(elem.content);
+                snazzyInfo.close();
+              });
+            })(marker, i);
           });
 
         })();
-
-        
 
       } // end if
 
     })();
 
-    $('.overlay-map').on('click', function() {
-      $(this).remove();
-    }); 
-
   }
 
-  // Init map
-  if ( typeof google != 'undefined' ) {
-    google.maps.event.addDomListener(window, 'load', initialize);
-  }
+  // DOM Ready
+  $(function() {
+    initializeMap();
+  });
 
 };

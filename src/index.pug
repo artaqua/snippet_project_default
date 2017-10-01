@@ -19,7 +19,6 @@ html
       // Section home
       section.section-home
         .container-fluid
-          
           // Reveal
           .reveal-box
             .content
@@ -31,7 +30,10 @@ html
           .clearfix
 
           // Snazzy info window
-          .map-canvas
+          #map-contacts.google-map
+          h4 Кликните на карте ниже чтобы проложить марштур
+          #map-road.google-map
+          #map-infrastructure.google-map
           
           .clearfix
           svg.svg-animate(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 212 212', style='enable-background:new 0 0 212 212;', xml:space='preserve')
@@ -42,9 +44,9 @@ html
             s22-4.5,38.5-15s26-66.4,26-66.4L176,20.5l3,10.5c0,0-20-3.5-17,8')
           .clearfix
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum hic, cumque aliquam doloremque, dolorum consectetur dignissimos? Neque reiciendis ipsam expedita, quis magni blanditiis ea, quibusdam aliquid corrupti laudantium id deleniti.
-          img(src="/assets/img/markers/mark-food.png", alt="")
+          img(src="assets/img/markers/mark-food.png", alt="")
           .animate-elem
-            img.peka(src="/assets/img/home/peka.jpg", alt="1")
+            img.peka(src="assets/img/home/peka.jpg", alt="1")
           .clearfix
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quidem eveniet perferendis aperiam dicta veniam minima libero consequuntur officia, debitis, ab eligendi, nihil sapiente similique ullam perspiciatis doloribus id eaque.
           .sprite
@@ -74,7 +76,7 @@ html
 
 
     // Scripts
-    script(src="https://maps.googleapis.com/maps/api/js")
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPa6svYhFONG2AdEJ2F-4MhHwM764Pq_Q")
     include pug/scripts.pug
     
     
