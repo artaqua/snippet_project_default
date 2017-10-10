@@ -24,6 +24,13 @@ section.section-home {
       color: $white;
     }
   }
+  .link-page {
+    float: left;
+    padding: 20px;
+    background: $blue;
+    color: $white;
+    margin: 20px 0;
+  }
 
   // Reveal box
   .reveal-box {
@@ -102,5 +109,23 @@ section.section-home {
   // ScrollMonitor
   .trigger-scroll {
     float: left;
+  }
+
+  // Letters animate
+  .letters {
+    float: left;
+    width: 100%;
+    font-size: 80px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    margin: 0;
+    white-space: pre;
+    color: $red;
+    span {
+      display: inline-block;
+      position: relative;
+      white-space: pre;
+    }
   }
 }

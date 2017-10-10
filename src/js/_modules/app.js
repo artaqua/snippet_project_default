@@ -14,6 +14,7 @@ require('select2');
 var fitvids = require('fitvids');
 var anime = require('animejs');
 var waypoint = require("waypoints/lib/jquery.waypoints.js");
+var charming = require('charming');
 
 
 // APP
@@ -328,6 +329,97 @@ $(function() {
       loop: true,
       direction: 'alternate'
     });
+  })();
+
+  // Letters animate
+  (function() {
+
+    var elements = document.querySelectorAll('.letters');
+    elements.forEach(function(elm) { 
+      charming(elm, {
+        classPrefix: 'letter'
+      });
+    });
+
+    // });
+    // var animeLetter = anime({
+    //   targets: '.letters span',
+    //   translateY: function() {
+    //     return anime.random(-30, 30);
+    //   },
+    //   color: function() {
+    //     var rgb = 'rgb(' + '' + anime.random(0,255) + ',' + anime.random(0,255) + ',' + anime.random(0,255) + ')';
+    //     return [rgb,'#000'];
+    //   },
+    //   rotate: function() { 
+    //     return [0,anime.random(-45, 45)];
+    //   },
+    //   scale: function() {
+    //     return anime.random(0.8,1.6);
+    //   },
+    //   // opacity: {
+    //   //   value: [1, 0]
+    //   // },
+    //   duration: 2000,
+    //   delay: function(el, i) {
+    //     return i * anime.random(100,300)
+    //   },
+    //   direction: 'reverse',
+    //   autoplay: false
+    // });
+
+    var animeLetter1 = anime({
+      autoplay: false,
+      targets: '.letters-1 span',
+      duration: 700,
+      delay: function(el, index) { return index*50; },
+      easing: 'easeOutCirc',
+      opacity: 1,
+      translateX: function(el, index) {
+        return [(50+index*10),0]
+      },
+      opacity: {
+        value: [0,1],
+        easing: 'linear',
+      },
+      direction: 'alternate',
+      loop: true,
+    });
+
+    var animeLetter2 = anime({
+      autoplay: false,
+      targets: '.letters-2 span',
+      duration: 700,
+      delay: function(el, index) { return 550+index*50; },
+      easing: 'easeOutQuint',
+      opacity: {
+        value: 1,
+        easing: 'linear',
+      },
+      color: '#920A50',
+      translateY: ['-150%','0%'],
+      rotateY: [180,0],
+      opacity: [0,1],
+      loop: true,
+    });
+
+    var animeLetter3 = anime({
+      autoplay: false,
+      targets: '.letters-3 span',
+      duration: 6000,
+      delay: function(el, index) { return 200*index; },
+      easing: 'easeOutExpo',
+      rotateY: [-90,0],
+      color: '#04FA1D',
+      opacity: [0,1],
+    });
+
+    $('body').imagesLoaded( function() {
+      animeLetter1.play();
+      animeLetter2.play();
+      animeLetter3.play();
+    });
+
   })();
 
   // Tab on apartment
