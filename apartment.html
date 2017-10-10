@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apartment</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&amp;amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="css/bundle.css">
+  </head>
+  <body class="page-apartment">
+    <div style="display: none;"><svg xmlns="http://www.w3.org/2000/svg"><symbol id="svg-icon-arrow-down" viewBox="0 0 415.346 415.346"><path d="M0 41.712c0-11.763 9.537-21.3 21.3-21.3h372.747c11.763 0 21.299 9.537 21.299 21.3L223.649 387.834s-15.975 15.975-31.951 0C175.724 371.859 0 41.712 0 41.712z"/></symbol><symbol id="svg-icon-arrow-left" viewBox="0 0 252.06259 477.17499"><path d="M3.888 248.1l225.1 225.1c5.3 5.3 13.8 5.3 19.1 0 5.3-5.3 5.3-13.8 0-19.1l-215.5-215.5 215.5-215.5c5.3-5.3 5.3-13.8 0-19.1-2.6-2.6-6.1-4-9.5-4-3.4 0-6.9 1.3-9.5 4L3.988 229.1c-5.3 5.2-5.3 13.8-.1 19z"/></symbol><symbol id="svg-icon-arrow-right" viewBox="0 0 252.06259 477.17499"><path d="M248.175 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0-5.3 5.3-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></symbol><symbol id="svg-icon-cross" viewBox="0 0 31.112 31.112"><path d="M31.112 1.414L29.698 0 15.556 14.142 1.414 0 0 1.414l14.142 14.142L0 29.698l1.414 1.414L15.556 16.97l14.142 14.142 1.414-1.414L16.97 15.556z"/></symbol><symbol id="svg-icon-lunar" viewBox="0 0 355.6 355.6"><path d="M313.3 275.3c-17.2 5.7-35.1 8.6-53.2 8.6-93.4 0-169.3-76-169.3-169.4 0-37.7 12.2-73.4 35.2-103.2 1.1-1.4 1.1-3.3.1-4.7-1-1.4-2.8-2-4.4-1.5C48.8 29.2 0 96.8 0 173.4c0 97.7 79.5 177.2 177.2 177.2 55.4 0 106.6-25.2 140.4-69.2 1.1-1.4 1.1-3.3.1-4.7-1-1.3-2.8-1.9-4.4-1.4z"/><path d="M147.6 110.8l18.9-13.7 18.9 13.7-7.2-22.2L197 74.9h-23.3l-7.2-22.2-7.2 22.2H136l18.9 13.7-7.3 22.2zM308.5 104.7H276l-10.1-31-10.1 31h-32.5l26.3 19.1-10 30.9 26.3-19.1 26.3 19.1-10-30.9 26.3-19.1zM220.3 180.4h-14.7l-4.5-14-4.5 14h-14.7l11.9 8.6-4.5 14 11.9-8.6 11.9 8.6-4.5-14 11.7-8.6z"/></symbol><symbol id="svg-icon-menu" viewBox="0 0 459 459"><path d="M0 382.5h459v-51H0v51zM0 255h459v-51H0v51zM0 76.5v51h459v-51H0z"/></symbol><symbol id="svg-icon-pdf" viewBox="0 0 533.333 533.333"><path d="M438.548 307.021c-7.108-7.003-22.872-10.712-46.86-11.027-16.238-.179-35.782 1.251-56.339 4.129-9.205-5.311-18.691-11.091-26.139-18.051-20.033-18.707-36.755-44.673-47.175-73.226a267.572 267.572 0 0 0 1.795-7.403s11.284-64.093 8.297-85.763c-.411-2.972-.664-3.834-1.463-6.144l-.98-2.518c-3.069-7.079-9.087-14.58-18.522-14.171l-5.533-.176-.152-.003c-10.521 0-19.096 5.381-21.347 13.424-6.842 25.226.218 62.964 13.012 111.842l-3.275 7.961c-9.161 22.332-20.641 44.823-30.77 64.665l-1.317 2.581c-10.656 20.854-20.325 38.557-29.09 53.554l-9.05 4.785c-.659.348-16.169 8.551-19.807 10.752-30.862 18.427-51.313 39.346-54.706 55.946-1.08 5.297-.276 12.075 5.215 15.214l8.753 4.405c3.797 1.902 7.801 2.866 11.903 2.866 21.981 0 47.5-27.382 82.654-88.732 40.588-13.214 86.799-24.197 127.299-30.255 30.864 17.379 68.824 29.449 92.783 29.449 4.254 0 7.921-.406 10.901-1.194 4.595-1.217 8.468-3.838 10.829-7.394 4.648-6.995 5.591-16.631 4.329-26.497-.376-2.927-2.715-6.547-5.245-9.019zM110.233 423.983c4.008-10.96 19.875-32.627 43.335-51.852 1.475-1.196 5.108-4.601 8.435-7.762-24.533 39.128-40.962 54.723-51.77 59.614zm138.952-319.98c7.066 0 11.085 17.81 11.419 34.507.333 16.698-3.572 28.417-8.416 37.088-4.012-12.838-5.951-33.073-5.951-46.304 0 0-.295-25.291 2.948-25.291zm-41.45 228.025c4.922-8.811 10.043-18.103 15.276-27.957 12.756-24.123 20.812-42.999 26.812-58.514 11.933 21.71 26.794 40.167 44.264 54.955a174.49 174.49 0 0 0 6.913 5.547c-35.526 7.029-66.231 15.578-93.265 25.969zm223.987-2.001c-2.164 1.353-8.362 2.135-12.349 2.135-12.867 0-28.787-5.883-51.105-15.451 8.575-.635 16.438-.957 23.489-.957 12.906 0 16.729-.056 29.349 3.163s12.779 9.757 10.616 11.11zm38.816-226.157L396.13 29.463C379.925 13.258 347.917 0 325 0H75C52.083 0 33.333 18.75 33.333 41.667v450c0 22.916 18.75 41.666 41.667 41.666h383.333c22.916 0 41.666-18.75 41.666-41.666V175c.001-22.917-13.257-54.926-29.461-71.13zm-23.57 23.57c1.631 1.631 3.255 3.633 4.833 5.893h-85.134V48.2c2.261 1.578 4.263 3.203 5.893 4.833l74.408 74.407zm19.699 364.227c0 4.517-3.816 8.333-8.333 8.333H75c-4.517 0-8.333-3.816-8.333-8.333v-450c0-4.517 3.817-8.333 8.333-8.333h250c2.517 0 5.341.318 8.334.887v132.446H465.78c.569 2.993.887 5.816.887 8.333v316.667z"/></symbol><symbol id="svg-icon-print" viewBox="0 0 485.213 485.212"><path d="M121.305 30.327h242.604v60.651h30.327V30.327C394.236 13.595 380.674 0 363.909 0H121.305c-16.731 0-30.327 13.595-30.327 30.327v60.651h30.327V30.327zM454.89 121.304H30.328c-16.731 0-30.327 13.591-30.327 30.324v151.629c0 16.764 13.595 30.327 30.327 30.327h60.651v121.302c0 16.764 13.595 30.326 30.327 30.326H363.91c16.765 0 30.327-13.562 30.327-30.326V333.584h60.653c16.759 0 30.322-13.563 30.322-30.327V151.628c0-16.733-13.564-30.324-30.322-30.324zm-90.981 333.582H121.305v-212.28h242.604v212.28zm60.653-242.604c-16.764 0-30.326-13.564-30.326-30.327 0-16.731 13.562-30.327 30.326-30.327 16.765 0 30.327 13.595 30.327 30.327.001 16.762-13.562 30.327-30.327 30.327z"/><path d="M151.629 272.93h121.304v30.327H151.629zM151.629 333.584h181.958v30.321H151.629zM151.629 394.237h181.958v30.322H151.629z"/></symbol><symbol id="svg-icon-sun" viewBox="0 0 612.001 612.001"><path d="M306 149.341c-86.382 0-156.661 70.278-156.661 156.661 0 86.382 70.278 156.66 156.661 156.66s156.66-70.278 156.66-156.66c0-86.384-70.278-156.661-156.66-156.661zM274.194 117.278h63.612c5.032 0 9.356-2.101 11.863-5.763 2.508-3.662 2.9-8.453 1.079-13.146L315.749 8.257C312.96 1.073 308.444.001 306 .001s-6.96 1.073-9.749 8.255l-35 90.114c-1.821 4.692-1.427 9.482 1.079 13.145 2.507 3.663 6.832 5.763 11.864 5.763zM337.806 494.723h-63.612c-5.032 0-9.357 2.102-11.863 5.764-2.506 3.663-2.9 8.453-1.079 13.145l34.999 90.114C299.04 610.928 303.556 612 306 612c2.444 0 6.96-1.072 9.749-8.254l34.999-90.115c1.821-4.69 1.429-9.48-1.079-13.144-2.507-3.662-6.831-5.764-11.863-5.764zM127.54 190.824c2.412 5.477 7.028 8.746 12.348 8.746 3.644 0 7.257-1.608 10.174-4.526l44.981-44.98c3.558-3.558 5.13-8.102 4.312-12.466-.819-4.362-3.928-8.028-8.532-10.056l-88.467-38.973c-2.233-.983-4.336-1.482-6.25-1.482-3.201 0-5.959 1.415-7.568 3.882-1.357 2.081-2.454 5.747.031 11.389l38.971 88.466zM484.46 421.178c-2.412-5.477-7.027-8.746-12.346-8.746-3.645 0-7.259 1.609-10.177 4.527l-44.981 44.98c-3.558 3.559-5.13 8.104-4.312 12.466.818 4.362 3.929 8.028 8.532 10.055l88.466 38.974c2.233.983 4.336 1.482 6.25 1.482 3.201 0 5.959-1.417 7.568-3.882 1.358-2.083 2.455-5.748-.03-11.389l-38.97-88.467zM461.937 195.044c2.918 2.918 6.532 4.526 10.176 4.526 5.319 0 9.934-3.269 12.348-8.746l38.972-88.465c2.486-5.643 1.389-9.308.031-11.389-1.609-2.467-4.367-3.882-7.568-3.882-1.914 0-4.017.499-6.251 1.483l-88.466 38.97c-4.604 2.029-7.715 5.694-8.532 10.057-.818 4.363.754 8.908 4.312 12.466l44.978 44.98zM150.063 416.959c-2.918-2.918-6.532-4.527-10.177-4.527-5.319 0-9.934 3.269-12.346 8.746l-38.972 88.465c-2.486 5.643-1.389 9.308-.031 11.39 1.609 2.466 4.368 3.882 7.568 3.882 1.914 0 4.017-.499 6.251-1.484l88.466-38.972c4.604-2.028 7.715-5.694 8.532-10.056.818-4.362-.753-8.907-4.312-12.466l-44.979-44.978zM603.745 296.251l-90.111-34.996c-1.942-.755-3.896-1.137-5.806-1.137-7.593 0-13.104 5.921-13.104 14.078l.001 63.613c0 8.157 5.511 14.078 13.104 14.078 1.912 0 3.866-.382 5.806-1.136l90.112-34.999c7.182-2.79 8.254-7.306 8.254-9.751 0-2.443-1.075-6.961-8.256-9.75zM104.173 351.886c7.594 0 13.106-5.921 13.106-14.078v-63.613c0-8.157-5.511-14.078-13.106-14.078-1.912 0-3.864.382-5.805 1.136L8.255 296.251C1.073 299.04 0 303.556 0 306.001c0 2.444 1.072 6.96 8.255 9.752l90.111 34.996c1.942.754 3.895 1.137 5.807 1.137z"/></symbol></svg></div>
+    <div class="page-loading">
+      <div class="center">
+        <svg class="svg-loading" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 496.2 496.2" style="enable-background:new 0 0 496.2 496.2;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:#13113A;}
+            .st1{fill:#13113a;}
+          </style>
+          <g>
+            <path class="st1" d="M263.3,240.3c-2.3-12.6-3.4-26.3-5.6-39.1c19.4-19.5,42-45.4,44.4-86.7c0.8-14.2-2.1-26.1-5.6-39.1 c-2.4-9-8.8-33.1-18.4-29.2c-33.6,13.7-41.5,80-32,122.1c-23.2,23.9-62.4,47.9-68.3,94.3c-3.1,24.4,4.7,45.9,15.8,61.6 c14.3,20.3,41.9,38.5,76.9,30.5c4.3,29.3,15.2,72.4-13.2,84.7c-10.4,4.5-33.8,4.9-36.1-8.5c31.3,4.9,31.2-39,9-44.2 c-18.4-4.4-29.4,13.6-30.2,25.5c-1.5,22.3,19.6,38.4,42.8,37.9c24.9-0.5,42.5-15.7,41.8-47.1c-0.4-17.4-5.5-30.9-6.3-50.8 c20.1-9.6,38.1-23.4,40.5-50.8C321.6,268.8,301.2,238.2,263.3,240.3z M268.8,87c9-8.7,24.2-7.8,24.9,8.3 c0.7,15.6-7.4,29.5-14.9,40.3c-7.8,11.2-16,20.9-26.2,26.8C246.9,138,254.5,101,268.8,87z M193,287.6c1.2-20.7,10.8-35.8,21-48 c11-13.2,24.3-23.3,36.8-33.2c2.2,11.2,3.3,23.5,4.8,35.4c-16.9,7.5-36,20.8-35.2,48.1c0.3,9.4,4.2,18.5,9.5,25.6 c4.9,6.4,12.3,14.3,21,13.1c-0.4-5.3-6.8-6.6-10-9.8c-16.1-15.5-4-47.5,18.6-50.2c3.1,26.5,6.8,52.3,10.1,78.6 C221.5,354.5,190.7,324.5,193,287.6z M276.8,344.6c-2.7-26.1-7.2-50.7-9.7-77c9.7,1.2,18,4.8,23.8,10.2 C310.9,296.6,302.6,337.8,276.8,344.6z"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="container-full-page page-bg">
+      <!-- Header-->
+      <header class="header-page">
+        <div class="wrapper-logo"><a class="logo" href="index.html"></a></div>
+        <button class="humburger hamburger--spring"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
+        <address>ЕКАТЕРИНБУРГ, ул.КОУРОВСКАЯ, 13</address>
+        <div class="change-page"><a href="#" data-change-page="night">
+            <svg class="icon-lunar">
+              <use xlink:href="#svg-icon-lunar"></use>
+            </svg></a><a class="active" href="#" data-change-page="day">
+            <svg class="icon-sun">
+              <use xlink:href="#svg-icon-sun"></use>
+            </svg></a></div>
+        <div class="phones"><a class="phone" href="tel:+73433611341"> <span>(343)</span>361-13-41</a>
+          <button class="btn btn-order-call">заказать звонок</button>
+        </div>
+      </header>
+      <!-- Nav menu-->
+      <aside class="sidebar-menu"><a class="close" href="#">
+          <svg class="icon-cross">
+            <use xlink:href="#svg-icon-cross"></use>
+          </svg></a>
+        <nav class="nav-menu">
+          <ul class="list-nav">
+            <li><span>О проекте</span>
+              <ul class="list-sub-menu">
+                <li><a href="slider.html">ГАЛЕРЕЯ</a></li>
+                <li><a href="about.html">О ЗАСТРОЙЩИКЕ</a></li>
+                <li><a href="plan.html">ПЛАН ЗАСТРОЙКИ</a></li>
+                <li><a href="infrastructure.html">ИНФРАСТРУКТУРА</a></li>
+                <li><a href="road.html">как доехать</a></li>
+                <li><a href="catalog-news.html">НОВОСТИ</a></li>
+              </ul>
+            </li>
+            <li><a href="sections.html">купить квартиру  </a></li>
+            <li><span>условия покупки</span>
+              <ul class="list-sub-menu">
+                <li><a href="conditions.html">АКЦИИ  </a></li>
+                <li><a href="conditions-2.html">ИПОТЕКА</a></li>
+                <li><a href="conditions-3.html">РАССРОЧКА</a></li>
+              </ul>
+            </li>
+            <li><a href="gallery.html">ход строительства</a></li>
+            <li><a href="contacts.html">контакты</a></li>
+            <li><a class="docs" href="#">документы</a></li>
+          </ul>
+        </nav>
+        <div class="phones"><a class="phone" href="tel:+73433611341"> <span>(343)</span>361-13-41</a>
+          <button class="btn btn-order-call">заказать звонок</button>
+        </div>
+        <p class="oferta">информация  не является публичной офертой, определяемой положениями Статьи 437 ГК РФ      </p>
+      </aside>
+      <main>
+        <!-- Section Apartment-->
+        <section class="section-apartment">
+          <div class="container-section">
+            <div class="wrapper-content">
+              <div class="main-content container-scroll">
+                <div class="wrapper-sections"><a class="btn btn-filter" href="catalog-room.html">
+                    <svg class="icon-menu">
+                      <use xlink:href="#svg-icon-menu"></use>
+                    </svg><span>подбор по параметрам</span></a><img class="img-apartment" src="images/plans/plan-apartment/apartment.jpg" alt="1">
+                  <svg class="svg-apartment" viewBox="0 0 1185 757" height="100%" width="1185" preserveAspectRatio="xMinYMin"><a class="floor animate" href="#">
+                      <polygon class="path" points="644.5,740.3 909,740.3 909,703 645,703 606.3,705 606.3,740.3"></polygon>
+                      <text class="text" transform="matrix(1 0 0 1 748.667 728.333)">1 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="645,703 909,703 909,673.3 644.7,673.3 606.3,677 606.3,705"></polygon>
+                      <text class="text" transform="matrix(1 0 0 1 748.667 694.9997)">2 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,677 644.7,673.3 909,673.3 909,645.3 644.3,645.3 606.3,653"></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.667 666.7822)">3 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,653 644.3,645.3 909,645.3 909,616.2 645.2,616.2 606.3,628"></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 636.6155)">4 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,628 645.2,616.2 909,616.3 909,587.2 645.2,587.2 606.3,604"></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 607.6155)">5 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,604 645.2,587.2 909,587.2 909,560 645,558.7 606.3,580.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 579.6155)">6 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,580.1 645,558.7 909,560 909,533 645,529.7 606.3,555.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 551.6155)">7 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,555.1 645,529.7 909,533 909,503.9 645,500.7 606.3,530.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 522.6155)">8 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,530.1 645,500.7 909,503.9 909,474.9 645,470.7 606.3,505.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 493.6155)">9 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,505.1 645,470.7 909,474.9 909.5,446.5 645,442.7 606.3,483.1"></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 464.6155)">10 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,483.1 645,442.7 909.5,446.5 909,418.8 645,413.7 606.3,457.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 436.6155)">11 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,457.1 645,413.7 909,418.8 909,389.8 645,384.7 606.3,432.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 408.6155)">12 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,432.1 645,384.7 909,389.8 909,361.8 645,355.7 606.3,409.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 379.6155)">13 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,409.1 645,355.7 909,361.8 909,333.8 645,326.7 606.3,383.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 350.6155)">14 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,383.1 645,326.7 909,333.8 909,305.8 645,297.7 606.3,358.1  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 321.6155)">15 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,358.1 645,297.7 909,305.8 909,277.8 645,268.7 606.3,333.6  "></polygon>
+                      <text class="text" transform="matrix(1.0595 0 0 1 748.5003 293.6155)">16 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,333.6 645,268.7 909,278.4 909,250.8 645,239.7 606.3,309.6  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 748.3924 265.0314)">17 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,309.6 645,239.7 909,250.8 909,222.8 645,210.7 606.3,283.6  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 748.3924 236.0314)">18 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,283.6 645,210.7 909,222.8 909,192.8 645,180.7 606.3,254.6  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 748.3924 208.0314)">19 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="606.3,254.6 645,180.7 909,192.8 909,160.8 645,146.7 606.3,224.3  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 748.3924 177.0314)">20 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="879,159.1 879,138.2 669.5,127.9 657.1,147.3 668.7,147.9  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 749.3924 149.0314)">21 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="645.6,146.7 669.5,100.9 879,112.2 879,138.2 669.5,127.9 657.1,147.3  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 749.3924 126.0314)">22 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="669.5,71.9 879,84.2 879,112.2 669.5,100.9 631.6,173.6 631.6,153  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 749.3924 99.0314)">23 этаж</text></a><a class="floor animate" href="#">
+                      <polygon class="path" points="668.8,42.9 879,55.3 879,84.2 669.5,71.9 631.6,153 631.6,127  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 749.3924 70.0314)">24 этаж</text></a><a class="floor animate" href="floor.html">
+                      <polygon class="path" points="668.8,11.9 879,25.3 879,55.3 668.8,42.9 631.6,127 631.6,105  "></polygon>
+                      <text class="text" transform="matrix(1.0589 3.768899e-02 -3.557163e-02 0.9994 749.3924 39.0314)">25 этаж</text></a></svg>
+                  <div class="info-apartment animate">
+                    <div class="floor">14 этаж</div>
+                    <div class="rooms">
+                      <div class="room">квартир в продаже <span class="count">26</span></div>
+                      <div class="room">однокомнатных<span class="count">7 </span></div>
+                      <div class="room">двухкомнатных<span class="count">15</span></div>
+                      <div class="room">трехкомнатных<span class="count">4</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- Footer-->
+      <footer class="footer-page">
+        <p class="oferta"> <span class="descr">информация  не является публичной офертой, определяемой положениями Статьи 437 ГК РФ        </span><span class="buy">Продажа по ФЗ-214</span></p>
+        <p class="copyright">2016 Copyright ЖК Симфония  </p>
+      </footer>
+    </div>
+    <!-- Popups-->
+    <div class="order-call-popup popup">
+      <div class="wrapper-popup"><a class="close" href="#">
+          <svg class="icon-cross">
+            <use xlink:href="#svg-icon-cross"></use>
+          </svg></a>
+        <h3>Заказать звонок</h3>
+        <form id="form-order-call" action="#">
+          <input type="text" name="clientName" placeholder="Имя">
+          <input type="text" name="clientPhone" placeholder="Телефон">
+          <input type="text" name="clientEmail" placeholder="E-mail">
+          <div class="clearfix"></div>
+          <button class="btn btn-submit" type="submit">Оставить заявку</button>
+        </form>
+      </div>
+    </div>
+    <div class="feedback-popup popup">
+      <div class="wrapper-popup"><a class="close" href="#">
+          <svg class="icon-cross">
+            <use xlink:href="#svg-icon-cross"></use>
+          </svg></a>
+        <h3>Подписаться</h3>
+        <form id="form-feedback" action="#">
+          <input type="text" name="feedbackEmail" placeholder="E-mail">
+          <div class="clearfix"></div>
+          <button class="btn btn-submit" type="submit">отправить</button>
+        </form>
+      </div>
+    </div>
+    <div class="order-service-popup popup">
+      <div class="wrapper-popup"><a class="close" href="#">
+          <svg class="icon-cross">
+            <use xlink:href="#svg-icon-cross"></use>
+          </svg></a>
+        <h3>Забронировать квартиру<br>№ 203</h3>
+        <form id="form-order-service" action="#">
+          <input type="text" name="clientName" placeholder="Имя">
+          <input type="text" name="clientPhone" placeholder="Телефон">
+          <input type="text" name="clientEmail" placeholder="E-mail">
+          <div class="clearfix"></div>
+          <button class="btn btn-submit" type="submit">Оставить заявку</button>
+        </form>
+      </div>
+    </div>
+    <div class="docs-popup popup">
+      <div class="wrapper-popup"><a class="close" href="#">
+          <svg class="icon-cross">
+            <use xlink:href="#svg-icon-cross"></use>
+          </svg></a>
+        <h3>Проектная документация</h3>
+        <div class="wrapper-scroll">
+          <ul class="list-docs">
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Типовой договор</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Разрешение на строительство от 30.10.15</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Проектная декларация от 14.12.15</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №1 в проектную декларацию от 11.01.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №2 в проектную декларацию от 25.01.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №3 в проектную декларацию от 26.04.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №4 в проектную декларацию от 01.06.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Разрешение на строительство от 30.10.15</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №2 в проектную декларацию от 25.01.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №3 в проектную декларацию от 26.04.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Изменения №4 в проектную декларацию от 01.06.16</span></a></li>
+            <li><a href="#">
+                <svg class="icon-pdf">
+                  <use xlink:href="#svg-icon-pdf"></use>
+                </svg><span>Разрешение на строительство от 30.10.15</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/bundle.js"></script>
+  </body>
+</html>
