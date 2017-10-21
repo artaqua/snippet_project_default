@@ -461,8 +461,6 @@ $(function() {
   tooltipOnHover('section.section-apartment-pick-floor .wrapper-section');
   tooltipOnHover('section.section-apartment-floor');
 
-  
-
   // Btn ripple
   $(".btn").click(function (e) {
     // Remove any old one
@@ -496,6 +494,27 @@ $(function() {
       left: x + 'px'
     }).addClass("rippleEffect");
   });
+
+  // Ajax load content
+  (function() {
+    
+    $.ajax({cache: true});
+
+    $('.btn-ajax').on('tap', function() {
+      var spinner = '<div class="spinner">'
+                    + '<div class="bounce1"></div>'
+                    + '<div class="bounce2"></div>'
+                    + '<div class="bounce3"></div>'
+                    + '</div>';
+      var newHtml = 'cont-ajax.html';
+
+      $('.load-content').html(spinner).load(newHtml);
+    });
+
+  })();
+
+  // SmoothScroll
+  smoothScroll(400);
 
   // Event scroll
   // $el.waypoint( function( direction ) {
@@ -577,6 +596,18 @@ function showScroll() {
     $.fn.fullpage.setMouseWheelScrolling(true);
     $.fn.fullpage.setAllowScrolling(true);
   }
+}
+function smoothScroll(duration) {
+  $('a[href^="#"]').on('tap', function(event) {
+    var target = $( $(this).attr('href') );
+
+    if ( target.length ) {
+      event.preventDefault();
+      $('html,body').animate({
+        scrollTop: target.offset().top
+      }, duration);
+    }
+  });
 }
 
 var viewportHeight = (function(elem) {
