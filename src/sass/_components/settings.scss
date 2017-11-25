@@ -1,14 +1,14 @@
 /////////////////////////////// SETINGS DEFAULT STYLES
 
 html {
-	width: 100%;
-	height: 100%;
-	font-family: $font-base;
-	font-size: $html-font-size;
-	text-rendering: optimizeSpeed;
-	color: $base-color;
-	box-sizing: border-box;
-	// Fix 'jumping scrollbar'
+  width: 100%;
+  height: 100%;
+  font-family: $font-base;
+  font-size: $html-font-size;
+  text-rendering: optimizeSpeed;
+  color: $base-color;
+  box-sizing: border-box;
+  // Fix 'jumping scrollbar'
   width:100vw;
   overflow-x:hidden !important;
 }
@@ -16,54 +16,53 @@ html {
 *,
 *:before,
 *:after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-	font-size: $font-size;
-	background: $body-bg;
-	width: 100%;
-	margin: 0;
-	// fix dragged elems on load
-	display: table;
+  font-size: $font-size;
+  background: $body-bg;
+  width: 100%;
+  margin: 0;
+  // fix dragged elems on load
+  display: table;
   table-layout: fixed;
 }
 
 .container-fluid {
-	width: 100%;
-	max-width: $container-fluid-max-width;
-	padding: 0;
+  width: 100%;
+  max-width: $container-fluid-max-width;
 }
 
 ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 address {
-	font-style: normal;
+  font-style: normal;
 }
 
 a {
-	display: block;
-	color: $a-color;
-	text-decoration: none;
-	transition: all 250ms ease;
-	&:hover {
-		color: $a-color-hover;
-	}
-	&:active {
-		color: darken($a-color-hover,20%);
-	}
+  display: block;
+  color: $a-color;
+  text-decoration: none;
+  transition: all 300ms ease;
+  &:hover {
+    color: $a-color-hover;
+  }
+  &:active {
+    color: darken($a-color-hover,20%);
+  }
 }
 
 button {
-	border: none;
-	color: $white;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: all 250ms ease;
+  border: none;
+  color: $white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 300ms ease;
 }
 
 a:focus,
@@ -71,64 +70,64 @@ button:focus,
 input,
 textarea,
 option {
-	outline: none;
-	box-shadow: none;
-	text-shadow: none;
+  outline: none;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .img-responsive {
-	display: block;
+  display: block;
   max-width: 100%;
   height: auto;
 }
 
 p {
-	color: $p-color;
-	line-height: $p-line-height;
+  color: $p-color;
+  line-height: $p-line-height;
 }
 
 h1,
 h2,
 h3,
 h4 {
-	font-family: $h-font;
-	color: $h-color;
-	line-height: $h-line-height;
-	font-weight: $h-font-width;
+  font-family: $h-font;
+  color: $h-color;
+  line-height: $h-line-height;
+  font-weight: $h-font-width;
 }
 
 h1 {
-	font-size: $h1-size;
+  font-size: $h1-size;
 }
 
 h2 {
-	font-size: $h2-size;
+  font-size: $h2-size;
 }
 
 h3 {
-	font-size: $h3-size;
+  font-size: $h3-size;
 }
 
 h4 {
-	font-size: $h4-size;
+  font-size: $h4-size;
 }
 
 img {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	backface-visibility: hidden;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  backface-visibility: hidden;
 }
 
 i {
-	display: inline-block;
-	vertical-align: middle;
-	text-rendering: auto;
+  display: inline-block;
+  vertical-align: middle;
+  text-rendering: auto;
 }
 
 svg {
-	display: inline-block;
-	vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 ::selection {
@@ -141,9 +140,9 @@ svg {
 }
 
 .clearfix {
-	&:before,
+  &:before,
   &:after {
-  	content: " ";
+    content: " ";
     display: table;
   }
   &:after {
@@ -151,17 +150,12 @@ svg {
   }
 }
 
-.browsehappy {
-	color: red;
-	text-align: center;
-}
-
 .hide {
-	display: none;
+  display: none;
 }
 
 .show {
-	display: block;
+  display: block;
 }
-	
+  
 

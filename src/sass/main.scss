@@ -1,8 +1,8 @@
 /* Components */
 @import '_components/normalize';
-@import '_components/mixins';
-@import '_components/bootstrap-grid';
 @import '_components/variables';
+@import '_components/mixins';
+@import '_components/flexboxgrid';
 @import '_components/settings';
 @import '_components/animation';
 @import '_components/fonts';
@@ -20,6 +20,7 @@
 @import '_modules/common';
 @import '_modules/page-loading';
 @import '_modules/header';
+@import '_modules/sidebar-menu';
 @import '_modules/footer';
 @import '_modules/popups';
 

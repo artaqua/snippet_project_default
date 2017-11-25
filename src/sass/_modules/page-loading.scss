@@ -17,7 +17,7 @@
     .spinner,
     .dot1,
     .dot2 {
-      animation: none;
+      animation-play-state: paused;
     }
   }
   .center {
@@ -42,13 +42,14 @@
     top: 0;
     background-color: $blue;
     border-radius: 100%;
+    backface-visibility: hidden;
     animation: sk-bounce 2.0s infinite ease-in-out;
   }
   .dot2 {
     top: auto;
     bottom: 0;
     animation-delay: -1.0s;
-    background-color: $red;
+    background-color: $blue;
   }
   @keyframes sk-rotate { 
     100% { 
