@@ -1,12 +1,10 @@
 var $ = require('jquery');
 window.jQuery = window.jquery = $;
+var SnazzyInfoWindow = require('snazzy-info-window');
 
 // Map
-module.exports.init = function () {
-
+$(function() {
   function initializeMap() {
-    var SnazzyInfoWindow = require('snazzy-info-window');
-
     // Map props
     var mapProp = {
       center: {
@@ -286,9 +284,8 @@ module.exports.init = function () {
 
   }
 
-  // Init map
-  if ( typeof google != 'undefined' ) {
-    google.maps.event.addDomListener(window, 'load', initializeMap);
+  // Init
+  if( google && google.maps ){
+    initializeMap();
   }
-
-};
+});
