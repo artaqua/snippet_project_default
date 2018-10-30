@@ -1,5 +1,4 @@
 mixin svg(name)
-  - var svgClass = "icon-" + name
-  - var svgName = "#svg-icon-" + name
-  svg(class=svgClass)
-    use(xlink:href= svgName)
+  - var svgName = "svg-icon-" + name
+  svg&attributes(attributes)
+    use(xlink:href=`${baseDir}assets/img/sprites/sprite.svg#${svgName}`)

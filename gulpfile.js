@@ -20,7 +20,6 @@ var gulp                      = require('gulp'),
     browserSync               = require('browser-sync').create(),
     svgstore                  = require('gulp-svgstore'),
     svgmin                    = require('gulp-svgmin'),
-    inject                    = require('gulp-inject'),
     webpack                   = require('webpack'),
     webpackStream             = require('webpack-stream'),
     webpackConfig             = require('./webpack.config.js'),
@@ -37,21 +36,19 @@ var path = {
     img: 'build/assets/img/',
     sprites: 'build/assets/img/sprites/',
     fonts: 'build/assets/fonts/',
-    video: 'build/assets/video/'
+    resources: 'build/assets/resources/'
   },
   src: {
     pug: 'src/*.pug',
     mainJs: 'src/js/main.js',
     vendorsJs: 'src/js/vendors.js',
-    style: 'src/sass/*.scss',
-    img: ['src/img/**/**/**/*.*', '!src/img/sprites/**/**/**/*.*'],
+    style: 'src/sass/main.scss',
+    img: ['src/img/**/**/**/*.*', '!src/img/sprites/source_sprite_png/*.*', '!src/img/sprites/source_sprite_svg/*.*'],
     pngSprite: 'src/img/sprites/source_sprite_png/**/*.png',
+    svgSprite: 'src/img/sprites/source_sprite_svg/**/*.svg',
     sassComponents: 'src/sass/_components/',
-    sourceSvgSprite: 'src/img/sprites/source_sprite_svg/**/*.svg',
-    svgSprite: 'src/pug/svg-sprite.pug',
-    svgPugDest: 'src/pug',
     fonts: 'src/fonts/**/*.*',
-    video: 'src/video/**/*.*'
+    resources: 'src/resources/**/*.*'
   },
   watch: {
     pug: 'src/*.pug',
@@ -59,11 +56,11 @@ var path = {
     js: 'src/js/**/*',
     style: 'src/sass/*.*',
     styleInclude: ['src/sass/**/**/**/*.*', '!src/sass/*.*'],
-    img: ['src/img/**/**/**/*.*', '!src/img/sprites/**/**/**/**/*.*'],
+    img: ['src/img/**/**/**/*.*', '!src/img/svg-icons/*.*'],
     pngSprite: 'src/img/sprites/source_sprite_png/**/*.png',
     svgSprite: 'src/img/sprites/source_sprite_svg/**/*.svg',
     fonts: 'src/fonts/**/**/**/*.*',
-    video: 'src/video/**/**/**/*.*'
+    resources: 'src/resources/**/**/**/*.*'
   },
   clean: './build',
   LiveReloadPath: './build'
@@ -102,7 +99,9 @@ gulp.task('style:build', function() {
       importer: moduleImporter()
     }))
     .pipe(autoprefixer())
-    // .pipe(cleanCSS())
+    // Минимизация css
+    .pipe(cleanCSS())
+    //
     .pipe(rename({
       basename: 'bundle'
     }))
@@ -116,12 +115,6 @@ gulp.task('js:build', function() {
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest(path.build.js))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('json:build', function() {
-  return gulp.src('src/js/**/*.json')
     .pipe(gulp.dest(path.build.js))
     .pipe(browserSync.stream());
 });
@@ -151,9 +144,10 @@ gulp.task('fonts:build', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('video:build', function() {
-  return gulp.src(path.src.video)
-    .pipe(gulp.dest(path.build.video));
+gulp.task('resources:build', function() {
+  return gulp.src(path.src.resources)
+    .pipe(gulp.dest(path.build.resources))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('pngSprite', function () {
@@ -170,8 +164,13 @@ gulp.task('pngSprite', function () {
     .pipe(browserSync.stream());
 });
 
+// Как делается svg sprite 
+// 1) Svg иконки берутся из папки source_sprite_svg
+// 2) Минимизируются
+// 3) Вставляются иконки c помощью миксина в pug/_mixins/svg-icon.pug вот так:
+//    +svg('yourIcon') где yourIcon имя файла иконки в папке source_sprite_svg/yourIcon.svg
 gulp.task('svgSprite', function() {
-  var svgs = gulp.src(path.src.sourceSvgSprite)
+  gulp.src(path.src.svgSprite)
     .pipe(rename({
       prefix: 'svg-icon-'
     }))
@@ -179,15 +178,10 @@ gulp.task('svgSprite', function() {
     .pipe(svgstore({
       inlineSvg: true
     }))
-
-  function fileContents(filePath, file) {
-    return file.contents.toString();
-  }
-  return gulp.src(path.src.svgSprite)
-    .pipe(inject(svgs, {
-      transform: fileContents
+    .pipe(rename({
+      basename: 'sprite'
     }))
-    .pipe(gulp.dest(path.src.svgPugDest));
+    .pipe(gulp.dest(path.build.sprites));
 });
 
 /////////////////////////////// LIVERELOAD
@@ -221,14 +215,8 @@ gulp.task('watch', function() {
   watch(path.watch.js, function(event, cb) {
     gulp.start('js:build');
   });
-  watch(path.watch.js, function(event, cb) {
-    gulp.start('json:build');
-  });
   watch(path.watch.img, function(event, cb) {
     gulp.start('image:build');
-  });
-  watch(path.watch.fonts, function(event, cb) {
-    gulp.start('fonts:build');
   });
   watch(path.watch.pngSprite, function(event, cb) {
     gulp.start('pngSprite');
@@ -236,22 +224,27 @@ gulp.task('watch', function() {
   watch(path.watch.svgSprite, function(event, cb) {
     gulp.start('svgSprite');
   });
+  watch(path.watch.fonts, function(event, cb) {
+    gulp.start('fonts:build');
+  });
+  watch(path.watch.resources, function(event, cb) {
+    gulp.start('resources:build');
+  });
 });
 
 /////////////////////////////// DEFAULT
 gulp.task('default', function() {
   runSequence(
     'clearCache',
-    'clean:build', 
-    'html:build',
-    'style:build',
-    'js:build',
-    'json:build',
+    'clean:build',
     'image:build',
     'pngSprite',
     'svgSprite',
     'fonts:build',
-    'video:build',
+    'resources:build',
+    'html:build',
+    'style:build',
+    'js:build',
     'browser-sync',
     'watch'
   )

@@ -1,8 +1,8 @@
 var webpack = require("webpack");
 var path = require("path");
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+  mode: 'development', /* Минимизация js ===> mode: 'development' || 'production' */
   entry: {
     'bundle': './src/js/main.js',
   },
@@ -14,13 +14,18 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules)/
-        // loader: 'babel-loader'
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['env']
+        }
       }
     ]
   },
-  plugins: [
-    // Убрать если не нужна минификация js
-    // new UglifyJSPlugin()
-  ]
+  externals: {
+    jquery: 'jQuery'
+  },
+  performance: { 
+    hints: false 
+  }
 }

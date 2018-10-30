@@ -1,7 +1,6 @@
 .order-call-popup.popup
   .wrapper-popup
     a.close(href="#")
-      +svg('cross')
     h3 Обратный звонок
     form#form-order-call(action="#")
       input(type="text" name="clientName" placeholder="Ваше Имя")
@@ -38,11 +37,8 @@
 
 .popup-shares.popup
   a.prev(href="#")
-    +svg('arrow-slider-left')
   a.next(href="#")
-    +svg('arrow-slider-right')
   a.close(href="#")
-    +svg('cross')
   .wrapper-popup
     .slider-shares
       .slick-slide(data-preview-img="images/news/preview-shares/img-1.jpg" )
@@ -61,7 +57,6 @@
 .feedback-popup.popup
   .wrapper-popup
     a.close(href="#")
-      +svg('cross')
     h3 Подписаться на новости и акции
     form#form-feedback(action="#")
       input(type="text" name="feedbackEmail" placeholder="Ваш e-mail")
@@ -72,7 +67,6 @@
 .more-popup.popup
   .wrapper-popup
     a.close(href="#")
-      +svg('cross')
     h3 Уточнить подробности акции
     form#form-more(action="#")
       input(type="text" name="morePhone" placeholder="Номер телефона")

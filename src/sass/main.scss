@@ -2,11 +2,15 @@
 @import '_components/normalize';
 @import '_components/variables';
 @import '_components/mixins';
-@import '_components/flexboxgrid';
 @import '_components/settings';
 @import '_components/animation';
 @import '_components/fonts';
 @import '_components/png-sprite';
+// @import '_components/flexboxgrid';
+
+/* Modules */
+@import '_modules/page-loading';
+@import '_modules/common';
 
 /* Imports from node_modules */
 @import 'perfect-scrollbar/dist/css/perfect-scrollbar.css';
@@ -15,17 +19,8 @@
 @import 'ion-rangeslider/css/ion.rangeSlider.css';
 @import 'select2/dist/css/select2.css';
 @import 'snazzy-info-window/dist/snazzy-info-window.css';
-
-/* Modules */
-@import '_modules/common';
-@import '_modules/page-loading';
-@import '_modules/header';
-@import '_modules/sidebar-menu';
-@import '_modules/footer';
-@import '_modules/popups';
-
-/* Sections */
-@import '_modules/section-home';
+/* Change styles plagins */
+@import '_modules/plagins';
 
 
 

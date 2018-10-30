@@ -1,132 +1,37 @@
-include pug/_mixins/svg-icon.pug
+extends pug/base
 
-doctype html
-html
-  head
-    title Home
-    include pug/meta.pug
-    include pug/styles.pug
-  body
-    include pug/svg-sprite.pug
+append vars
+  - var title = 'Home'
 
-    // Page Loader
-    include pug/_modules/page-loading.pug
+block content
+  main.page
+    section.section-preview
+      .section-preview__wrapper-content
+        h2.section-preview__head-title Visit Poz
+          span.section-preview__light nAN
+        p.section-preview__head-descr a city on the 
+          span.section-preview__light Warta 
+          | river in west-central 
+          span.section-preview__light Poland
+          |, the region called 
+          span.section-preview__light Greater Poland.
 
-    // Header
-    include pug/_modules/header.pug
-
-    // Sidebar menu
-    include pug/_modules/sidebar-menu.pug
-    
-    main
-      // Section home
-      section.section-home
-        .container-fluid
-          a.link-page(href="page-2.html") page 2
-          .clearfix
           
-          h3 Header on flexbox and Flexbox grid sistem
-          header.header-flex
-            a.logo(href="#") Logo
-            ul.list
-              li
-                a(href="#") any
-              li
-                a(href="#") any
-              li
-                a(href="#") any
-              li
-                a(href="#") any
-          .row
-            .col-xs-12.col-sm-6.col-md-4.col-lg-3
-              a.item(data-fancybox="gallery-1" href="https://cdn.dribbble.com/users/951279/screenshots/3811125/2.png")
-                img(src="https://cdn.dribbble.com/users/951279/screenshots/3811125/2.png", alt="")
-              a.item(data-fancybox="gallery-1" href="assets/img/home/peka.jpg")
-                img(src="assets/img/home/peka.jpg", alt="")
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, voluptate voluptatibus voluptatum dolores ab minus! Harum, veritatis, dolore. Qui amet, veniam repudiandae autem voluptas architecto velit repellendus animi sapiente consequuntur quisquam iure asperiores eligendi reiciendis rem quis dolore laudantium ad sit. Hic necessitatibus quia nemo architecto eligendi iusto nihil fuga asperiores sapiente accusantium pariatur omnis, porro veritatis assumenda iste harum inventore dignissimos
-              .row
-                .col-xs-6
-                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, ipsam.
-                .col-xs-6
-                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, ipsam.
-            .col-xs-12.col-sm-6.col-md-4.col-lg-3
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, voluptate voluptatibus voluptatum dolores ab minus! Harum, veritatis, dolore. Qui amet, veniam repudiandae autem voluptas architecto velit repellendus animi sapiente consequuntur quisquam iure asperiores eligendi reiciendis rem quis dolore laudantium ad sit. Hic necessitatibus quia nemo architecto eligendi iusto nihil fuga asperiores sapiente accusantium pariatur omnis, porro veritatis assumenda iste harum inventore dignissimos
-            .col-xs-12.col-sm-6.col-md-4.col-lg-3
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, voluptate voluptatibus voluptatum dolores ab minus! Harum, veritatis, dolore. Qui amet, veniam repudiandae autem voluptas architecto velit repellendus animi sapiente consequuntur quisquam iure asperiores eligendi reiciendis rem quis dolore laudantium ad sit. Hic necessitatibus quia nemo architecto eligendi iusto nihil fuga asperiores sapiente accusantium pariatur omnis, porro veritatis assumenda iste harum inventore dignissimos
-            .col-xs-12.col-sm-6.col-md-4.col-lg-3
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, voluptate voluptatibus voluptatum dolores ab minus! Harum, veritatis, dolore. Qui amet, veniam repudiandae autem voluptas architecto velit repellendus animi sapiente consequuntur quisquam iure asperiores eligendi reiciendis rem quis dolore laudantium ad sit. Hic necessitatibus quia nemo architecto eligendi iusto nihil fuga asperiores sapiente accusantium pariatur omnis, porro veritatis assumenda iste harum inventore dignissimos
+    section.section-home(style=`background-image: url(${baseDir}assets/img/home/peka.jpg)`)
+      .container-fluid
+        a.link-page(href="page-2.html") page 2
+        .clearfix
+        
+        .icons-svg
+          +svg('users')
+          +svg('newspaper')
 
-          // Reveal
-          .reveal-box
-            .content
-              img(src="https://cdn.dribbble.com/users/951279/screenshots/3811125/2.png", alt="")
+        .row.end-xs.middle-xs
+          .col-xs-6
+            .reveal-box
+              img(src="https://cdn.dribbble.com/users/46302/screenshots/3811931/nice.png", alt="")
               .wrapper-p
-                p Owl magic
-            .bg
+                p FACKIN AMAZIN
 
-          .clearfix
-
-          // Snazzy info window
-          .row.bottom-xs
-            .col-xs-6
-              #map-contacts.google-map
-            .col-xs-6
-              h5 Кликните на карте ниже чтобы проложить марштур
-              #map-road.google-map
-            .col-xs-12
-              #map-infrastructure.google-map
-          
-          .clearfix
-          .row.center-xs.middle-xs
-            .col-xs-6
-              svg.svg-animate(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 212 212', style='enable-background:new 0 0 212 212;', xml:space='preserve')
-                path(d='M106,13.5l-80.5,11l-12,81.5L31,185.5l75,14l65-44l27.5-49c0,0-13.2-24.2-24.5-64.5C160.5-6,106,13.5,106,13.5z\
-                ')
-                path(d='M179.5,192l-4-95c0,0-27.5-42-33-42.5s-48,8-51,15s-6.5,17-6.5,26s18,30,29.5,35s25.5,7,23.5,15\
-                s-13.5,16.5-12,26s7,20.5,14,16.5s9-22,11-31.5s-95,4-95,4s-23-7.5-19.5-26S40.5,109,47,92s3-19,13-28.5s9-20,26-18s35,42,44,45.5\
-                s22-4.5,38.5-15s26-66.4,26-66.4L176,20.5l3,10.5c0,0-20-3.5-17,8')
-            .col-xs-6
-              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum hic, cumque aliquam doloremque, dolorum consectetur dignissimos? Neque reiciendis ipsam expedita, quis magni blanditiis ea, quibusdam aliquid corrupti laudantium id deleniti.
-              img(src="assets/img/markers/mark-food.png", alt="")
-            .col-xs-4.col-xs-offset-1
-              .animate-elem
-                img.peka(src="assets/img/home/peka.jpg", alt="1")
-          .clearfix
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quidem eveniet perferendis aperiam dicta veniam minima libero consequuntur officia, debitis, ab eligendi, nihil sapiente similique ullam perspiciatis doloribus id eaque.
-          .sprite
-          +svg('pdf')
-
-          p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi architecto fugiat perferendis dolorem, culpa nesciunt error esse mollitia expedita aperiam necessitatibus tenetur ad excepturi? Possimus, magni quos! Quod adipisci, hic sint iusto numquam nam! Accusamus facere commodi, maiores eligendi rerum sint laboriosam aspernatur harum iste omnis fuga! Fugiat ut cum porro veniam minus? Unde adipisci, doloremque debitis repudiandae dolorem perferendis eos praesentium laboriosam veritatis hic quasi consequuntur eveniet, facere sapiente at, fugiat nostrum. A totam neque illum ducimus soluta, nihil corporis fugiat magnam dolor maiores tempora consequatur ipsum, vero est unde commodi reiciendis ipsa pariatur perspiciatis qui assumenda veniam. Necessitatibus illum officiis dolorem id beatae voluptate aperiam quas, ducimus dignissimos alias molestias dolor aliquam perferendis consequuntur sed quae minus! Alias tempora velit nam incidunt, iste sapiente, exercitationem labore numquam nesciunt nulla sequi, veritatis sed animi dignissimos quod ipsa fuga amet! Laudantium sapiente architecto reiciendis ipsum commodi nobis facere, soluta aperiam quasi debitis corporis recusandae nulla quisquam ad nostrum! Dicta sequi autem itaque eum inventore eveniet architecto eligendi! Sint voluptatem mollitia quae corrupti ea quibusdam voluptatum repudiandae suscipit impedit nemo error, corporis magni aliquam doloremque tempore perspiciatis, officia necessitatibus nihil cumque culpa! Quaerat sint nobis assumenda perferendis esse quibusdam rerum similique saepe ab in dolores a, itaque ad temporibus cumque corporis hic voluptate officiis reprehenderit totam! Voluptas officiis adipisci accusamus dignissimos laboriosam eius, repudiandae voluptatum consequuntur velit veniam! Consequatur fugiat iste eveniet nesciunt tenetur mollitia explicabo consequuntur! Necessitatibus maiores quaerat laudantium aut iusto! Iste repellendus sint vero ad, modi nisi aperiam aliquid, atque, rem officiis corporis! Reiciendis sint quos accusantium architecto. Itaque eius nesciunt ab provident recusandae, deleniti deserunt voluptatibus natus quis assumenda praesentium nemo excepturi at. Laboriosam sit eos, nisi expedita distinctio similique veritatis odit accusamus delectus numquam itaque dolores eligendi sapiente, dolorum esse non? Doloremque iure esse sit iste, nulla officia provident quia nihil voluptatibus soluta officiis cupiditate suscipit deleniti error alias pariatur aut voluptate voluptatem, corrupti laborum minima est tempora distinctio non? Consectetur eligendi similique quam vero, pariatur soluta, voluptatem laborum saepe aperiam ipsam rem placeat perspiciatis a ullam quibusdam delectus praesentium officiis? Magnam, error eius esse, rerum ullam libero asperiores harum nemo nostrum sunt fugiat culpa reiciendis, dignissimos modi facere similique explicabo placeat saepe quidem velit recusandae veniam id? Fuga earum omnis mollitia porro adipisci similique distinctio molestiae repellendus quaerat dolor, rerum architecto aperiam et veritatis temporibus. Fuga corporis quasi, nostrum tempora optio adipisci suscipit dolor consequuntur?
-          
-          .row.end-xs.middle-xs
-            .col-xs-6
-              .reveal-box
-                .content
-                  img(src="https://cdn.dribbble.com/users/46302/screenshots/3811931/nice.png", alt="")
-                  .wrapper-p
-                    p FACKIN AMAZIN
-                .bg
-            .col-xs-6
-              p Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, obcaecati. Odio numquam earum eligendi, veniam ullam a natus autem? Ut in dolore praesentium perspiciatis eum rerum, pariatur, nam quasi reiciendis corrupti temporibus assumenda illo vitae nihil accusamus nobis non ducimus eos molestiae, iure repudiandae! Itaque inventore consectetur, ipsa nesciunt amet aut aspernatur facilis possimus! Temporibus inventore eligendi delectus tempora voluptate magni provident saepe, ullam nesciunt consectetur sit sapiente recusandae quae, culpa quas. Fugiat laborum incidunt doloribus cum recusandae exercitationem. Quidem aliquam doloremque delectus qui optio ipsum quibusdam fugit? Aspernatur voluptatum eveniet qui labore eligendi, odit nostrum facilis ipsam, exercitationem amet fuga ducimus sapiente vitae similique doloremque rerum nihil rem? Nulla fuga fugiat consequuntur pariatur quisquam quas tempora, nesciunt accusamus exercitationem voluptas earum maiores deleniti soluta reiciendis voluptatibus fugit necessitatibus, maxime eos cupiditate saepe excepturi repellendus qui molestias. Sit atque doloremque suscipit recusandae laudantium a asperiores accusantium aliquam, nesciunt, illo neque quo corrupti ducimus, laborum ab itaque eveniet quod animi quis? Recusandae, ratione distinctio doloribus, ipsam molestiae modi rem suscipit nostrum tenetur quibusdam, praesentium aliquid harum? Impedit porro, sapiente ex odit adipisci iusto nemo necessitatibus nobis quisquam quaerat eum dignissimos totam voluptatibus, aspernatur quibusdam aliquid tempora explicabo vitae minus expedita? Architecto?
-              
-
-
-          
-
-    // Footer
-    include pug/_modules/footer.pug
-
-    // Popups
-    include pug/_modules/popups.pug
-    
-
-
-    // Scripts
-    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPa6svYhFONG2AdEJ2F-4MhHwM764Pq_Q")
-    include pug/scripts.pug
-    
-    
-
-  
-
-      
+          .col-xs-12
+            #map-infrastructure.google-map

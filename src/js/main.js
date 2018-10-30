@@ -1,3 +1,1 @@
-// js
-require('./_modules/app.js');
-require('./_modules/mapGoogle.js');
+import './_modules/app.js';

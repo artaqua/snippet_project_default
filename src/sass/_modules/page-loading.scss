@@ -8,15 +8,15 @@
   width: 100vw;
   height: 100%;
   background: $white;
-  transition: all 0.7s cubic-bezier(0.91,-0.18, 0.24, 0.68);
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 1, 1), visibility 0.7s cubic-bezier(0.4, 0, 1, 1);
   &.load {
     visibility: hidden;
     opacity: 0;
   }
   &.anim-stop {
-    .spinner,
-    .dot1,
-    .dot2 {
+    .spinner {
       animation-play-state: paused;
     }
   }
@@ -26,43 +26,30 @@
     text-align: center;
   }
   .spinner {
+    width: 50px;
+    height: 50px;
     margin: 100px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    text-align: center;
-    animation: sk-rotate 2.0s infinite linear;
-  }
-  .dot1, 
-  .dot2 {
-    width: 60%;
-    height: 60%;
-    display: inline-block;
-    position: absolute;
-    top: 0;
     background-color: $blue;
     border-radius: 100%;
-    backface-visibility: hidden;
-    animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
   }
-  .dot2 {
-    top: auto;
-    bottom: 0;
-    animation-delay: -1.0s;
-    background-color: $blue;
-  }
-  @keyframes sk-rotate { 
-    100% { 
-      transform: rotate(360deg); 
+
+  @-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+      -webkit-transform: scale(1.0);
+      opacity: 0;
     }
   }
-  @keyframes sk-bounce {
-    0%, 
-    100% { 
-      transform: scale(0.0);
-    } 
-    50% { 
+
+  @keyframes sk-scaleout {
+    0% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 100% {
+      -webkit-transform: scale(1.0);
       transform: scale(1.0);
+      opacity: 0;
     }
   }
 }
